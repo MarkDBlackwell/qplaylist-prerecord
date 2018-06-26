@@ -66,8 +66,9 @@ module ::QplayistPrerecord
     nil
   end
 
-  def title_set(root, title)
-    root.title = title
+  def title_set(root, title_new)
+    root.title = title_new
+    nil
   end
 end
 
