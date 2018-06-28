@@ -8,18 +8,27 @@ See:
 https://stackoverflow.com/questions/12364981/how-to-delete-tkinter-widgets-from-a-window
 =end
 
+require 'airshow'
+require 'song_list'
 require 'tk'
 
 module ::QplayistPrerecord
+  module Graphical
+
   extend self
 
   def main
+    song_list = SongList.new
+    airshow = Airshow.new
+
     @program_name = 'QPlaylistPrerecord'
     root = TkRoot.new
     title_set root, @program_name
     top = TkFrame.new root
     prompt_choice top, pack_standard
-    button_navigate root, top, pack_standard
+    @button_navigate = button_navigate root, top, pack_standard
+    button_remove root, top, pack_standard
+    button_greeting root, top, pack_standard
     button_exit top, pack_standard
     top.pack fill: :both, side: :top
     Tk.mainloop
@@ -51,6 +60,28 @@ module ::QplayistPrerecord
       command proc_title
       pack pack_standard
     end
+  end
+
+  def button_greeting(root, top, pack_standard)
+    proc_greeting_show = proc do
+    end
+    TkButton.new top do
+      text 'Show Greeting'
+      command proc_greeting_show
+      pack pack_standard
+    end
+    nil
+  end
+
+  def button_remove(root, top, pack_standard)
+    proc_remove = proc do
+      @button_navigate.destroy
+    end
+    TkButton.new top do
+      text 'Destroy'
+      command proc_remove
+      pack pack_standard
+    end
     nil
   end
 
@@ -70,6 +101,5 @@ module ::QplayistPrerecord
     root.title = title_new
     nil
   end
+  end
 end
-
-::QplayistPrerecord.main

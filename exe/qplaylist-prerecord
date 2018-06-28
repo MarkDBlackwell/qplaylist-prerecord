@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+# coding: utf-8
+
+=begin
+Author: Mark D. Blackwell (google me)
+mdb June 28, 2018 - created
+
+=end
+
+require_relative '../etc/methods'
+
+include ::Methods
+
+# Run the setup program:
+#command_run %w[bundle exec ruby] + [filename_program]
+command_run %w[ruby] + [filename_program]
+
