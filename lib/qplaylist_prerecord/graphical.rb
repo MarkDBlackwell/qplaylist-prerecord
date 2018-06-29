@@ -35,29 +35,29 @@ module ::QplayistPrerecord
 
     private
 
-    def button_exit_init(menu, pack_standard)
+    def button_exit_init(menu, pack_hash)
       ::TkButton.new menu do
         text 'Exit'
         command do
           proc ::Kernel.exit
         end
-        pack pack_standard
+        pack(pack_hash.merge fill: :x)
       end
       nil
     end
 
-    def button_greeting_init(menu, pack_standard)
+    def button_greeting_init(menu, pack_hash)
       proc_greeting_show = proc do
       end
       ::TkButton.new menu do
         text 'Show Greeting'
         command proc_greeting_show
-        pack pack_standard
+        pack(pack_hash.merge fill: :x)
       end
       nil
     end
 
-    def button_navigate_init(menu, pack_standard)
+    def button_navigate_init(menu, pack_hash)
       proc_title = proc do
         @topic_title = 'something' unless defined? @topic_title
         s = "#{@topic_title} - #{@program_name}"
@@ -67,48 +67,54 @@ module ::QplayistPrerecord
       ::TkButton.new menu do
         text 'Navigate'
         command proc_title
-        pack pack_standard
+        pack(pack_hash.merge fill: :x)
       end
     end
 
-    def button_remove_init(menu, pack_standard)
+    def button_remove_init(menu, pack_hash)
       proc_remove = proc do
         @button_navigate.destroy
       end
       ::TkButton.new menu do
         text 'Destroy'
         command proc_remove
-        pack pack_standard
+        pack(pack_hash.merge fill: :x)
       end
       nil
     end
 
     def menu_init(menu)
 #     ::TkMenu.new @root do
+#       pack fill: :x
 #     end
 
-      @button_navigate = button_navigate_init menu, pack_standard
+      @button_navigate = button_navigate_init menu, pack_standard_menu
 
-      button_remove_init    menu, pack_standard
-      button_greeting_init  menu, pack_standard
-      button_exit_init      menu, pack_standard
+      button_remove_init    menu, pack_standard_menu
+      button_greeting_init  menu, pack_standard_menu
+      button_exit_init      menu, pack_standard_menu
 
       separator = ::Tk::Tile::Separator.new menu do
         orient :horizontal
         pack fill: :x
       end
-#     menu.pack pack_standard
+      menu.pack pack_standard
       nil
     end
 
     def pack_standard
-      {padx: 10, pady: 10}
+      {padx: 1, pady: 1}
     end
 
-    def prompt_choice(body, pack_standard)
+    def pack_standard_menu
+#     pack_standard.merge fill: :none
+      pack_standard.merge side: :left
+    end
+
+    def prompt_choice(body, pack_hash)
       ::TkLabel.new body do
         text 'Choose!'
-        pack pack_standard
+        pack pack_hash
       end
       nil
     end
@@ -134,7 +140,7 @@ module ::QplayistPrerecord
 
     def window_pack
 #     @menu.pack fill: :both, side: :top
-      @top. pack fill: :both, side: :top
+      @top. pack fill: :x, side: :top
       nil
     end
 
