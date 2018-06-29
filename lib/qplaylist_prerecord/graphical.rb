@@ -84,14 +84,21 @@ module ::QplayistPrerecord
     end
 
     def menu_init(menu)
-      ::TkMenu.new @root do
-      end
+#     ::TkMenu.new @root do
+#     end
 
       @button_navigate = button_navigate_init menu, pack_standard
 
       button_remove_init    menu, pack_standard
       button_greeting_init  menu, pack_standard
       button_exit_init      menu, pack_standard
+
+      separator = ::Tk::Tile::Separator.new menu do
+        orient :horizontal
+        pack fill: :x
+      end
+#     menu.pack pack_standard
+      nil
     end
 
     def pack_standard
@@ -126,7 +133,7 @@ module ::QplayistPrerecord
     end
 
     def window_pack
-      @menu.pack fill: :both, side: :top
+#     @menu.pack fill: :both, side: :top
       @top. pack fill: :both, side: :top
       nil
     end
