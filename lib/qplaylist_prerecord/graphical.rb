@@ -21,11 +21,11 @@ module ::QplayistPrerecord
       song_list = SongList.new
       airshow = Airshow.new
 
-      root, top, menu, body = window_init
-      title_init root
-#     menu_init root, menu
-      menu_init root, top
-#      prompt_choice menu, pack_standard
+      top, menu, body = window_init
+      title_init
+#     menu_init menu
+      menu_init top
+#     prompt_choice menu, pack_standard
       prompt_choice top, pack_standard
 
       window_run top
@@ -56,11 +56,11 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_navigate_init(root, menu, pack_standard)
+    def button_navigate_init(menu, pack_standard)
       proc_title = proc do
         @topic_title = 'something' unless defined? @topic_title
         s = "#{@topic_title} - #{@program_name}"
-        title_set root, s
+        title_set s
         @topic_title = @topic_title.chars.shuffle.join ''
       end
       TkButton.new menu do
@@ -82,11 +82,11 @@ module ::QplayistPrerecord
       nil
     end
 
-    def menu_init(root, menu)
-      TkMenu.new root do
+    def menu_init(menu)
+      TkMenu.new @root do
       end
 
-      @button_navigate = button_navigate_init root, menu, pack_standard
+      @button_navigate = button_navigate_init menu, pack_standard
 
       button_remove_init    menu, pack_standard
       button_greeting_init  menu, pack_standard
@@ -105,23 +105,23 @@ module ::QplayistPrerecord
       nil
     end
 
-    def title_init(root)
+    def title_init
       @program_name = 'QPlaylistPrerecord'
-      title_set root, @program_name
+      title_set @program_name
       nil
     end
 
-    def title_set(root, title_new)
-      root.title = title_new
+    def title_set(title_new)
+      @root.title = title_new
       nil
     end
 
     def window_init
-      root = TkRoot.new
-      top = TkFrame.new root
+      @root = TkRoot.new
+      top = TkFrame.new @root
       menu = TkFrame.new top
       body = TkFrame.new top
-      [root, top, menu, body]
+      [top, menu, body]
     end
 
     def window_run(top)
