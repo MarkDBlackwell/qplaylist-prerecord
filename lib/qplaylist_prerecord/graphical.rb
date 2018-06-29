@@ -21,14 +21,15 @@ module ::QplayistPrerecord
       song_list = SongList.new
       airshow = Airshow.new
 
-      top, menu, body = window_init
+      window_init
       title_init
-#     menu_init menu
-      menu_init top
-#     prompt_choice menu, pack_standard
-      prompt_choice top, pack_standard
+#     menu_init @menu
+      menu_init @top
+#     prompt_choice @menu, pack_standard
+      prompt_choice @top, pack_standard
 
-      window_run top
+      window_pack
+      window_run
       nil
     end
 
@@ -97,8 +98,8 @@ module ::QplayistPrerecord
       {padx: 10, pady: 10}
     end
 
-    def prompt_choice(top, pack_standard)
-      TkLabel.new top do
+    def prompt_choice(body, pack_standard)
+      TkLabel.new body do
         text 'Choose!'
         pack pack_standard
       end
@@ -118,14 +119,19 @@ module ::QplayistPrerecord
 
     def window_init
       @root = TkRoot.new
-      top = TkFrame.new @root
-      menu = TkFrame.new top
-      body = TkFrame.new top
-      [top, menu, body]
+      @top = TkFrame.new @root
+      @menu = TkFrame.new @top
+      @body = TkFrame.new @top
+      nil
     end
 
-    def window_run(top)
-      top.pack fill: :both, side: :top
+    def window_pack
+      @menu.pack fill: :both, side: :top
+      @top. pack fill: :both, side: :top
+      nil
+    end
+
+    def window_run
       Tk.mainloop
       nil
     end
