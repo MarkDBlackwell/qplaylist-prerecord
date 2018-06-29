@@ -11,7 +11,7 @@ require_relative '../etc/methods'
 
 include ::Methods
 
-# Run the setup program:
+# Run the program:
 #command_run %w[bundle exec ruby] + [filename_program]
 command_run %w[ruby] + [filename_program]
 
