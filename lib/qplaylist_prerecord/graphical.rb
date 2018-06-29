@@ -36,7 +36,7 @@ module ::QplayistPrerecord
     private
 
     def button_exit_init(menu, pack_standard)
-      TkButton.new menu do
+      ::TkButton.new menu do
         text 'Exit'
         command do
           proc ::Kernel.exit
@@ -49,7 +49,7 @@ module ::QplayistPrerecord
     def button_greeting_init(menu, pack_standard)
       proc_greeting_show = proc do
       end
-      TkButton.new menu do
+      ::TkButton.new menu do
         text 'Show Greeting'
         command proc_greeting_show
         pack pack_standard
@@ -64,7 +64,7 @@ module ::QplayistPrerecord
         title_set s
         @topic_title = @topic_title.chars.shuffle.join ''
       end
-      TkButton.new menu do
+      ::TkButton.new menu do
         text 'Navigate'
         command proc_title
         pack pack_standard
@@ -75,7 +75,7 @@ module ::QplayistPrerecord
       proc_remove = proc do
         @button_navigate.destroy
       end
-      TkButton.new menu do
+      ::TkButton.new menu do
         text 'Destroy'
         command proc_remove
         pack pack_standard
@@ -84,7 +84,7 @@ module ::QplayistPrerecord
     end
 
     def menu_init(menu)
-      TkMenu.new @root do
+      ::TkMenu.new @root do
       end
 
       @button_navigate = button_navigate_init menu, pack_standard
@@ -99,7 +99,7 @@ module ::QplayistPrerecord
     end
 
     def prompt_choice(body, pack_standard)
-      TkLabel.new body do
+      ::TkLabel.new body do
         text 'Choose!'
         pack pack_standard
       end
@@ -118,10 +118,10 @@ module ::QplayistPrerecord
     end
 
     def window_init
-      @root = TkRoot.new
-      @top = TkFrame.new @root
-      @menu = TkFrame.new @top
-      @body = TkFrame.new @top
+      @root = ::TkRoot.new
+      @top = ::TkFrame.new @root
+      @menu = ::TkFrame.new @top
+      @body = ::TkFrame.new @top
       nil
     end
 
@@ -132,7 +132,7 @@ module ::QplayistPrerecord
     end
 
     def window_run
-      Tk.mainloop
+      ::Tk.mainloop
       nil
     end
   end
