@@ -34,6 +34,7 @@ module ::QplayistPrerecord
     private
 
     def body_init
+      @body = ::TkFrame.new @top
       separator_body_init
       prompt_choice_init
       nil
@@ -44,6 +45,22 @@ module ::QplayistPrerecord
       @separator_body. pack fill: :x
       @prompt_choice.  pack pack_standard
 # (End keep order.)
+      [@body].each do |e|
+        e.pack fill: :both, side: :top
+      end
+      nil
+    end
+
+    def button_add_init
+      proc_add = proc do
+        body_init
+        body_pack
+      end
+      @button_add = ::TkButton.new @menu do
+        text 'Add'
+        command proc_add
+      end
+      nil
     end
 
     def button_exit_init
@@ -82,7 +99,7 @@ module ::QplayistPrerecord
 
     def button_remove_init
       proc_remove = proc do
-        @button_navigate.destroy
+        @body.destroy
       end
       @button_remove = ::TkButton.new @menu do
         text 'Remove'
@@ -94,12 +111,7 @@ module ::QplayistPrerecord
     def everything_pack
       body_pack
       menu_pack
-
-      @top. pack fill: :x, side: :top
-# Keep order:
-      [@menu, @body].each do |e|
-        e.pack fill: :both, side: :top
-      end
+      window_pack
       nil
     end
 
@@ -109,17 +121,18 @@ module ::QplayistPrerecord
 ##    end
 ##    @menu_fancy.pack pack_standard
 
+      @menu = ::TkFrame.new @top
       button_exit_init
       button_greeting_init
       button_navigate_init
       button_remove_init
-
+      button_add_init
       nil
     end
 
     def menu_pack
 # Keep order:
-      [@button_navigate, @button_remove, @button_greeting, @button_exit].each do |e|
+      [@button_navigate, @button_remove, @button_add, @button_greeting, @button_exit].each do |e|
         e.pack pack_standard_menu.merge fill: :x
       end
     end
@@ -161,8 +174,15 @@ module ::QplayistPrerecord
     def window_init
       @root = ::TkRoot.new
       @top = ::TkFrame.new @root
-      @menu = ::TkFrame.new @top
-      @body = ::TkFrame.new @top
+      nil
+    end
+
+    def window_pack
+      @top.pack fill: :x, side: :top
+# Keep order:
+      [@menu, @body].each do |e|
+        e.pack fill: :both, side: :top
+      end
       nil
     end
 
