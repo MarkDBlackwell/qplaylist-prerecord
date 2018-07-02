@@ -14,18 +14,13 @@ require 'tk'
 
 module ::QplayistPrerecord
   module Graphical
-
     extend self
 
     def main
       song_list = SongList.new
       airshow = Airshow.new
 
-      window_init
-      title_init
-      menu_init
-      body_init
-
+      everything_init
       everything_pack
       window_run
       nil
@@ -45,9 +40,7 @@ module ::QplayistPrerecord
       @separator_body. pack fill: :x
       @prompt_choice.  pack pack_standard
 # (End keep order.)
-      [@body].each do |e|
-        e.pack fill: :both, side: :top
-      end
+      @body.pack fill: :both, side: :top
       nil
     end
 
@@ -108,33 +101,39 @@ module ::QplayistPrerecord
       nil
     end
 
+    def everything_init
+      window_init # Keep first.
+      body_init
+      menu_init
+      title_init
+    end
+
     def everything_pack
-      body_pack
+# Keep order:
       menu_pack
+      body_pack
+# (End keep order.)
       window_pack
       nil
     end
 
     def menu_init
-##    @menu_fancy = ::TkMenu.new @root do
-##      pack fill: :x
-##    end
-##    @menu_fancy.pack pack_standard
-
       @menu = ::TkFrame.new @top
+# Keep alphabetical:
+      button_add_init
       button_exit_init
       button_greeting_init
       button_navigate_init
       button_remove_init
-      button_add_init
+# (End keep alphabetical.)
       nil
     end
 
     def menu_pack
-# Keep order:
       [@button_navigate, @button_remove, @button_add, @button_greeting, @button_exit].each do |e|
-        e.pack pack_standard_menu.merge fill: :x
+        e.pack pack_standard_menu
       end
+      @menu.pack fill: :both, side: :top
     end
 
     def pack_standard
@@ -142,8 +141,7 @@ module ::QplayistPrerecord
     end
 
     def pack_standard_menu
-##    pack_standard.merge fill: :none
-      pack_standard.merge side: :left
+      pack_standard.merge side: :left, fill: :x
     end
 
     def prompt_choice_init
@@ -179,10 +177,6 @@ module ::QplayistPrerecord
 
     def window_pack
       @top.pack fill: :x, side: :top
-# Keep order:
-      [@menu, @body].each do |e|
-        e.pack fill: :both, side: :top
-      end
       nil
     end
 
