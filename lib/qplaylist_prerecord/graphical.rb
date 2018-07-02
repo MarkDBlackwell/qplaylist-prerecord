@@ -87,11 +87,12 @@ module ::QplayistPrerecord
     end
 
     def everything_pack
+# Keep order:
       @button_navigate.pack pack_standard_menu.merge fill: :x
       @button_remove.  pack pack_standard_menu.merge fill: :x
       @button_greeting.pack pack_standard_menu.merge fill: :x
       @button_exit.    pack pack_standard_menu.merge fill: :x
-
+# End keep order.
       @menu.pack fill: :both, side: :top
       @body.pack fill: :both, side: :top
       @top. pack fill: :x, side: :top
@@ -103,10 +104,10 @@ module ::QplayistPrerecord
 ##      pack fill: :x
 ##    end
 
+      button_exit_init
+      button_greeting_init
       button_navigate_init
       button_remove_init
-      button_greeting_init
-      button_exit_init
 
 ##    @menu.pack pack_standard
       nil
