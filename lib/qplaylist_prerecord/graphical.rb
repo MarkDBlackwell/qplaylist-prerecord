@@ -24,8 +24,7 @@ module ::QplayistPrerecord
       window_init
       title_init
       menu_init
-      separator_body_init
-      prompt_choice_init
+      body_init
 
       everything_pack
       window_run
@@ -33,6 +32,12 @@ module ::QplayistPrerecord
     end
 
     private
+
+    def body_init
+      separator_body_init
+      prompt_choice_init
+      nil
+    end
 
     def button_exit_init
       @button_exit = ::TkButton.new @menu do
@@ -81,30 +86,33 @@ module ::QplayistPrerecord
 
     def everything_pack
 # Keep order:
-      @separator.pack fill: :x
-      @choice.pack pack_standard
+      @separator_body. pack fill: :x
+      @prompt_choice.  pack pack_standard
       @button_navigate.pack pack_standard_menu.merge fill: :x
       @button_remove.  pack pack_standard_menu.merge fill: :x
       @button_greeting.pack pack_standard_menu.merge fill: :x
       @button_exit.    pack pack_standard_menu.merge fill: :x
-# End keep order.
-      @menu.pack fill: :both, side: :top
-      @body.pack fill: :both, side: :top
-      @top. pack fill: :x, side: :top
+# (End keep order.)
+
+       @top. pack fill: :x, side: :top
+# Keep order:
+       @menu.pack fill: :both, side: :top
+       @body.pack fill: :both, side: :top
+# (End keep order.)
       nil
     end
 
     def menu_init
-##    ::TkMenu.new @root do
+##    @menu_fancy = ::TkMenu.new @root do
 ##      pack fill: :x
 ##    end
+##    @menu_fancy.pack pack_standard
 
       button_exit_init
       button_greeting_init
       button_navigate_init
       button_remove_init
 
-##    @menu.pack pack_standard
       nil
     end
 
@@ -118,16 +126,17 @@ module ::QplayistPrerecord
     end
 
     def prompt_choice_init
-      @choice = ::TkLabel.new @body do
+      @prompt_choice = ::TkLabel.new @body do
         text 'Choose!'
       end
       nil
     end
 
     def separator_body_init
-      @separator = ::Tk::Tile::Separator.new @body do
+      @separator_body = ::Tk::Tile::Separator.new @body do
         orient :horizontal
       end
+      nil
     end
 
     def title_init
