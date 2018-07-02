@@ -24,7 +24,8 @@ module ::QplayistPrerecord
       window_init
       title_init
       menu_init
-      body_init
+      separator_body_init
+      prompt_choice_init
 
       everything_pack
       window_run
@@ -32,14 +33,6 @@ module ::QplayistPrerecord
     end
 
     private
-
-    def body_init
-      @separator = ::Tk::Tile::Separator.new @body do
-        orient :horizontal
-        pack fill: :x
-      end
-      prompt_choice pack_standard
-    end
 
     def button_exit_init
       @button_exit = ::TkButton.new @menu do
@@ -88,6 +81,8 @@ module ::QplayistPrerecord
 
     def everything_pack
 # Keep order:
+      @separator.pack fill: :x
+      @choice.pack pack_standard
       @button_navigate.pack pack_standard_menu.merge fill: :x
       @button_remove.  pack pack_standard_menu.merge fill: :x
       @button_greeting.pack pack_standard_menu.merge fill: :x
@@ -122,12 +117,17 @@ module ::QplayistPrerecord
       pack_standard.merge side: :left
     end
 
-    def prompt_choice(pack_hash)
-      ::TkLabel.new @body do
+    def prompt_choice_init
+      @choice = ::TkLabel.new @body do
         text 'Choose!'
-        pack pack_hash
       end
       nil
+    end
+
+    def separator_body_init
+      @separator = ::Tk::Tile::Separator.new @body do
+        orient :horizontal
+      end
     end
 
     def title_init
