@@ -103,9 +103,12 @@ module ::QplayistPrerecord
 
     def everything_init
       window_init # Keep first.
+# Keep alphabetical:
       body_init
       menu_init
       title_init
+# (End keep alphabetical.)
+      nil
     end
 
     def everything_pack
@@ -134,14 +137,15 @@ module ::QplayistPrerecord
         e.pack pack_standard_menu
       end
       @menu.pack fill: :both, side: :top
+      nil
     end
 
     def pack_standard
-      {padx: 1, pady: 1}
+      @pack_standard_value ||= {padx: 1, pady: 1}
     end
 
     def pack_standard_menu
-      pack_standard.merge side: :left, fill: :x
+      @pack_standard_menu_value ||= pack_standard.merge side: :left, fill: :x
     end
 
     def prompt_choice_init
