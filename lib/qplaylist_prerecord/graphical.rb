@@ -30,8 +30,10 @@ module ::QplayistPrerecord
 
     def body_init
       @body = ::TkFrame.new @top
-      separator_body_init
+# Keep alphabetical:
       prompt_choice_init
+      separator_body_init
+# (End keep alphabetical.)
       nil
     end
 
@@ -133,7 +135,15 @@ module ::QplayistPrerecord
     end
 
     def menu_pack
-      [@button_navigate, @button_remove, @button_add, @button_greeting, @button_exit].each do |e|
+      [
+# Keep order:
+          @button_navigate,
+          @button_remove,
+          @button_add,
+          @button_greeting,
+          @button_exit,
+# (End keep order.)
+          ].each do |e|
         e.pack pack_standard_menu
       end
       @menu.pack fill: :both, side: :top
