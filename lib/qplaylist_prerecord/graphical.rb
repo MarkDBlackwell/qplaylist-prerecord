@@ -39,6 +39,13 @@ module ::QplayistPrerecord
       nil
     end
 
+    def body_pack
+# Keep order:
+      @separator_body. pack fill: :x
+      @prompt_choice.  pack pack_standard
+# (End keep order.)
+    end
+
     def button_exit_init
       @button_exit = ::TkButton.new @menu do
         text 'Exit'
@@ -85,20 +92,14 @@ module ::QplayistPrerecord
     end
 
     def everything_pack
-# Keep order:
-      @separator_body. pack fill: :x
-      @prompt_choice.  pack pack_standard
-      @button_navigate.pack pack_standard_menu.merge fill: :x
-      @button_remove.  pack pack_standard_menu.merge fill: :x
-      @button_greeting.pack pack_standard_menu.merge fill: :x
-      @button_exit.    pack pack_standard_menu.merge fill: :x
-# (End keep order.)
+      body_pack
+      menu_pack
 
-       @top. pack fill: :x, side: :top
+      @top. pack fill: :x, side: :top
 # Keep order:
-       @menu.pack fill: :both, side: :top
-       @body.pack fill: :both, side: :top
-# (End keep order.)
+      [@menu, @body].each do |e|
+        e.pack fill: :both, side: :top
+      end
       nil
     end
 
@@ -114,6 +115,13 @@ module ::QplayistPrerecord
       button_remove_init
 
       nil
+    end
+
+    def menu_pack
+# Keep order:
+      [@button_navigate, @button_remove, @button_greeting, @button_exit].each do |e|
+        e.pack pack_standard_menu.merge fill: :x
+      end
     end
 
     def pack_standard
