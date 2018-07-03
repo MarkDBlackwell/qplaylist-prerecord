@@ -103,6 +103,9 @@ module ::QplayistPrerecord
 #print 'airdate='; pp airdate
         @body.destroy
         @button_airdates.clear
+        @title_airdate = airdate.date
+        s = "#{@title_airdate} - #{@title_airshow} - #{@program_name}"
+        title_set s
         body_init
 # Keep alphabetical:
         prompt_choice_init
@@ -126,6 +129,9 @@ module ::QplayistPrerecord
 #print 'airshow='; pp airshow
         @body.destroy
         @button_airshows.clear
+        @title_airshow = airshow.name
+        s = "#{@title_airshow} - #{@program_name}"
+        title_set s
         body_init
 # Keep alphabetical:
         body_airdates_init
