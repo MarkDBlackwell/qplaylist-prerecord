@@ -23,7 +23,7 @@ module ::QplayistPrerecord
 
     def body_components_init
 # Keep alphabetical:
-      button_exit_init 'OK'
+      button_exit_init @body, 'OK'
       label_message_text_init
 # (End keep alphabetical.)
       nil
@@ -37,8 +37,8 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_exit_init(s)
-      @button_exit = ::TkButton.new @body do
+    def button_exit_init(container, s)
+      @button_exit = ::TkButton.new container do
         text s
         command do
           proc ::Kernel.exit
