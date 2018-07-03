@@ -49,8 +49,9 @@ module ::QplayistPrerecord
     end
 
     def all_components_init
-# Keep alphabetical:
       body_init
+# Keep alphabetical:
+      body_components_init
       menu_init
 # (End keep alphabetical.)
       nil
@@ -59,6 +60,7 @@ module ::QplayistPrerecord
     def all_components_pack
 # Keep order:
       menu_pack
+      body_components_pack
       body_pack
 # (End keep order.)
       nil

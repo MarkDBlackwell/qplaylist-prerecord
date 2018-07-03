@@ -23,10 +23,12 @@ module ::QplayistPrerecord
 
     def all_components_init
       body_init
+      body_components_init
       nil
     end
 
     def all_components_pack
+      body_components_pack
       body_pack
       nil
     end
