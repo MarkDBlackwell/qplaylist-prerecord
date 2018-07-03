@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 # coding: utf-8
 
 =begin
@@ -8,6 +7,7 @@ mdb July 2, 2018 - created
 
 require 'graphical_helper'
 require 'tk'
+require 'version'
 
 module ::QplayistPrerecord
   module About
@@ -15,11 +15,21 @@ module ::QplayistPrerecord
     extend self
 
     def main
-      everything
+      window_process
       nil
     end
 
     private
+
+    def all_components_init
+      body_init
+      nil
+    end
+
+    def all_components_pack
+      body_pack
+      nil
+    end
 
     def body_components_init
 # Keep alphabetical:
@@ -37,26 +47,13 @@ module ::QplayistPrerecord
       nil
     end
 
-    def everything_components_init
-      body_init
-      nil
-    end
-
-    def everything_components_pack
-      body_pack
-      nil
-    end
-
     def label_message_text_init
       @label_message_text = ::TkLabel.new @body do
         text <<END.chomp
-QPlaylist Prerecord
-
+QPlaylist Prerecord #{::QplayistPrerecord::VERSION}
 Copyright (C) 2018 Mark D. Blackwell.
 No license. All rights reserved.
-
-Contact: Mark D. Blackwell
-markdblackwell01@gmail.com
+Contact: markdblackwell01@gmail.com
 END
       end
       nil

@@ -30,11 +30,27 @@ module ::QplayistPrerecord
       song_list = SongList.new
       airshow = Airshow.new
 
-      everything
+      window_process
       nil
     end
 
     private
+
+    def all_components_init
+# Keep alphabetical:
+      body_init
+      menu_init
+# (End keep alphabetical.)
+      nil
+    end
+
+    def all_components_pack
+# Keep order:
+      menu_pack
+      body_pack
+# (End keep order.)
+      nil
+    end
 
     def body_components_init
 # Keep alphabetical:
@@ -100,22 +116,6 @@ module ::QplayistPrerecord
         text 'Remove'
         command proc_remove
       end
-      nil
-    end
-
-    def everything_components_init
-# Keep alphabetical:
-      body_init
-      menu_init
-# (End keep alphabetical.)
-      nil
-    end
-
-    def everything_components_pack
-# Keep order:
-      menu_pack
-      body_pack
-# (End keep order.)
       nil
     end
 

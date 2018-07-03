@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 # coding: utf-8
 
 =begin
@@ -11,6 +10,19 @@ module ::QplayistPrerecord
     extend self
 
     private
+
+    def all_init
+      window_init # Keep first.
+      title_init
+      all_components_init
+      nil
+    end
+
+    def all_pack
+      window_pack
+      all_components_pack
+      nil
+    end
 
     def body_init
       @body = ::TkFrame.new @top
@@ -45,26 +57,6 @@ module ::QplayistPrerecord
 
     def dirname_script_this
       ::Kernel.__dir__
-    end
-
-    def everything
-      everything_init
-      everything_pack
-      window_run
-      nil
-    end
-
-    def everything_init
-      window_init # Keep first.
-      title_init
-      everything_components_init
-      nil
-    end
-
-    def everything_pack
-      window_pack
-      everything_components_pack
-      nil
     end
 
     def menu_init
@@ -104,6 +96,13 @@ module ::QplayistPrerecord
 
     def window_pack
       @top.pack fill: :x, side: :top
+      nil
+    end
+
+    def window_process
+      all_init
+      all_pack
+      window_run
       nil
     end
 
