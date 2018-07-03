@@ -30,31 +30,16 @@ module ::QplayistPrerecord
 
     def main
       song_list = SongList.new
-      @airshows = Airshows.all
-#print '@airshows='; pp @airshows
       window_process
       nil
     end
 
     private
 
-    def button_airshow_init(airshow)
-      proc_button = proc do
-#print 'airshow='; pp airshow
-      end
-      button_airshow = ::TkButton.new @body do
-        text airshow
-        command proc_button
-      end
-      @button_airshows ||= []
-      @button_airshows.push button_airshow
-      nil
-    end
-
     def airshows_body_init
-      @airshows.each do |airshow|
-        button_airshow_init airshow
-      end
+      @airshows = Airshows.all
+#print '@airshows='; pp @airshows
+      @airshows.each{|e| button_airshow_init e}
       nil
     end
 
@@ -94,6 +79,19 @@ module ::QplayistPrerecord
       prompt_choice_pack
       airshows_body_pack
 # (End keep order.)
+      nil
+    end
+
+    def button_airshow_init(airshow)
+      proc_button = proc do
+#print 'airshow='; pp airshow
+      end
+      button_airshow = ::TkButton.new @body do
+        text airshow
+        command proc_button
+      end
+      @button_airshows ||= []
+      @button_airshows.push button_airshow
       nil
     end
 
