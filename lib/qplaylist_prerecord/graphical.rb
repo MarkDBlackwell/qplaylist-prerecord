@@ -173,8 +173,7 @@ module ::QplayistPrerecord
       ::File.join directory_lib, basename
     end
 
-    def menu_init
-      @menu = ::TkFrame.new @top
+    def menu_components_init
 # Keep alphabetical:
       button_add_init
       button_exit_init
@@ -182,6 +181,12 @@ module ::QplayistPrerecord
       button_navigate_init
       button_remove_init
 # (End keep alphabetical.)
+      nil
+    end
+
+    def menu_init
+      @menu = ::TkFrame.new @top
+      menu_components_init
       nil
     end
 
