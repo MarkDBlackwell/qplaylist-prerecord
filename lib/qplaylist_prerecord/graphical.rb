@@ -70,14 +70,12 @@ module ::QplayistPrerecord
 # Keep alphabetical:
       airshows_body_init
       prompt_choice_init
-      separator_body_init
 # (End keep alphabetical.)
       nil
     end
 
     def body_components_pack
 # Keep order:
-      separator_body_pack
       prompt_choice_pack
       airshows_body_pack
 # (End keep order.)
@@ -137,6 +135,7 @@ module ::QplayistPrerecord
       button_exit_init @menu, 'Exit'
       button_about_init
       button_navigate_init
+      separator_components_init
 # (End keep alphabetical.)
       nil
     end
@@ -151,6 +150,7 @@ module ::QplayistPrerecord
           ].each do |e|
         e.pack pack_standard_menu
       end
+      separator_components_pack
       nil
     end
 
@@ -166,15 +166,15 @@ module ::QplayistPrerecord
       nil
     end
 
-    def separator_body_init
-      @separator_body = ::Tk::Tile::Separator.new @body do
+    def separator_components_init
+      @separator_components = ::Tk::Tile::Separator.new @menu do
         orient :horizontal
       end
       nil
     end
 
-    def separator_body_pack
-      @separator_body.pack fill: :x
+    def separator_components_pack
+      @separator_components.pack fill: :x, side: :bottom
       nil
     end
 
