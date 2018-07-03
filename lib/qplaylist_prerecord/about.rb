@@ -6,6 +6,7 @@ Author: Mark D. Blackwell (google me)
 mdb July 2, 2018 - created
 =end
 
+require 'graphical_helper'
 require 'tk'
 
 module ::QplayistPrerecord
@@ -21,13 +22,15 @@ module ::QplayistPrerecord
 
     def body_init
       @body = ::TkFrame.new @top
-      prompt_choice_init
+# Keep alphabetical:
       button_okay_init
+      label_message_text_init
+# (End keep alphabetical.)
       nil
     end
 
     def body_pack
-      @prompt_choice.pack pack_standard
+      label_message_text_pack
       @body.pack fill: :both, side: :top
       button_okay_pack
       nil
@@ -70,12 +73,8 @@ module ::QplayistPrerecord
       nil
     end
 
-    def pack_standard
-      @pack_standard_value ||= {padx: 1, pady: 1}
-    end
-
-    def prompt_choice_init
-      @prompt_choice = ::TkLabel.new @body do
+    def label_message_text_init
+      @label_message_text = ::TkLabel.new @body do
         text <<END.chomp
 QPlaylist Prerecord
 
@@ -87,6 +86,15 @@ markdblackwell01@gmail.com
 END
       end
       nil
+    end
+
+    def label_message_text_pack
+      @label_message_text.pack pack_standard
+      nil
+    end
+
+    def pack_standard
+      @pack_standard_value ||= {padx: 1, pady: 1}
     end
 
     def title_init

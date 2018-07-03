@@ -17,6 +17,7 @@ http://www.tutorialspoint.com/ruby/ruby_tk_guide.htm
 =end
 
 require 'airshow'
+require 'graphical_helper'
 require 'song_list'
 require 'tk'
 
@@ -45,8 +46,8 @@ module ::QplayistPrerecord
 
     def body_pack
 # Keep order:
-      @separator_body.pack fill: :x
-      @prompt_choice. pack pack_standard
+      separator_body_pack
+      prompt_choice_pack
 # (End keep order.)
       @body.pack fill: :both, side: :top
       nil
@@ -199,10 +200,20 @@ module ::QplayistPrerecord
       nil
     end
 
+    def prompt_choice_pack
+      @prompt_choice.pack pack_standard
+      nil
+    end
+
     def separator_body_init
       @separator_body = ::Tk::Tile::Separator.new @body do
         orient :horizontal
       end
+      nil
+    end
+
+    def separator_body_pack
+      @separator_body.pack fill: :x
       nil
     end
 
