@@ -16,6 +16,8 @@ http://www.ruby-forum.com/topic/155646
 http://www.tutorialspoint.com/ruby/ruby_tk_guide.htm
 =end
 
+require 'airdate'
+require 'airdates'
 require 'airshow'
 require 'airshows'
 require 'graphical_helper'
@@ -56,6 +58,18 @@ module ::QplayistPrerecord
       nil
     end
 
+    def body_airdates_init
+      @airdates = Airdates.all
+#print '@airdates='; pp @airdates
+      @airdates.each{|e| button_airdate_init e}
+      nil
+    end
+
+    def body_airdates_pack
+      @button_airdates.each{|e| e.pack fill: :x}
+      nil
+    end
+
     def body_airshows_init
       @airshows = Airshows.all
 #print '@airshows='; pp @airshows
@@ -84,11 +98,30 @@ module ::QplayistPrerecord
       nil
     end
 
+    def button_airdate_init(airdate)
+      proc_button = proc do
+#print 'airdate='; pp airdate
+#       @body.destroy
+        @button_airdates.clear
+      end
+      button_airdate = ::TkButton.new @body do
+        text airdate.date
+        command proc_button
+      end
+      @button_airdates ||= []
+      @button_airdates.push button_airdate
+      nil
+    end
+
     def button_airshow_init(airshow)
       proc_button = proc do
 #print 'airshow='; pp airshow
         @body.destroy
         @button_airshows.clear
+        body_init
+        body_airdates_init
+        body_airdates_pack
+        body_pack
       end
       button_airshow = ::TkButton.new @body do
         text airshow.name
