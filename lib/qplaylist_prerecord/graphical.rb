@@ -101,14 +101,22 @@ module ::QplayistPrerecord
     def button_airdate_init(airdate)
       proc_button = proc do
 #print 'airdate='; pp airdate
-#       @body.destroy
+        @body.destroy
         @button_airdates.clear
+        body_init
+# Keep alphabetical:
+        prompt_choice_init
+# (End keep alphabetical.)
+# Keep order:
+        prompt_choice_pack
+        body_pack
+# (End keep order.)
       end
+      @button_airdates ||= []
       button_airdate = ::TkButton.new @body do
         text airdate.date
         command proc_button
       end
-      @button_airdates ||= []
       @button_airdates.push button_airdate
       nil
     end
@@ -119,15 +127,21 @@ module ::QplayistPrerecord
         @body.destroy
         @button_airshows.clear
         body_init
+# Keep alphabetical:
         body_airdates_init
+        prompt_choice_init
+# (End keep alphabetical.)
+# Keep order:
+        prompt_choice_pack
         body_airdates_pack
         body_pack
+# (End keep order.)
       end
+      @button_airshows ||= []
       button_airshow = ::TkButton.new @body do
         text airshow.name
         command proc_button
       end
-      @button_airshows ||= []
       @button_airshows.push button_airshow
       nil
     end
