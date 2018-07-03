@@ -103,21 +103,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def directory_lib
-      ::File.join project_root, 'lib'
-    end
-
-    def dirname_script_this
-      ::Kernel.__dir__
-    end
-
-    def everything
-      everything_init
-      everything_pack
-      window_run
-      nil
-    end
-
     def everything_components_init
 # Keep alphabetical:
       body_init
@@ -131,19 +116,6 @@ module ::QplayistPrerecord
       menu_pack
       body_pack
 # (End keep order.)
-      nil
-    end
-
-    def everything_init
-      window_init # Keep first.
-      title_init
-      everything_components_init
-      nil
-    end
-
-    def everything_pack
-      window_pack
-      everything_components_pack
       nil
     end
 
@@ -178,30 +150,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def menu_init
-      @menu = ::TkFrame.new @top
-      menu_components_init
-      nil
-    end
-
-    def menu_pack
-      menu_components_pack
-      @menu.pack fill: :both, side: :top
-      nil
-    end
-
-    def pack_standard
-      @pack_standard_value ||= {padx: 1, pady: 1}
-    end
-
-    def pack_standard_menu
-      @pack_standard_menu_value ||= pack_standard.merge side: :left, fill: :x
-    end
-
-    def project_root
-       @project_root_value ||= ::File.realpath ::File.join(*%w[..]*2), dirname_script_this
-    end
-
     def prompt_choice_init
       @prompt_choice = ::TkLabel.new @body do
         text 'Choose!'
@@ -229,27 +177,6 @@ module ::QplayistPrerecord
     def title_init
       @program_name = 'QPlaylistPrerecord'
       title_set @program_name
-      nil
-    end
-
-    def title_set(title_new)
-      @root.title = title_new
-      nil
-    end
-
-    def window_init
-      @root = ::TkRoot.new
-      @top = ::TkFrame.new @root
-      nil
-    end
-
-    def window_pack
-      @top.pack fill: :x, side: :top
-      nil
-    end
-
-    def window_run
-      ::Tk.mainloop
       nil
     end
   end

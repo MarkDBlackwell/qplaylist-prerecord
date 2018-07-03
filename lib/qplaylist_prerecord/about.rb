@@ -37,13 +37,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def everything
-      everything_init
-      everything_pack
-      window_run
-      nil
-    end
-
     def everything_components_init
       body_init
       nil
@@ -51,19 +44,6 @@ module ::QplayistPrerecord
 
     def everything_components_pack
       body_pack
-      nil
-    end
-
-    def everything_init
-      window_init # Keep first.
-      title_init
-      everything_components_init
-      nil
-    end
-
-    def everything_pack
-      window_pack
-      everything_components_pack
       nil
     end
 
@@ -87,34 +67,9 @@ END
       nil
     end
 
-    def pack_standard
-      @pack_standard_value ||= {padx: 1, pady: 1}
-    end
-
     def title_init
-      @program_name = ''
-      title_set @program_name
-      nil
-    end
-
-    def title_set(title_new)
-      @root.title = title_new
-      nil
-    end
-
-    def window_init
-      @root = ::TkRoot.new
-      @top = ::TkFrame.new @root
-      nil
-    end
-
-    def window_pack
-      @top.pack fill: :x, side: :top
-      nil
-    end
-
-    def window_run
-      ::Tk.mainloop
+      program_name = ''
+      title_set program_name
       nil
     end
   end
