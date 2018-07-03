@@ -81,6 +81,18 @@ module ::QplayistPrerecord
        @project_root_value ||= ::File.realpath ::File.join(*%w[..]*2), dirname_script_this
     end
 
+    def separator_init
+      @separator = ::TkFrame.new @top
+      separator_components_init
+      nil
+    end
+
+    def separator_pack
+      separator_components_pack
+      @separator.pack fill: :both, side: :top
+      nil
+    end
+
     def title_set(title_new)
       @root.title = title_new
       nil

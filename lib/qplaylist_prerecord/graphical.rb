@@ -53,6 +53,7 @@ module ::QplayistPrerecord
 # Keep alphabetical:
       body_components_init
       menu_init
+      separator_init
 # (End keep alphabetical.)
       nil
     end
@@ -60,6 +61,7 @@ module ::QplayistPrerecord
     def all_components_pack
 # Keep order:
       menu_pack
+      separator_pack
       body_components_pack
       body_pack
 # (End keep order.)
@@ -167,7 +169,7 @@ module ::QplayistPrerecord
     end
 
     def separator_components_init
-      @separator_components = ::Tk::Tile::Separator.new @menu do
+      @separator_components = ::Tk::Tile::Separator.new @separator do
         orient :horizontal
       end
       nil
