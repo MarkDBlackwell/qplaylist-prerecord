@@ -73,7 +73,15 @@ module ::QplayistPrerecord
 
     def prompt_choice_init
       @prompt_choice = ::TkLabel.new @body do
-        text 'About'
+        text <<END.chomp
+QPlaylist Prerecord
+
+Copyright (C) 2018 Mark D. Blackwell.
+No license. All rights reserved.
+
+Contact: Mark D. Blackwell
+markdblackwell01@gmail.com
+END
       end
       nil
     end
