@@ -28,9 +28,7 @@ module ::QplayistPrerecord
       song_list = SongList.new
       airshow = Airshow.new
 
-      everything_init
-      everything_pack
-      window_run
+      everything
       nil
     end
 
@@ -121,6 +119,13 @@ module ::QplayistPrerecord
 
     def dirname_script_this
       ::Kernel.__dir__
+    end
+
+    def everything
+      everything_init
+      everything_pack
+      window_run
+      nil
     end
 
     def everything_init

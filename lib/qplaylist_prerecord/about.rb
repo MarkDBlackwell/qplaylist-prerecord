@@ -13,9 +13,7 @@ module ::QplayistPrerecord
     extend self
 
     def main
-      everything_init
-      everything_pack
-      window_run
+      everything
       nil
     end
 
@@ -47,6 +45,13 @@ module ::QplayistPrerecord
 
     def button_okay_pack
       @button_okay.pack pack_standard
+      nil
+    end
+
+    def everything
+      everything_init
+      everything_pack
+      window_run
       nil
     end
 
