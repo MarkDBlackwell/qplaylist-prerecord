@@ -11,6 +11,7 @@ require 'tk'
 
 module ::QplayistPrerecord
   module About
+    include GraphicalHelper
     extend self
 
     def main
@@ -22,7 +23,7 @@ module ::QplayistPrerecord
 
     def body_components_init
 # Keep alphabetical:
-      button_okay_init
+      button_exit_init
       label_message_text_init
 # (End keep alphabetical.)
       nil
@@ -31,25 +32,13 @@ module ::QplayistPrerecord
     def body_components_pack
 # Keep order:
       label_message_text_pack
-      button_okay_pack
+      button_exit_pack
 # (End keep order.)
       nil
     end
 
-    def body_init
-      @body = ::TkFrame.new @top
-      body_components_init
-      nil
-    end
-
-    def body_pack
-      body_components_pack
-      @body.pack fill: :both, side: :top
-      nil
-    end
-
-    def button_okay_init
-      @button_okay = ::TkButton.new @body do
+    def button_exit_init
+      @button_exit = ::TkButton.new @body do
         text 'OK'
         command do
           proc ::Kernel.exit
@@ -58,8 +47,8 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_okay_pack
-      @button_okay.pack pack_standard
+    def button_exit_pack
+      @button_exit.pack pack_standard
       nil
     end
 

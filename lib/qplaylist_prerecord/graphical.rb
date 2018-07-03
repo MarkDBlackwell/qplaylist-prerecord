@@ -23,6 +23,7 @@ require 'tk'
 
 module ::QplayistPrerecord
   module Graphical
+    include GraphicalHelper
     extend self
 
     def main
@@ -48,18 +49,6 @@ module ::QplayistPrerecord
       separator_body_pack
       prompt_choice_pack
 # (End keep order.)
-      nil
-    end
-
-    def body_init
-      @body = ::TkFrame.new @top
-      body_components_init
-      nil
-    end
-
-    def body_pack
-      body_components_pack
-      @body.pack fill: :both, side: :top
       nil
     end
 
