@@ -6,6 +6,9 @@ mdb June 26, 2018 - created
 
 See:
 https://stackoverflow.com/questions/12364981/how-to-delete-tkinter-widgets-from-a-window
+http://members.chello.nl/k.vangelder/ruby/learntk/
+http://rubylearning.com/satishtalim/ruby_tk_tutorial.html
+https://web.archive.org/web/20091028182545/http://www.jbrowse.com/text/rubytk_en.html
 =end
 
 require 'airshow'
@@ -39,10 +42,24 @@ module ::QplayistPrerecord
 
     def body_pack
 # Keep order:
-      @separator_body. pack fill: :x
-      @prompt_choice.  pack pack_standard
+      @separator_body.pack fill: :x
+      @prompt_choice. pack pack_standard
 # (End keep order.)
       @body.pack fill: :both, side: :top
+      nil
+    end
+
+    def button_about_init
+      proc_greeting_show = proc do
+# Run the popup program:
+#       array = %w[bundle exec ruby] + [filename_program_about]
+        array = %w[ruby] + [filename_program_about]
+        ::Kernel.system *array
+      end
+      @button_about = ::TkButton.new @menu do
+        text 'About'
+        command proc_greeting_show
+      end
       nil
     end
 
@@ -64,16 +81,6 @@ module ::QplayistPrerecord
         command do
           proc ::Kernel.exit
         end
-      end
-      nil
-    end
-
-    def button_greeting_init
-      proc_greeting_show = proc do
-      end
-      @button_greeting = ::TkButton.new @menu do
-        text 'Show Greeting'
-        command proc_greeting_show
       end
       nil
     end
@@ -103,6 +110,14 @@ module ::QplayistPrerecord
       nil
     end
 
+    def directory_lib
+      ::File.join project_root, 'lib'
+    end
+
+    def dirname_script_this
+      ::Kernel.__dir__
+    end
+
     def everything_init
       window_init # Keep first.
 # Keep alphabetical:
@@ -114,12 +129,17 @@ module ::QplayistPrerecord
     end
 
     def everything_pack
+      window_pack
 # Keep order:
       menu_pack
       body_pack
 # (End keep order.)
-      window_pack
       nil
+    end
+
+    def filename_program_about
+      basename = 'qplaylist_prerecord_about.rb'
+      ::File.join directory_lib, basename
     end
 
     def menu_init
@@ -127,7 +147,7 @@ module ::QplayistPrerecord
 # Keep alphabetical:
       button_add_init
       button_exit_init
-      button_greeting_init
+      button_about_init
       button_navigate_init
       button_remove_init
 # (End keep alphabetical.)
@@ -137,11 +157,11 @@ module ::QplayistPrerecord
     def menu_pack
       [
 # Keep order:
-          @button_navigate,
-          @button_remove,
-          @button_add,
-          @button_greeting,
           @button_exit,
+          @button_navigate,
+          @button_add,
+          @button_remove,
+          @button_about,
 # (End keep order.)
           ].each do |e|
         e.pack pack_standard_menu
@@ -156,6 +176,10 @@ module ::QplayistPrerecord
 
     def pack_standard_menu
       @pack_standard_menu_value ||= pack_standard.merge side: :left, fill: :x
+    end
+
+    def project_root
+       @project_root_value ||= ::File.realpath ::File.join(*%w[..]*2), dirname_script_this
     end
 
     def prompt_choice_init
