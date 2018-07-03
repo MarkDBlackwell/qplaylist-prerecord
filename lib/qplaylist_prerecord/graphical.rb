@@ -184,13 +184,7 @@ module ::QplayistPrerecord
       nil
     end
 
-    def menu_init
-      @menu = ::TkFrame.new @top
-      menu_components_init
-      nil
-    end
-
-    def menu_pack
+    def menu_components_pack
       [
 # Keep order:
           @button_exit,
@@ -202,6 +196,17 @@ module ::QplayistPrerecord
           ].each do |e|
         e.pack pack_standard_menu
       end
+      nil
+    end
+
+    def menu_init
+      @menu = ::TkFrame.new @top
+      menu_components_init
+      nil
+    end
+
+    def menu_pack
+      menu_components_pack
       @menu.pack fill: :both, side: :top
       nil
     end
