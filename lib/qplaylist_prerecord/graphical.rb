@@ -17,7 +17,9 @@ http://www.tutorialspoint.com/ruby/ruby_tk_guide.htm
 =end
 
 require 'airshow'
+require 'airshows'
 require 'graphical_helper'
+require 'pp'
 require 'song_list'
 require 'tk'
 
@@ -28,13 +30,38 @@ module ::QplayistPrerecord
 
     def main
       song_list = SongList.new
-      airshow = Airshow.new
-
+      @airshows = Airshows.all
+#print '@airshows='; pp @airshows
       window_process
       nil
     end
 
     private
+
+    def button_airshow_init(airshow)
+      proc_button = proc do
+#print 'airshow='; pp airshow
+      end
+      button_airshow = ::TkButton.new @body do
+        text airshow
+        command proc_button
+      end
+      @button_airshows ||= []
+      @button_airshows.push button_airshow
+      nil
+    end
+
+    def airshows_body_init
+      @airshows.each do |airshow|
+        button_airshow_init airshow
+      end
+      nil
+    end
+
+    def airshows_body_pack
+      @button_airshows.each{|e| e.pack fill: :x}
+      nil
+    end
 
     def all_components_init
 # Keep alphabetical:
@@ -54,6 +81,7 @@ module ::QplayistPrerecord
 
     def body_components_init
 # Keep alphabetical:
+      airshows_body_init
       prompt_choice_init
       separator_body_init
 # (End keep alphabetical.)
@@ -64,6 +92,7 @@ module ::QplayistPrerecord
 # Keep order:
       separator_body_pack
       prompt_choice_pack
+      airshows_body_pack
 # (End keep order.)
       nil
     end
@@ -111,6 +140,7 @@ module ::QplayistPrerecord
     def button_remove_init
       proc_remove = proc do
         @body.destroy
+        @button_airshows.clear
       end
       @button_remove = ::TkButton.new @menu do
         text 'Remove'
