@@ -111,18 +111,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_add_init
-      proc_add = proc do
-        body_init
-        body_pack
-      end
-      @button_add = ::TkButton.new @menu do
-        text 'Add'
-        command proc_add
-      end
-      nil
-    end
-
     def button_navigate_init
       proc_title = proc do
         @topic_title = 'something' unless defined? @topic_title
@@ -137,18 +125,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_remove_init
-      proc_remove = proc do
-        @body.destroy
-        @button_airshows.clear
-      end
-      @button_remove = ::TkButton.new @menu do
-        text 'Remove'
-        command proc_remove
-      end
-      nil
-    end
-
     def filename_program_about
       basename = 'qplaylist_prerecord_about.rb'
       ::File.join directory_lib, basename
@@ -156,11 +132,9 @@ module ::QplayistPrerecord
 
     def menu_components_init
 # Keep alphabetical:
-      button_add_init
       button_exit_init @menu, 'Exit'
       button_about_init
       button_navigate_init
-      button_remove_init
 # (End keep alphabetical.)
       nil
     end
@@ -170,8 +144,6 @@ module ::QplayistPrerecord
 # Keep order:
           @button_exit,
           @button_navigate,
-          @button_add,
-          @button_remove,
           @button_about,
 # (End keep order.)
           ].each do |e|
