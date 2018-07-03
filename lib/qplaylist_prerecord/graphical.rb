@@ -36,18 +36,6 @@ module ::QplayistPrerecord
 
     private
 
-    def airshows_body_init
-      @airshows = Airshows.all
-#print '@airshows='; pp @airshows
-      @airshows.each{|e| button_airshow_init e}
-      nil
-    end
-
-    def airshows_body_pack
-      @button_airshows.each{|e| e.pack fill: :x}
-      nil
-    end
-
     def all_components_init
       body_init
 # Keep alphabetical:
@@ -68,9 +56,21 @@ module ::QplayistPrerecord
       nil
     end
 
+    def body_airshows_init
+      @airshows = Airshows.all
+#print '@airshows='; pp @airshows
+      @airshows.each{|e| button_airshow_init e}
+      nil
+    end
+
+    def body_airshows_pack
+      @button_airshows.each{|e| e.pack fill: :x}
+      nil
+    end
+
     def body_components_init
 # Keep alphabetical:
-      airshows_body_init
+      body_airshows_init
       prompt_choice_init
 # (End keep alphabetical.)
       nil
@@ -79,7 +79,7 @@ module ::QplayistPrerecord
     def body_components_pack
 # Keep order:
       prompt_choice_pack
-      airshows_body_pack
+      body_airshows_pack
 # (End keep order.)
       nil
     end
