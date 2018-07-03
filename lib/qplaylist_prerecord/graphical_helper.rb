@@ -24,5 +24,20 @@ module ::QplayistPrerecord
       nil
     end
 
+    def button_exit_init(container, s)
+      @button_exit = ::TkButton.new container do
+        text s
+        command do
+          proc ::Kernel.exit
+        end
+      end
+      nil
+    end
+
+    def button_exit_pack
+      @button_exit.pack pack_standard
+      nil
+    end
+
   end
 end

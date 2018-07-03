@@ -78,16 +78,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_exit_init(container, s)
-      @button_exit = ::TkButton.new container do
-        text s
-        command do
-          proc ::Kernel.exit
-        end
-      end
-      nil
-    end
-
     def button_navigate_init
       proc_title = proc do
         @topic_title = 'something' unless defined? @topic_title
