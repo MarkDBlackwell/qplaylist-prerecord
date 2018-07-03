@@ -139,22 +139,32 @@ module ::QplayistPrerecord
       nil
     end
 
-    def everything_init
-      window_init # Keep first.
+    def everything_components_init
 # Keep alphabetical:
       body_init
       menu_init
-      title_init
 # (End keep alphabetical.)
+      nil
+    end
+
+    def everything_components_pack
+# Keep order:
+      menu_pack
+      body_pack
+# (End keep order.)
+      nil
+    end
+
+    def everything_init
+      window_init # Keep first.
+      title_init
+      everything_components_init
       nil
     end
 
     def everything_pack
       window_pack
-# Keep order:
-      menu_pack
-      body_pack
-# (End keep order.)
+      everything_components_pack
       nil
     end
 

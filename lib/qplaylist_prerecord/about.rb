@@ -70,18 +70,26 @@ module ::QplayistPrerecord
       nil
     end
 
+    def everything_components_init
+      body_init
+      nil
+    end
+
+    def everything_components_pack
+      body_pack
+      nil
+    end
+
     def everything_init
       window_init # Keep first.
-# Keep alphabetical:
-      body_init
       title_init
-# (End keep alphabetical.)
+      everything_components_init
       nil
     end
 
     def everything_pack
       window_pack
-      body_pack
+      everything_components_pack
       nil
     end
 
