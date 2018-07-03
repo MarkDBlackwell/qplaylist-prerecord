@@ -7,5 +7,11 @@ mdb June 28, 2018 - created
 
 module ::QplayistPrerecord
   class Airshow
+
+    attr_reader :name
+
+    def initialize(name)
+      @name = name
+    end
   end
 end

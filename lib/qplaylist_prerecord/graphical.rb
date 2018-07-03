@@ -85,9 +85,11 @@ module ::QplayistPrerecord
     def button_airshow_init(airshow)
       proc_button = proc do
 #print 'airshow='; pp airshow
+        @body.destroy
+        @button_airshows.clear
       end
       button_airshow = ::TkButton.new @body do
-        text airshow
+        text airshow.name
         command proc_button
       end
       @button_airshows ||= []
