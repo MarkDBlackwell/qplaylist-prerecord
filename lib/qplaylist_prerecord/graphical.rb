@@ -5,10 +5,15 @@ Author: Mark D. Blackwell (google me)
 mdb June 26, 2018 - created
 
 See:
-https://stackoverflow.com/questions/12364981/how-to-delete-tkinter-widgets-from-a-window
 http://members.chello.nl/k.vangelder/ruby/learntk/
+http://phrogz.net/programmingruby/ext_tk.html
 http://rubylearning.com/satishtalim/ruby_tk_tutorial.html
-https://web.archive.org/web/20091028182545/http://www.jbrowse.com/text/rubytk_en.html
+http://stackoverflow.com/questions/12364981/how-to-delete-tkinter-widgets-from-a-window
+http://tkdocs.com/tutorial/
+http://web.archive.org/web/20091028182545/http://www.jbrowse.com/text/rubytk_en.html
+http://www.linuxtopia.org/online_books/programming_books/ruby_tutorial/ext_tk.html
+http://www.ruby-forum.com/topic/155646
+http://www.tutorialspoint.com/ruby/ruby_tk_guide.htm
 =end
 
 require 'airshow'
