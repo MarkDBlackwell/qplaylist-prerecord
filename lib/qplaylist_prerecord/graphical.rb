@@ -78,9 +78,9 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_exit_init
+    def button_exit_init(s)
       @button_exit = ::TkButton.new @menu do
-        text 'Exit'
+        text s
         command do
           proc ::Kernel.exit
         end
@@ -165,7 +165,7 @@ module ::QplayistPrerecord
     def menu_components_init
 # Keep alphabetical:
       button_add_init
-      button_exit_init
+      button_exit_init 'Exit'
       button_about_init
       button_navigate_init
       button_remove_init
