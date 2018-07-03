@@ -35,8 +35,7 @@ module ::QplayistPrerecord
 
     private
 
-    def body_init
-      @body = ::TkFrame.new @top
+    def body_components_init
 # Keep alphabetical:
       prompt_choice_init
       separator_body_init
@@ -44,11 +43,22 @@ module ::QplayistPrerecord
       nil
     end
 
-    def body_pack
+    def body_components_pack
 # Keep order:
       separator_body_pack
       prompt_choice_pack
 # (End keep order.)
+      nil
+    end
+
+    def body_init
+      @body = ::TkFrame.new @top
+      body_components_init
+      nil
+    end
+
+    def body_pack
+      body_components_pack
       @body.pack fill: :both, side: :top
       nil
     end

@@ -20,8 +20,7 @@ module ::QplayistPrerecord
 
     private
 
-    def body_init
-      @body = ::TkFrame.new @top
+    def body_components_init
 # Keep alphabetical:
       button_okay_init
       label_message_text_init
@@ -29,10 +28,23 @@ module ::QplayistPrerecord
       nil
     end
 
-    def body_pack
+    def body_components_pack
+# Keep order:
       label_message_text_pack
-      @body.pack fill: :both, side: :top
       button_okay_pack
+# (End keep order.)
+      nil
+    end
+
+    def body_init
+      @body = ::TkFrame.new @top
+      body_components_init
+      nil
+    end
+
+    def body_pack
+      body_components_pack
+      @body.pack fill: :both, side: :top
       nil
     end
 
