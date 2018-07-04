@@ -114,8 +114,7 @@ module ::QplayistPrerecord
         @body_state = :songs
         @song_list = SongList.new
         @title_airdate = airdate.date
-        s = "#{@title_airdate} - #{title_airshow}"
-        title_set s
+        title_set title_airdate
         body_components_init
         body_components_pack
       end
@@ -216,6 +215,10 @@ module ::QplayistPrerecord
     def separator_components_pack
       @separator_components.pack fill: :x, side: :bottom
       nil
+    end
+
+    def title_airdate
+      "#{@title_airdate} - #{title_airshow}"
     end
 
     def title_airshow
