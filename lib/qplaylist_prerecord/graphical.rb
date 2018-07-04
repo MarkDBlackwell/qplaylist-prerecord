@@ -125,9 +125,7 @@ module ::QplayistPrerecord
         s = "#{@title_airdate} - #{@title_airshow} - #{program_name}"
         title_set s
         body_init
-# Keep alphabetical:
-        prompt_choice_init
-# (End keep alphabetical.)
+        body_components_init
         body_components_pack
       end
       @button_airdates ||= []
