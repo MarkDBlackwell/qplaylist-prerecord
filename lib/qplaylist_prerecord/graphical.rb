@@ -166,20 +166,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_navigate_init
-      proc_title = proc do
-        @topic_title = 'something' unless defined? @topic_title
-        s = "#{@topic_title} - #{@program_name}"
-        title_set s
-        @topic_title = @topic_title.chars.shuffle.join ''
-      end
-      @button_navigate = ::TkButton.new @menu do
-        text 'Navigate'
-        command proc_title
-      end
-      nil
-    end
-
     def filename_program_about
       basename = 'qplaylist_prerecord_about.rb'
       ::File.join directory_lib, basename
@@ -189,7 +175,6 @@ module ::QplayistPrerecord
 # Keep alphabetical:
       button_exit_init @menu, 'Exit'
       button_about_init
-      button_navigate_init
       separator_components_init
 # (End keep alphabetical.)
       nil
@@ -199,7 +184,6 @@ module ::QplayistPrerecord
       [
 # Keep order:
           @button_exit,
-          @button_navigate,
           @button_about,
 # (End keep order.)
           ].each do |e|
