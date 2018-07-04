@@ -22,7 +22,8 @@ require 'airshow'
 require 'airshows'
 require 'graphical_helper'
 require 'pp'
-require 'song_list'
+require 'song'
+require 'songs'
 require 'tk'
 
 module ::QplayistPrerecord
@@ -55,6 +56,7 @@ module ::QplayistPrerecord
       case @body_state
       when :airdates then body_airdates_init
       when :airshows then body_airshows_init
+      when :songs    then body_songs_init
       end
       nil
     end
@@ -63,6 +65,7 @@ module ::QplayistPrerecord
       case @body_state
       when :airdates then body_airdates_pack
       when :airshows then body_airshows_pack
+      when :songs    then body_songs_pack
       end
       nil
     end
@@ -89,6 +92,18 @@ module ::QplayistPrerecord
       nil
     end
 
+    def body_songs_init
+      @label_songs = []
+      @songs = Songs.all
+      @songs.each{|e| label_song_init e}
+      nil
+    end
+
+    def body_songs_pack
+      @label_songs.each{|e| e.pack fill: :x}
+      nil
+    end
+
     def body_components_init
       body_init
 # Keep alphabetical:
@@ -107,12 +122,25 @@ module ::QplayistPrerecord
       nil
     end
 
+    def button_about_init
+      proc_greeting_show = proc do
+# Run the popup program:
+#       array = %w[bundle exec ruby] + [filename_program_about]
+        array = %w[ruby] + [filename_program_about]
+        ::Kernel.system *array
+      end
+      @button_about = ::TkButton.new @menu do
+        text 'About'
+        command proc_greeting_show
+      end
+      nil
+    end
+
     def button_airdate_init(airdate)
       proc_button = proc do
         @body.destroy
         @button_airdates.clear
         @body_state = :songs
-        @song_list = SongList.new
         @title_airdate = airdate.date
         title_set title_airdate
         body_components_init
@@ -146,23 +174,19 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_about_init
-      proc_greeting_show = proc do
-# Run the popup program:
-#       array = %w[bundle exec ruby] + [filename_program_about]
-        array = %w[ruby] + [filename_program_about]
-        ::Kernel.system *array
-      end
-      @button_about = ::TkButton.new @menu do
-        text 'About'
-        command proc_greeting_show
-      end
-      nil
-    end
-
     def filename_program_about
       basename = 'qplaylist_prerecord_about.rb'
       ::File.join directory_lib, basename
+    end
+
+    def label_song_init(song)
+      time = song.start_time.join ':'
+      s = [time, song.title, song.artist].join ' — '
+      label_song = ::TkLabel.new @body do
+        text s
+      end
+      @label_songs.push label_song
+      nil
     end
 
     def menu_components_init

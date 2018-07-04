@@ -11,13 +11,15 @@ module ::QplayistPrerecord
 # Start time is an array of two integers.
 # Artist and Title are strings.
 
-    fields_ordered = %i[
+    def self.fields_ordered
+      %i[
         start_time
         artist
         title
         ]
+    end
 
-    attr_reader *fields_ordered
+    attr_reader(*fields_ordered)
 
     def initialize(*a)
       self.class.fields_ordered.zip(a).each{|field, value| instance_variable_set :"@#{field}", value}

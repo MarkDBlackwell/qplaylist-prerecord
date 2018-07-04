@@ -28,10 +28,10 @@ module ::QplayistPrerecord
 
     def start_times
       [
-          [1 30],
-          [5 34],
-          [7 27],
-          [8 40],
+          [1, 30],
+          [5, 34],
+          [7, 27],
+          [8, 40],
           ]
     end
 
