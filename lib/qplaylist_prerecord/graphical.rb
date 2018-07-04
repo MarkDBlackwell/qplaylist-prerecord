@@ -221,10 +221,5 @@ module ::QplayistPrerecord
     def title_airshow
       "#{@title_airshow} - #{program_name}"
     end
-
-    def title_init
-      title_set program_name
-      nil
-    end
   end
 end

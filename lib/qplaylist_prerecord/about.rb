@@ -41,10 +41,10 @@ module ::QplayistPrerecord
     end
 
     def body_components_pack
-# Keep order:
+# Order is visual order:
       label_message_text_pack
       button_exit_pack
-# (End keep order.)
+# (End visual order.)
       body_pack
       nil
     end
@@ -68,11 +68,6 @@ END
 
     def program_name
       ''
-    end
-
-    def title_init
-      title_set program_name
-      nil
     end
   end
 end

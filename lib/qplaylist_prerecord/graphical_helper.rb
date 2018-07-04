@@ -13,7 +13,7 @@ module ::QplayistPrerecord
 
     def all_init
       window_init # Keep first.
-      title_init
+      title_set program_name
       all_components_init
       nil
     end
