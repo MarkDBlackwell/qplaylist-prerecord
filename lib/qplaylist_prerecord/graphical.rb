@@ -32,6 +32,7 @@ module ::QplayistPrerecord
 
     def main
       song_list = SongList.new
+      @body_state = :airshows
       window_process
       nil
     end
@@ -82,9 +83,33 @@ module ::QplayistPrerecord
       nil
     end
 
+    def body_anything_init
+      case @body_state
+      when :airdates
+        body_airdates_init
+      when :airshows
+        body_airshows_init
+      when :songs
+      else
+      end
+      nil
+    end
+
+    def body_anything_pack
+      case @body_state
+      when :airdates
+        body_airdates_pack
+      when :airshows
+        body_airshows_pack
+      when :songs
+      else
+      end
+      nil
+    end
+
     def body_components_init
 # Keep alphabetical:
-      body_airshows_init
+      body_anything_init
       prompt_choice_init
 # (End keep alphabetical.)
       nil
@@ -93,7 +118,7 @@ module ::QplayistPrerecord
     def body_components_pack
 # Keep order:
       prompt_choice_pack
-      body_airshows_pack
+      body_anything_pack
 # (End keep order.)
       nil
     end
@@ -103,6 +128,7 @@ module ::QplayistPrerecord
 #print 'airdate='; pp airdate
         @body.destroy
         @button_airdates.clear
+        @body_state = :songs
         @title_airdate = airdate.date
         s = "#{@title_airdate} - #{@title_airshow} - #{program_name}"
         title_set s
@@ -129,17 +155,18 @@ module ::QplayistPrerecord
 #print 'airshow='; pp airshow
         @body.destroy
         @button_airshows.clear
+        @body_state = :airdates
         @title_airshow = airshow.name
         s = "#{@title_airshow} - #{program_name}"
         title_set s
         body_init
 # Keep alphabetical:
-        body_airdates_init
+        body_anything_init
         prompt_choice_init
 # (End keep alphabetical.)
 # Keep order:
         prompt_choice_pack
-        body_airdates_pack
+        body_anything_pack
         body_pack
 # (End keep order.)
       end
