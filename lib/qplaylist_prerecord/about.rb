@@ -27,10 +27,7 @@ module ::QplayistPrerecord
     end
 
     def all_components_pack
-# Keep alphabetical:
       body_components_pack
-      body_pack
-# (End keep alphabetical.)
       nil
     end
 
@@ -48,6 +45,7 @@ module ::QplayistPrerecord
       label_message_text_pack
       button_exit_pack
 # (End keep order.)
+      body_pack
       nil
     end
 

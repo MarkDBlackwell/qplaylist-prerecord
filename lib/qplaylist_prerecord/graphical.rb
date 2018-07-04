@@ -102,6 +102,7 @@ module ::QplayistPrerecord
 # Order is visual order:
       prompt_choice_pack
       body_anything_pack
+# (End visual order.)
       body_pack
       nil
     end
