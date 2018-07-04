@@ -22,18 +22,20 @@ module ::QplayistPrerecord
     private
 
     def all_components_init
-      body_init
       body_components_init
       nil
     end
 
     def all_components_pack
+# Keep alphabetical:
       body_components_pack
       body_pack
+# (End keep alphabetical.)
       nil
     end
 
     def body_components_init
+      body_init
 # Keep alphabetical:
       button_exit_init @body, 'OK'
       label_message_text_init

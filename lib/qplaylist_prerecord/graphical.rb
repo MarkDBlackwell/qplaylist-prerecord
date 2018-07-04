@@ -31,7 +31,6 @@ module ::QplayistPrerecord
     extend self
 
     def main
-      song_list = SongList.new
       @body_state = :airshows
       window_process
       nil
@@ -40,27 +39,20 @@ module ::QplayistPrerecord
     private
 
     def all_components_init
-      body_init
-# Keep alphabetical:
       body_components_init
       menu_init
-      separator_init
-# (End keep alphabetical.)
       nil
     end
 
     def all_components_pack
-# Keep order:
+# Order is visual order:
       menu_pack
-      separator_pack
       body_components_pack
-# (End keep order.)
       nil
     end
 
     def body_airdates_init
       @airdates = Airdates.all
-#print '@airdates='; pp @airdates
       @airdates.each{|e| button_airdate_init e}
       nil
     end
@@ -72,7 +64,6 @@ module ::QplayistPrerecord
 
     def body_airshows_init
       @airshows = Airshows.all
-#print '@airshows='; pp @airshows
       @airshows.each{|e| button_airshow_init e}
       nil
     end
@@ -99,6 +90,7 @@ module ::QplayistPrerecord
     end
 
     def body_components_init
+      body_init
 # Keep alphabetical:
       body_anything_init
       prompt_choice_init
@@ -107,24 +99,22 @@ module ::QplayistPrerecord
     end
 
     def body_components_pack
-# Keep order:
+# Order is visual order:
       prompt_choice_pack
       body_anything_pack
       body_pack
-# (End keep order.)
       nil
     end
 
     def button_airdate_init(airdate)
       proc_button = proc do
-#print 'airdate='; pp airdate
         @body.destroy
         @button_airdates.clear
         @body_state = :songs
+        @song_list = SongList.new
         @title_airdate = airdate.date
         s = "#{@title_airdate} - #{title_airshow}"
         title_set s
-        body_init
         body_components_init
         body_components_pack
       end
@@ -139,13 +129,11 @@ module ::QplayistPrerecord
 
     def button_airshow_init(airshow)
       proc_button = proc do
-#print 'airshow='; pp airshow
         @body.destroy
         @button_airshows.clear
         @body_state = :airdates
         @title_airshow = airshow.name
         title_set title_airshow
-        body_init
         body_components_init
         body_components_pack
       end
@@ -181,21 +169,17 @@ module ::QplayistPrerecord
 # Keep alphabetical:
       button_exit_init @menu, 'Exit'
       button_about_init
-      separator_components_init
 # (End keep alphabetical.)
       nil
     end
 
     def menu_components_pack
-      [
-# Keep order:
+      [ # Order is visual order.
           @button_exit,
           @button_about,
-# (End keep order.)
           ].each do |e|
         e.pack pack_standard_menu
       end
-      separator_components_pack
       nil
     end
 

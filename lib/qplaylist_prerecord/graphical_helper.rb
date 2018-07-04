@@ -60,12 +60,16 @@ module ::QplayistPrerecord
     def menu_init
       @menu = ::TkFrame.new @top
       menu_components_init
+      separator_components_init
+      separator_init
       nil
     end
 
     def menu_pack
       menu_components_pack
+      separator_components_pack
       @menu.pack fill: :both, side: :top
+      separator_pack
       nil
     end
 
