@@ -84,24 +84,16 @@ module ::QplayistPrerecord
 
     def body_anything_init
       case @body_state
-      when :airdates
-        body_airdates_init
-      when :airshows
-        body_airshows_init
-      when :songs
-      else
+      when :airdates then body_airdates_init
+      when :airshows then body_airshows_init
       end
       nil
     end
 
     def body_anything_pack
       case @body_state
-      when :airdates
-        body_airdates_pack
-      when :airshows
-        body_airshows_pack
-      when :songs
-      else
+      when :airdates then body_airdates_pack
+      when :airshows then body_airshows_pack
       end
       nil
     end
@@ -157,10 +149,7 @@ module ::QplayistPrerecord
         s = "#{@title_airshow} - #{program_name}"
         title_set s
         body_init
-# Keep alphabetical:
-        body_anything_init
-        prompt_choice_init
-# (End keep alphabetical.)
+        body_components_init
         body_components_pack
       end
       @button_airshows ||= []
@@ -218,20 +207,19 @@ module ::QplayistPrerecord
     end
 
     def prompt_choice_init
-      @prompt_choice = ::TkLabel.new @body do
-        text 'Choose!'
+      case @body_state
+      when :airdates, :airshows
+        @prompt_choice = ::TkLabel.new @body do
+          text 'Choose!'
+        end
       end
       nil
     end
 
     def prompt_choice_pack
       case @body_state
-      when :airdates
+      when :airdates, :airshows
         @prompt_choice.pack pack_standard
-      when :airshows
-        @prompt_choice.pack pack_standard
-      when :songs
-      else
       end
       nil
     end
