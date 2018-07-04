@@ -99,11 +99,11 @@ module ::QplayistPrerecord
     end
 
     def body_components_pack
+      body_pack
 # Order is visual order:
       prompt_choice_pack
       body_active_pack
 # (End visual order.)
-      body_pack
       nil
     end
 

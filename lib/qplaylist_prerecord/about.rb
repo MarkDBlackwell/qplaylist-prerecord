@@ -41,11 +41,11 @@ module ::QplayistPrerecord
     end
 
     def body_components_pack
+      body_pack
 # Order is visual order:
       label_message_text_pack
       button_exit_pack
 # (End visual order.)
-      body_pack
       nil
     end
 
