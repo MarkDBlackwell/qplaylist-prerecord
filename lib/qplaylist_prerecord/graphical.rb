@@ -181,7 +181,7 @@ module ::QplayistPrerecord
 
     def label_song_init(song)
       time = song.start_time.join ':'
-      s = [time, song.title, song.artist].join ' — '
+      s = [time, song.title, song.artist].join ' – '
       label_song = ::TkLabel.new @body do
         text s
       end
