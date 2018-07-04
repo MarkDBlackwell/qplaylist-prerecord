@@ -66,8 +66,11 @@ END
       nil
     end
 
+    def program_name
+      ''
+    end
+
     def title_init
-      program_name = ''
       title_set program_name
       nil
     end

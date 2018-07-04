@@ -104,7 +104,7 @@ module ::QplayistPrerecord
         @body.destroy
         @button_airdates.clear
         @title_airdate = airdate.date
-        s = "#{@title_airdate} - #{@title_airshow} - #{@program_name}"
+        s = "#{@title_airdate} - #{@title_airshow} - #{program_name}"
         title_set s
         body_init
 # Keep alphabetical:
@@ -130,7 +130,7 @@ module ::QplayistPrerecord
         @body.destroy
         @button_airshows.clear
         @title_airshow = airshow.name
-        s = "#{@title_airshow} - #{@program_name}"
+        s = "#{@title_airshow} - #{program_name}"
         title_set s
         body_init
 # Keep alphabetical:
@@ -193,6 +193,10 @@ module ::QplayistPrerecord
       nil
     end
 
+    def program_name
+      'QPlaylistPrerecord'
+    end
+
     def prompt_choice_init
       @prompt_choice = ::TkLabel.new @body do
         text 'Choose!'
@@ -218,8 +222,7 @@ module ::QplayistPrerecord
     end
 
     def title_init
-      @program_name = 'QPlaylistPrerecord'
-      title_set @program_name
+      title_set program_name
       nil
     end
   end
