@@ -51,6 +51,22 @@ module ::QplayistPrerecord
       nil
     end
 
+    def body_active_init
+      case @body_state
+      when :airdates then body_airdates_init
+      when :airshows then body_airshows_init
+      end
+      nil
+    end
+
+    def body_active_pack
+      case @body_state
+      when :airdates then body_airdates_pack
+      when :airshows then body_airshows_pack
+      end
+      nil
+    end
+
     def body_airdates_init
       @airdates = Airdates.all
       @airdates.each{|e| button_airdate_init e}
@@ -73,26 +89,10 @@ module ::QplayistPrerecord
       nil
     end
 
-    def body_anything_init
-      case @body_state
-      when :airdates then body_airdates_init
-      when :airshows then body_airshows_init
-      end
-      nil
-    end
-
-    def body_anything_pack
-      case @body_state
-      when :airdates then body_airdates_pack
-      when :airshows then body_airshows_pack
-      end
-      nil
-    end
-
     def body_components_init
       body_init
 # Keep alphabetical:
-      body_anything_init
+      body_active_init
       prompt_choice_init
 # (End keep alphabetical.)
       nil
@@ -101,7 +101,7 @@ module ::QplayistPrerecord
     def body_components_pack
 # Order is visual order:
       prompt_choice_pack
-      body_anything_pack
+      body_active_pack
 # (End visual order.)
       body_pack
       nil
