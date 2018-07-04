@@ -54,7 +54,6 @@ module ::QplayistPrerecord
       menu_pack
       separator_pack
       body_components_pack
-      body_pack
 # (End keep order.)
       nil
     end
@@ -119,6 +118,7 @@ module ::QplayistPrerecord
 # Keep order:
       prompt_choice_pack
       body_anything_pack
+      body_pack
 # (End keep order.)
       nil
     end
@@ -138,6 +138,7 @@ module ::QplayistPrerecord
 # (End keep alphabetical.)
 # Keep order:
         prompt_choice_pack
+        body_anything_pack
         body_pack
 # (End keep order.)
       end
@@ -232,7 +233,14 @@ module ::QplayistPrerecord
     end
 
     def prompt_choice_pack
-      @prompt_choice.pack pack_standard
+      case @body_state
+      when :airdates
+        @prompt_choice.pack pack_standard
+      when :airshows
+        @prompt_choice.pack pack_standard
+      when :songs
+      else
+      end
       nil
     end
 
