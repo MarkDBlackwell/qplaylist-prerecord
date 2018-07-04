@@ -136,11 +136,7 @@ module ::QplayistPrerecord
 # Keep alphabetical:
         prompt_choice_init
 # (End keep alphabetical.)
-# Keep order:
-        prompt_choice_pack
-        body_anything_pack
-        body_pack
-# (End keep order.)
+        body_components_pack
       end
       @button_airdates ||= []
       button_airdate = ::TkButton.new @body do
@@ -165,11 +161,7 @@ module ::QplayistPrerecord
         body_anything_init
         prompt_choice_init
 # (End keep alphabetical.)
-# Keep order:
-        prompt_choice_pack
-        body_anything_pack
-        body_pack
-# (End keep order.)
+        body_components_pack
       end
       @button_airshows ||= []
       button_airshow = ::TkButton.new @body do
