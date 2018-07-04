@@ -17,7 +17,7 @@ module ::QplayistPrerecord
           Baltimore-Hit-Parade-Tue
           Young-At-Heart
           ]
-      names.map{|e| Airshow.new e}
+      names.sort.map{|e| Airshow.new e}
     end
   end
 end

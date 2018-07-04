@@ -17,7 +17,7 @@ module ::QplayistPrerecord
           2018-07-04
           2018-07-08
           ]
-      dates.map{|e| Airdate.new e}
+      dates.sort.map{|e| Airdate.new e}
     end
   end
 end
