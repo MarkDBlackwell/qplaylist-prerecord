@@ -122,20 +122,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_menu_about_init
-      proc_about = proc do
-# Run the popup program:
-#       array = %w[bundle exec ruby] + [filename_program_about]
-        array = %w[ruby] + [filename_program_about]
-        ::Kernel.system *array
-      end
-      @button_menu_about = ::TkButton.new @menu do
-        text 'About'
-        command proc_about
-      end
-      nil
-    end
-
     def button_body_airdate_init(airdate)
       proc_button = proc do
         @body.destroy
@@ -171,6 +157,20 @@ module ::QplayistPrerecord
         command proc_button
       end
       @button_body_airshows.push button_body_airshow
+      nil
+    end
+
+    def button_menu_about_init
+      proc_about = proc do
+# Run the popup program:
+#       array = %w[bundle exec ruby] + [filename_program_about]
+        array = %w[ruby] + [filename_program_about]
+        ::Kernel.system *array
+      end
+      @button_menu_about = ::TkButton.new @menu do
+        text 'About'
+        command proc_about
+      end
       nil
     end
 
