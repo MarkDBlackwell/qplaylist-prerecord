@@ -21,8 +21,8 @@ module ::QplayistPrerecord
 
     attr_reader(*fields_ordered)
 
-    def initialize(*a)
-      self.class.fields_ordered.zip(a).each{|field, value| instance_variable_set :"@#{field}", value}
+    def initialize(*values)
+      self.class.fields_ordered.zip(values).each{|field, value| instance_variable_set :"@#{field}", value}
       nil
     end
 
