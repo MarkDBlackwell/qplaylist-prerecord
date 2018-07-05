@@ -123,7 +123,7 @@ module ::QplayistPrerecord
     end
 
     def button_about_init
-      proc_greeting_show = proc do
+      proc_about = proc do
 # Run the popup program:
 #       array = %w[bundle exec ruby] + [filename_program_about]
         array = %w[ruby] + [filename_program_about]
@@ -131,7 +131,7 @@ module ::QplayistPrerecord
       end
       @button_about = ::TkButton.new @menu do
         text 'About'
-        command proc_greeting_show
+        command proc_about
       end
       nil
     end
@@ -174,6 +174,46 @@ module ::QplayistPrerecord
       nil
     end
 
+    def button_copy_init
+      proc_copy = proc do
+      end
+      @button_copy = ::TkButton.new @menu do
+        text 'Copy'
+        command proc_copy
+      end
+      nil
+    end
+
+    def button_edit_init
+      proc_edit = proc do
+      end
+      @button_edit = ::TkButton.new @menu do
+        text 'Edit'
+        command proc_edit
+      end
+      nil
+    end
+
+    def button_install_init
+      proc_install = proc do
+      end
+      @button_install = ::TkButton.new @menu do
+        text 'Install'
+        command proc_install
+      end
+      nil
+    end
+
+    def button_new_init
+      proc_new = proc do
+      end
+      @button_new = ::TkButton.new @menu do
+        text 'New'
+        command proc_new
+      end
+      nil
+    end
+
     def filename_program_about
       basename = 'qplaylist_prerecord_about.rb'
       ::File.join directory_lib, basename
@@ -191,8 +231,12 @@ module ::QplayistPrerecord
 
     def menu_components_init
 # Keep alphabetical:
-      button_exit_init @menu, 'Exit'
       button_about_init
+      button_copy_init
+      button_edit_init
+      button_exit_init @menu, 'Exit'
+      button_install_init
+      button_new_init
 # (End keep alphabetical.)
       nil
     end
@@ -200,6 +244,10 @@ module ::QplayistPrerecord
     def menu_components_pack
       [ # Order is visual order.
           @button_exit,
+          @button_new,
+          @button_copy,
+          @button_edit,
+          @button_install,
           @button_about,
           ].each do |e|
         e.pack pack_standard_menu
