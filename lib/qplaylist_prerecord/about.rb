@@ -34,7 +34,7 @@ module ::QplayistPrerecord
     def body_components_init
       body_init
 # Keep alphabetical:
-      button_exit_init @body, 'OK'
+      button_menu_exit_init @body, 'OK'
       label_message_text_init
 # (End keep alphabetical.)
       nil
@@ -44,7 +44,7 @@ module ::QplayistPrerecord
       body_pack
 # Order is visual order:
       label_message_text_pack
-      button_exit_pack
+      button_menu_exit_pack
 # (End visual order.)
       nil
     end

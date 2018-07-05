@@ -34,8 +34,8 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_exit_init(container, s)
-      @button_exit = ::TkButton.new container do
+    def button_menu_exit_init(container, s)
+      @button_menu_exit = ::TkButton.new container do
         text s
         command do
           proc ::Kernel.exit
@@ -44,8 +44,8 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_exit_pack
-      @button_exit.pack pack_standard
+    def button_menu_exit_pack
+      @button_menu_exit.pack pack_standard
       nil
     end
 

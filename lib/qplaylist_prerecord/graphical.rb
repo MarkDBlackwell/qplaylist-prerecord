@@ -72,23 +72,23 @@ module ::QplayistPrerecord
 
     def body_airdates_init
       @airdates = Airdates.all
-      @airdates.each{|e| button_airdate_init e}
+      @airdates.each{|e| button_body_airdate_init e}
       nil
     end
 
     def body_airdates_pack
-      @button_airdates.each{|e| e.pack fill: :x}
+      @button_body_airdates.each{|e| e.pack fill: :x}
       nil
     end
 
     def body_airshows_init
       @airshows = Airshows.all
-      @airshows.each{|e| button_airshow_init e}
+      @airshows.each{|e| button_body_airshow_init e}
       nil
     end
 
     def body_airshows_pack
-      @button_airshows.each{|e| e.pack fill: :x}
+      @button_body_airshows.each{|e| e.pack fill: :x}
       nil
     end
 
@@ -122,92 +122,92 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_about_init
+    def button_menu_about_init
       proc_about = proc do
 # Run the popup program:
 #       array = %w[bundle exec ruby] + [filename_program_about]
         array = %w[ruby] + [filename_program_about]
         ::Kernel.system *array
       end
-      @button_about = ::TkButton.new @menu do
+      @button_menu_about = ::TkButton.new @menu do
         text 'About'
         command proc_about
       end
       nil
     end
 
-    def button_airdate_init(airdate)
+    def button_body_airdate_init(airdate)
       proc_button = proc do
         @body.destroy
-        @button_airdates.clear
+        @button_body_airdates.clear
         @body_state = :songs
         @title_airdate = airdate.date
         title_set title_airdate
         body_components_init
         body_components_pack
       end
-      @button_airdates ||= []
-      button_airdate = ::TkButton.new @body do
+      @button_body_airdates ||= []
+      button_body_airdate = ::TkButton.new @body do
         text airdate.date
         command proc_button
       end
-      @button_airdates.push button_airdate
+      @button_body_airdates.push button_body_airdate
       nil
     end
 
-    def button_airshow_init(airshow)
+    def button_body_airshow_init(airshow)
       proc_button = proc do
         @body.destroy
-        @button_airshows.clear
+        @button_body_airshows.clear
         @body_state = :airdates
         @title_airshow = airshow.name
         title_set title_airshow
         body_components_init
         body_components_pack
       end
-      @button_airshows ||= []
-      button_airshow = ::TkButton.new @body do
+      @button_body_airshows ||= []
+      button_body_airshow = ::TkButton.new @body do
         text airshow.name
         command proc_button
       end
-      @button_airshows.push button_airshow
+      @button_body_airshows.push button_body_airshow
       nil
     end
 
-    def button_copy_init
+    def button_menu_copy_init
       proc_copy = proc do
       end
-      @button_copy = ::TkButton.new @menu do
+      @button_menu_copy = ::TkButton.new @menu do
         text 'Copy'
         command proc_copy
       end
       nil
     end
 
-    def button_edit_init
+    def button_menu_edit_init
       proc_edit = proc do
       end
-      @button_edit = ::TkButton.new @menu do
+      @button_menu_edit = ::TkButton.new @menu do
         text 'Edit'
         command proc_edit
       end
       nil
     end
 
-    def button_install_init
+    def button_menu_install_init
       proc_install = proc do
       end
-      @button_install = ::TkButton.new @menu do
+      @button_menu_install = ::TkButton.new @menu do
         text 'Install'
         command proc_install
       end
       nil
     end
 
-    def button_new_init
+    def button_menu_new_init
       proc_new = proc do
       end
-      @button_new = ::TkButton.new @menu do
+      @button_menu_new = ::TkButton.new @menu do
         text 'New'
         command proc_new
       end
@@ -231,24 +231,24 @@ module ::QplayistPrerecord
 
     def menu_components_init
 # Keep alphabetical:
-      button_about_init
-      button_copy_init
-      button_edit_init
-      button_exit_init @menu, 'Exit'
-      button_install_init
-      button_new_init
+      button_menu_about_init
+      button_menu_copy_init
+      button_menu_edit_init
+      button_menu_exit_init @menu, 'Exit'
+      button_menu_install_init
+      button_menu_new_init
 # (End keep alphabetical.)
       nil
     end
 
     def menu_components_pack
       [ # Order is visual order.
-          @button_exit,
-          @button_new,
-          @button_copy,
-          @button_edit,
-          @button_install,
-          @button_about,
+          @button_menu_exit,
+          @button_menu_new,
+          @button_menu_copy,
+          @button_menu_edit,
+          @button_menu_install,
+          @button_menu_about,
           ].each do |e|
         e.pack pack_standard_menu
       end
