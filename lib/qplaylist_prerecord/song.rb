@@ -5,8 +5,10 @@ Author: Mark D. Blackwell (google me)
 mdb July 4, 2018 - created
 =end
 
+require 'class_dynamic'
+
 module ::QplayistPrerecord
-  class Song
+  class Song < ClassDynamic
 
 # Start time is an array of two integers.
 # Artist and Title are strings.
@@ -20,17 +22,5 @@ module ::QplayistPrerecord
     end
 
     attr_reader(*fields_ordered)
-
-    def initialize(*values)
-      self.class.fields_ordered.zip(values).each{|field, value| instance_variable_set :"@#{field}", value}
-      nil
-    end
-
-    def <=>(other)
-      a = [self, other].map do               |object|
-        self.class.fields_ordered.map{|field| object.instance_variable_get :"@#{field}"}
-      end
-      a.first <=> a.last
-    end
   end
 end
