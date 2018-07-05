@@ -8,15 +8,21 @@ mdb June 28, 2018 - created
 module ::QplayistPrerecord
   class Airshow
 
-    attr_reader :name
+    def self.fields_ordered
+      %i[
+        name
+        ]
+    end
 
-    def initialize(name)
-      @name = name
+    attr_reader(*fields_ordered)
+
+    def initialize(*values)
+      self.class.fields_ordered.zip(values).each{|field, value| instance_variable_set :"@#{field}", value}
     end
 
     def <=>(other)
-      a = [self, other].map do |object|
-        %i[name].map{|field|    object.instance_variable_get :"@#{field}"}
+      a = [self, other].map do               |object|
+        self.class.fields_ordered.map{|field| object.instance_variable_get :"@#{field}"}
       end
       a.first <=> a.last
     end
