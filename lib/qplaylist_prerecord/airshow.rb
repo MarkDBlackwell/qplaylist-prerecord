@@ -13,5 +13,12 @@ module ::QplayistPrerecord
     def initialize(name)
       @name = name
     end
+
+    def <=>(other)
+      a = [self, other].map do |object|
+        %i[name].map{|field|    object.instance_variable_get :"@#{field}"}
+      end
+      a.first <=> a.last
+    end
   end
 end

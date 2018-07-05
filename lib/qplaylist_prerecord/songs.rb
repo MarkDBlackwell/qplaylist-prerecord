@@ -19,28 +19,28 @@ module ::QplayistPrerecord
 
     def artists
       [
-          'Charity and the Jam Band',
-          'The L',
-          'The Jellyfish Orchestra (SpongeBob Squarepants)',
           'Caspar Babypants',
+          'The Jellyfish Orchestra (SpongeBob Squarepants)',
+          'The L',
+          'Charity and the Jam Band',
           ]
     end
 
     def start_times
       [
-          [1, 30],
-          [5, 34],
+          [18, 40],
           [7, 27],
-          [8, 40],
+          [5, 34],
+          [1, 30],
           ]
     end
 
     def titles
       [
-          'Sing A Summer Song',
-          'Popsicle',
-          'The Jellyfish Song',
           'Be In The Sea',
+          'The Jellyfish Song',
+          'Popsicle',
+          'Sing A Summer Song',
           ]
     end
   end

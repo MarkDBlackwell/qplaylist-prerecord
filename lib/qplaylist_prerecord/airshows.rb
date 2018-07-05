@@ -13,11 +13,11 @@ module ::QplayistPrerecord
 
     def all
       names = %w[
-          Baltimore-Hit-Parade-Sun
-          Baltimore-Hit-Parade-Tue
           Young-At-Heart
+          Baltimore-Hit-Parade-Tue
+          Baltimore-Hit-Parade-Sun
           ]
-      names.sort.map{|e| Airshow.new e}
+      names.map{|e| Airshow.new e}.sort
     end
   end
 end

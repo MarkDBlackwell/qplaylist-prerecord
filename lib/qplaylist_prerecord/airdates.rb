@@ -13,11 +13,11 @@ module ::QplayistPrerecord
 
     def all
       dates = %w[
-          2018-07-03
-          2018-07-04
           2018-07-08
+          2018-07-04
+          2018-07-03
           ]
-      dates.sort.map{|e| Airdate.new e}
+      dates.map{|e| Airdate.new e}.sort
     end
   end
 end
