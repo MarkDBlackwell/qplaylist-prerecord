@@ -1,0 +1,8 @@
+# Airshow Name              Cartridge Numbers
+# ------------              -----------------
+  baltimore-hit-parade-sun  0261
+  baltimore-hit-parade-tue  0281
+  detour                    0248 0249 0250 0251 0252 0253 0254 0255
+  the-latin-alternative     0258 0259 0260
+  weasels-wild-weekend      0264 0265 0266
+  young-at-heart            0242 0243 0244 0021
