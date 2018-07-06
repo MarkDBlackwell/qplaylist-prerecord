@@ -5,43 +5,41 @@ Author: Mark D. Blackwell (google me)
 mdb July 4, 2018 - created
 =end
 
+require 'helper'
 require 'song'
 
 module ::QplayistPrerecord
   module Songs
+    include Helper
     extend self
 
-    def all
-      start_times.zip(artists, titles).map{|fields| Song.new *fields}.sort
+    def all(pieces, segment_count)
+      filenames = input_filenames pieces, segment_count
+      songs filenames
     end
 
     private
 
-    def artists
-      [
-          'Caspar Babypants',
-          'The Jellyfish Orchestra (SpongeBob Squarepants)',
-          'The L',
-          'Charity and the Jam Band',
-          ]
+    def input_filenames(pieces, segment_count)
+      basenames = (1..segment_count).map{|i| "#{(pieces + [i.to_s]).join '-'}.txt"}
+      basenames.map{|e| ::File.join directory_etc_example, e}
     end
 
-    def start_times
-      [
-          [18, 40],
-          [7, 27],
-          [5, 34],
-          [1, 30],
-          ]
-    end
-
-    def titles
-      [
-          'Be In The Sea',
-          'The Jellyfish Song',
-          'Popsicle',
-          'Sing A Summer Song',
-          ]
+    def songs(filenames)
+      big_array = filenames.map do |filename|
+        lines = ::File.open filename do |f|
+          f.readlines.map{|e| whitespace_compress e}.reject{|e| e.empty? or e.start_with? '#'}
+        end
+        lines_per_song = 3
+        slices = lines.each_slice lines_per_song
+        slices.map do |start_time_raw, artist, title|
+          start_time = start_time_raw.split(' ').map &:to_i
+          ::Kernel.exit unless 2 == start_time.length
+          Song.new start_time, artist, title
+        end
+      end
+      recursion_level = 1
+      big_array.flatten recursion_level
     end
   end
 end

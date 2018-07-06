@@ -5,13 +5,15 @@ Author: Mark D. Blackwell (google me)
 mdb July 2, 2018 - created
 =end
 
-require 'graphical_helper'
+require 'helper'
+require 'helper_graphical'
 require 'tk'
 require 'version'
 
 module ::QplayistPrerecord
   module About
-    include GraphicalHelper
+    include Helper
+    include HelperGraphical
     extend self
 
     def main

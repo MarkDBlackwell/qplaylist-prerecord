@@ -5,8 +5,11 @@ Author: Mark D. Blackwell (google me)
 mdb July 3, 2018 - created
 =end
 
+require 'helper'
+
 module ::QplayistPrerecord
-  module GraphicalHelper
+  module HelperGraphical
+    include Helper
     extend self
 
     private
@@ -49,14 +52,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def directory_lib
-      ::File.join project_root, 'lib'
-    end
-
-    def dirname_script_this
-      ::Kernel.__dir__
-    end
-
     def menu_init
       @menu = ::TkFrame.new @top
       menu_components_init
@@ -79,10 +74,6 @@ module ::QplayistPrerecord
 
     def pack_standard_menu
       @pack_standard_menu_value ||= pack_standard.merge side: :left, fill: :x
-    end
-
-    def project_root
-       @project_root_value ||= ::File.realpath ::File.join(*%w[..]*2), dirname_script_this
     end
 
     def separator_init

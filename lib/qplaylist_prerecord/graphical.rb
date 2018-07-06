@@ -20,7 +20,8 @@ require 'airdate'
 require 'airdates'
 require 'airshow'
 require 'airshows'
-require 'graphical_helper'
+require 'helper'
+require 'helper_graphical'
 require 'pp'
 require 'song'
 require 'songs'
@@ -28,7 +29,8 @@ require 'tk'
 
 module ::QplayistPrerecord
   module Graphical
-    include GraphicalHelper
+    include Helper
+    include HelperGraphical
     extend self
 
     def main
@@ -94,7 +96,8 @@ module ::QplayistPrerecord
 
     def body_songs_init
       @label_songs = []
-      @songs = Songs.all
+      segment_count = 4
+      @songs = Songs.all pieces_young_at_heart, segment_count
       @songs.each{|e| label_song_init e}
       nil
     end
@@ -220,8 +223,9 @@ module ::QplayistPrerecord
     end
 
     def label_song_init(song)
-      time = song.start_time.join ':'
-      s = [time, song.title, song.artist].join ' – '
+      time = ::Kernel.sprintf "%d:%02d", *song.start_time
+      title = "\"#{song.title}\""
+      s = [time, title, song.artist].join ' – '
       label_song = ::TkLabel.new @body do
         text s
       end
@@ -253,6 +257,12 @@ module ::QplayistPrerecord
         e.pack pack_standard_menu
       end
       nil
+    end
+
+    def pieces_young_at_heart
+      date_airshow = '2018-07-07'
+      name_airshow = 'young-at-heart-sat'
+      [name_airshow, date_airshow]
     end
 
     def program_name
