@@ -9,7 +9,7 @@ module ::Methods
   module InstanceMethods
 
     def command_run(array)
-      ::Kernel.system *array
+      ::Kernel.system(*array)
       nil
     end
 

@@ -168,7 +168,7 @@ module ::QplayistPrerecord
 # Run the popup program:
 #       array = %w[bundle exec ruby] + [filename_program_about]
         array = %w[ruby] + [filename_program_about]
-        ::Kernel.system *array
+        ::Kernel.system(*array)
       end
       @button_menu_about = ::TkButton.new @menu do
         text 'About'

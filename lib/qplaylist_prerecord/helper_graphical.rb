@@ -69,11 +69,11 @@ module ::QplayistPrerecord
     end
 
     def pack_standard
-      @pack_standard_value ||= {padx: 1, pady: 1}
+       @pack_standard_value ||= {padx: 1, pady: 1}
     end
 
     def pack_standard_menu
-      @pack_standard_menu_value ||= pack_standard.merge side: :left, fill: :x
+       @pack_standard_menu_value ||= pack_standard.merge side: :left, fill: :x
     end
 
     def separator_init
