@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby
 # coding: utf-8
 
 =begin
@@ -11,15 +10,19 @@ Copyright (C) 2018 Mark D. Blackwell.
 
 =begin
 Author: Mark D. Blackwell (google me)
-mdb June 28, 2018 - created
-
+mdb July 6, 2018 - created
 =end
 
-require_relative '../etc/methods'
+module ::QplayistPrerecord
+  class Segment
 
-include ::Methods
+    def self.fields_ordered
+      %i[
+        cart
+        songs
+        ]
+    end
 
-# Run the program:
-#command_run %w[bundle exec ruby] + [filename_program]
-command_run %w[ruby] + [filename_program]
-
+    attr_reader(*fields_ordered)
+  end
+end

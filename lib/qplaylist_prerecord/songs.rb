@@ -1,6 +1,14 @@
 # coding: utf-8
 
 =begin
+Copyright (C) 2018 Mark D. Blackwell.
+   All rights reserved.
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+=end
+
+=begin
 Author: Mark D. Blackwell (google me)
 mdb July 4, 2018 - created
 =end
@@ -38,8 +46,8 @@ module ::QplayistPrerecord
           Song.new start_time, artist, title
         end
       end
-      recursion_level = 1
-      big_array.flatten recursion_level
+      depth = 1
+      big_array.flatten depth
     end
   end
 end
