@@ -8,11 +8,6 @@ Copyright (C) 2018 Mark D. Blackwell.
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 =end
 
-=begin
-Author: Mark D. Blackwell (google me)
-mdb July 3, 2018 - created
-=end
-
 require 'airdate'
 
 module ::QplayistPrerecord

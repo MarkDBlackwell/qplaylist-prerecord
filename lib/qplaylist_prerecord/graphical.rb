@@ -9,9 +9,6 @@ Copyright (C) 2018 Mark D. Blackwell.
 =end
 
 =begin
-Author: Mark D. Blackwell (google me)
-mdb June 26, 2018 - created
-
 See:
 http://members.chello.nl/k.vangelder/ruby/learntk/
 http://phrogz.net/programmingruby/ext_tk.html
