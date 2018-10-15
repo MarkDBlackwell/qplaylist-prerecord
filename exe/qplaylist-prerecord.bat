@@ -5,9 +5,4 @@ rem    This program is distributed in the hope that it will be useful,
 rem    but WITHOUT ANY WARRANTY; without even the implied warranty of
 rem    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-rem For Qplaylist Prerecord
-
-rem #--------------
-rem Don't greet.
-
 @ruby "%~dpn0"
