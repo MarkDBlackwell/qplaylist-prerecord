@@ -27,7 +27,7 @@ module ::QplayistPrerecord
     end
 
     def project_root
-       @project_root_value ||= ::File.realpath ::File.join(*%w[..]*2), dirname_script_this
+       @project_root_value ||= ::File.realpath ::File.join(*%w[..]*3), dirname_script_this
     end
 
     def whitespace_compress(s)

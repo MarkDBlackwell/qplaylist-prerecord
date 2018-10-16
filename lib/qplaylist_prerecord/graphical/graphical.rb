@@ -30,7 +30,6 @@ require 'helper_graphical'
 require 'pp'
 require 'song'
 require 'songs'
-require 'tk'
 
 module ::QplayistPrerecord
   module Graphical

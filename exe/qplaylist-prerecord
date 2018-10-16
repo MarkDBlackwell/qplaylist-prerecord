@@ -11,11 +11,13 @@ Copyright (C) 2018 Mark D. Blackwell.
 
 require_relative '../etc/methods'
 
-include ::Methods
+module ::Command
+  extend Methods
 
 # Don't greet.
 
 # Run the program:
 #command_run %w[bundle exec ruby] + [filename_program]
-command_run %w[ruby] + [filename_program]
+  command_run %w[ruby] + [filename_program]
+end
 

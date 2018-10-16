@@ -8,36 +8,10 @@ Copyright (C) 2018 Mark D. Blackwell.
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 =end
 
-module ::Methods
-  module InstanceMethods
+require_relative 'methods_instance_methods'
 
-    def command_run(array)
-      ::Kernel.system(*array)
-      nil
-    end
-
-    def filename_program
-      ::File.join directory_lib, "#{name_package}.rb"
-    end
-
-    private
-
-    def directory_lib
-      ::File.join project_root, 'lib'
-    end
-
-    def dirname_script_this
-      ::Kernel.__dir__
-    end
-
-    def name_package
-      'qplaylist_prerecord'
-    end
-
-    def project_root
-       @project_root_value ||= ::File.realpath '..', dirname_script_this
-    end
+module ::Command
+  module Methods
+    include InstanceMethods
   end
-
-  include ::Methods::InstanceMethods
 end

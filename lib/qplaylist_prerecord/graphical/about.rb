@@ -10,7 +10,6 @@ Copyright (C) 2018 Mark D. Blackwell.
 
 require 'helper'
 require 'helper_graphical'
-require 'tk'
 require 'version'
 
 module ::QplayistPrerecord
