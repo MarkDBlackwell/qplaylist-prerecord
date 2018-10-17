@@ -10,7 +10,7 @@ Copyright (C) 2018 Mark D. Blackwell.
 
 module ::Command
   module Methods
-    module InstanceMethods
+    module ModuleMethods
 
       def command_run(array)
         ::Kernel.system(*array)
