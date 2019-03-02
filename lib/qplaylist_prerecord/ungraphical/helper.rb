@@ -18,20 +18,22 @@ module ::QplayistPrerecord
       ::File.join project_root, 'etc', 'example'
     end
 
+    def whitespace_compress(s)
+      s.strip.gsub whitespace_compress_regexp, ' '
+    end
+
+# LOCAL:
+
     def dirname_script_this
       ::Kernel.__dir__
     end
 
     def project_root
-       @project_root_value ||= ::File.realpath ::File.join(*%w[..]*3), dirname_script_this
-    end
-
-    def whitespace_compress(s)
-      s.strip.gsub whitespace_compress_regexp, ' '
+      @project_root_value ||= ::File.realpath ::File.join(*%w[..]*3), dirname_script_this
     end
 
     def whitespace_compress_regexp
-       @whitespace_compress_regexp_value ||= ::Regexp.new '\s++'
+      @whitespace_compress_regexp_value ||= ::Regexp.new '\s++'
     end
   end
 end

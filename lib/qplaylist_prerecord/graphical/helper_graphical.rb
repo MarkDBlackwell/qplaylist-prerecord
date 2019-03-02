@@ -18,19 +18,6 @@ module ::QplayistPrerecord
 
     private
 
-    def all_init
-      window_init # Keep first.
-      title_set program_name
-      all_components_init
-      nil
-    end
-
-    def all_pack
-      window_pack
-      all_components_pack
-      nil
-    end
-
     def body_init
       @body = ::TkFrame.new @top
       nil
@@ -51,11 +38,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_menu_exit_pack
-      @button_menu_exit.pack pack_standard
-      nil
-    end
-
     def menu_init
       @menu = ::TkFrame.new @top
       menu_components_init
@@ -73,11 +55,43 @@ module ::QplayistPrerecord
     end
 
     def pack_standard
-       @pack_standard_value ||= {padx: 1, pady: 1}
+      @pack_standard_value ||= {padx: 1, pady: 1}
     end
 
     def pack_standard_menu
-       @pack_standard_menu_value ||= pack_standard.merge side: :left, fill: :x
+      @pack_standard_menu_value ||= pack_standard.merge side: :left, fill: :x
+    end
+
+    def title_set(title_new)
+      @root.title = title_new
+      nil
+    end
+
+    def window_process
+      all_init
+      all_pack
+      window_run
+      nil
+    end
+
+# LOCAL:
+
+    def all_init
+      window_init # Keep first.
+      title_set program_name
+      all_components_init
+      nil
+    end
+
+    def all_pack
+      window_pack
+      all_components_pack
+      nil
+    end
+
+    def button_menu_exit_pack
+      @button_menu_exit.pack pack_standard
+      nil
     end
 
     def separator_init
@@ -92,11 +106,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def title_set(title_new)
-      @root.title = title_new
-      nil
-    end
-
     def window_init
       @root = ::TkRoot.new
       @top = ::TkFrame.new @root
@@ -105,13 +114,6 @@ module ::QplayistPrerecord
 
     def window_pack
       @top.pack fill: :x, side: :top
-      nil
-    end
-
-    def window_process
-      all_init
-      all_pack
-      window_run
       nil
     end
 
