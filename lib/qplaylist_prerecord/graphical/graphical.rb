@@ -98,19 +98,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def body_songs_init
-      @label_songs = []
-      segment_count = 4
-      @songs = Songs.all pieces_young_at_heart, segment_count
-      @songs.each{|e| label_song_init e}
-      nil
-    end
-
-    def body_songs_pack
-      @label_songs.each{|e| e.pack fill: :x}
-      nil
-    end
-
     def body_components_init
       body_init
 # Keep alphabetical:
@@ -126,6 +113,19 @@ module ::QplayistPrerecord
       prompt_choice_pack
       body_active_pack
 # (End visual order.)
+      nil
+    end
+
+    def body_songs_init
+      @label_songs = []
+      segment_count = 4
+      @songs = Songs.all pieces_young_at_heart, segment_count
+      @songs.each{|e| label_song_init e}
+      nil
+    end
+
+    def body_songs_pack
+      @label_songs.each{|e| e.pack fill: :x}
       nil
     end
 
