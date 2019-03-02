@@ -18,10 +18,6 @@ module ::QplayistPrerecord
       ::File.join project_root, 'etc', 'example'
     end
 
-    def directory_lib
-      ::File.join project_root, 'lib'
-    end
-
     def dirname_script_this
       ::Kernel.__dir__
     end

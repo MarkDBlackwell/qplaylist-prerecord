@@ -30,6 +30,7 @@ require 'helper_graphical'
 require 'pp'
 require 'song'
 require 'songs'
+require 'version'
 
 module ::QplayistPrerecord
   module Graphical
@@ -38,6 +39,7 @@ module ::QplayistPrerecord
     extend self
 
     def main
+      @about_information_show = false
       @body_state = :airshows
       window_process
       nil
@@ -45,9 +47,32 @@ module ::QplayistPrerecord
 
     private
 
+    def about_information_init
+      if @about_information_show
+        @about_information = ::TkLabel.new @body do
+          text <<END.chomp
+QPlaylist Prerecord #{::QplayistPrerecord::VERSION}
+Copyright (C) 2018 Mark D. Blackwell.
+No license. All rights reserved.
+Contact: markdblackwell01@gmail.com
+END
+        end
+      end
+      nil
+    end
+
+    def about_information_pack
+      if @about_information_show
+        @about_information.pack pack_standard
+      end
+      nil
+    end
+
     def all_components_init
       body_components_init
+# Keep alphabetical:
       menu_init
+# (End keep alphabetical.)
       nil
     end
 
@@ -101,6 +126,7 @@ module ::QplayistPrerecord
     def body_components_init
       body_init
 # Keep alphabetical:
+      about_information_init
       body_active_init
       prompt_choice_init
 # (End keep alphabetical.)
@@ -112,6 +138,7 @@ module ::QplayistPrerecord
 # Order is visual order:
       prompt_choice_pack
       body_active_pack
+      about_information_pack
 # (End visual order.)
       nil
     end
@@ -169,10 +196,7 @@ module ::QplayistPrerecord
 
     def button_menu_about_init
       proc_about = proc do
-# Run the popup program:
-#       array = %w[bundle exec ruby] + [filename_program_about]
-        array = %w[ruby] + [filename_program_about]
-        ::Kernel.system(*array)
+        @about_information_show = true
       end
       @button_menu_about = ::TkButton.new @menu do
         text 'About'
@@ -219,11 +243,6 @@ module ::QplayistPrerecord
         command proc_new
       end
       nil
-    end
-
-    def filename_program_about
-      basename = 'qplaylist_prerecord_about.rb'
-      ::File.join directory_lib, basename
     end
 
     def label_song_init(song)
