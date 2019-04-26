@@ -10,15 +10,19 @@ Copyright (C) 2018 Mark D. Blackwell.
 
 =begin
 See:
-http://members.chello.nl/k.vangelder/ruby/learntk/
-http://phrogz.net/programmingruby/ext_tk.html
-http://rubylearning.com/satishtalim/ruby_tk_tutorial.html
-http://stackoverflow.com/questions/12364981/how-to-delete-tkinter-widgets-from-a-window
-http://tkdocs.com/tutorial/
-http://web.archive.org/web/20091028182545/http://www.jbrowse.com/text/rubytk_en.html
-http://www.linuxtopia.org/online_books/programming_books/ruby_tutorial/ext_tk.html
-http://www.ruby-forum.com/topic/155646
-http://www.tutorialspoint.com/ruby/ruby_tk_guide.htm
+  http://tkdocs.com/tutorial/
+
+Obsolete:
+  http://phrogz.net/programmingruby/ext_tk.html
+  http://rubylearning.com/satishtalim/ruby_tk_tutorial.html
+  http://web.archive.org/web/20091028182545/http://www.jbrowse.com/text/rubytk_en.html
+  http://www.tutorialspoint.com/ruby/ruby_tk_guide.htm
+
+Gone?
+  http://members.chello.nl/k.vangelder/ruby/learntk/
+
+See also:
+  http://stackoverflow.com/questions/12364981/how-to-delete-tkinter-widgets-from-a-window
 =end
 
 require 'airdate'
@@ -49,7 +53,7 @@ module ::QplayistPrerecord
 
     def about_information_init
       if @about_information_show
-        @about_information = ::TkLabel.new @body do
+        @about_information = ::Tk::Tile::Label.new @body do
           text <<END.chomp
 QPlaylist Prerecord #{::QplayistPrerecord::VERSION}
 Copyright (C) 2018 Mark D. Blackwell.
@@ -167,7 +171,7 @@ END
         body_components_pack
       end
       @button_body_airdates ||= []
-      button_body_airdate = ::TkButton.new @body do
+      button_body_airdate = ::Tk::Tile::Button.new @body do
         text airdate.date
         command proc_button
       end
@@ -186,7 +190,7 @@ END
         body_components_pack
       end
       @button_body_airshows ||= []
-      button_body_airshow = ::TkButton.new @body do
+      button_body_airshow = ::Tk::Tile::Button.new @body do
         text airshow.name
         command proc_button
       end
@@ -195,10 +199,12 @@ END
     end
 
     def button_menu_about_init
+#  See:
+# http://tkdocs.com/tutorial/windows.html
       proc_about = proc do
         @about_information_show = true
       end
-      @button_menu_about = ::TkButton.new @menu do
+      @button_menu_about = ::Tk::Tile::Button.new @menu do
         text 'About'
         command proc_about
       end
@@ -208,7 +214,7 @@ END
     def button_menu_copy_init
       proc_copy = proc do
       end
-      @button_menu_copy = ::TkButton.new @menu do
+      @button_menu_copy = ::Tk::Tile::Button.new @menu do
         text 'Copy'
         command proc_copy
       end
@@ -218,7 +224,7 @@ END
     def button_menu_edit_init
       proc_edit = proc do
       end
-      @button_menu_edit = ::TkButton.new @menu do
+      @button_menu_edit = ::Tk::Tile::Button.new @menu do
         text 'Edit'
         command proc_edit
       end
@@ -228,7 +234,7 @@ END
     def button_menu_install_init
       proc_install = proc do
       end
-      @button_menu_install = ::TkButton.new @menu do
+      @button_menu_install = ::Tk::Tile::Button.new @menu do
         text 'Install'
         command proc_install
       end
@@ -238,7 +244,7 @@ END
     def button_menu_new_init
       proc_new = proc do
       end
-      @button_menu_new = ::TkButton.new @menu do
+      @button_menu_new = ::Tk::Tile::Button.new @menu do
         text 'New'
         command proc_new
       end
@@ -249,7 +255,7 @@ END
       time = ::Kernel.sprintf "%d:%02d", *song.start_time
       title = "\"#{song.title}\""
       s = [time, title, song.artist].join ' – '
-      label_song = ::TkLabel.new @body do
+      label_song = ::Tk::Tile::Label.new @body do
         text s
       end
       @label_songs.push label_song
@@ -295,7 +301,7 @@ END
     def prompt_choice_init
       case @body_state
       when :airdates, :airshows
-        @prompt_choice = ::TkLabel.new @body do
+        @prompt_choice = ::Tk::Tile::Label.new @body do
           text 'Choose!'
         end
       end

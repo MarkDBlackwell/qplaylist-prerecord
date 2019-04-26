@@ -10,6 +10,7 @@ Copyright (C) 2018 Mark D. Blackwell.
 
 require 'helper'
 require 'tk'
+require 'tkextlib/tile'
 
 module ::QplayistPrerecord
   module HelperGraphical
@@ -19,7 +20,7 @@ module ::QplayistPrerecord
     private
 
     def body_init
-      @body = ::TkFrame.new @top
+      @body = ::Tk::Tile::Frame.new @top
       nil
     end
 
@@ -29,7 +30,7 @@ module ::QplayistPrerecord
     end
 
     def button_menu_exit_init(container, s)
-      @button_menu_exit = ::TkButton.new container do
+      @button_menu_exit = ::Tk::Tile::Button.new container do
         text s
         command do
           proc ::Kernel.exit
@@ -39,7 +40,7 @@ module ::QplayistPrerecord
     end
 
     def menu_init
-      @menu = ::TkFrame.new @top
+      @menu = ::Tk::Tile::Frame.new @top
       menu_components_init
       separator_components_init
       separator_init
@@ -95,7 +96,7 @@ module ::QplayistPrerecord
     end
 
     def separator_init
-      @separator = ::TkFrame.new @top
+      @separator = ::Tk::Tile::Frame.new @top
       separator_components_init
       nil
     end
@@ -108,7 +109,7 @@ module ::QplayistPrerecord
 
     def window_init
       @root = ::TkRoot.new
-      @top = ::TkFrame.new @root
+      @top = ::Tk::Tile::Frame.new @root
       nil
     end
 
