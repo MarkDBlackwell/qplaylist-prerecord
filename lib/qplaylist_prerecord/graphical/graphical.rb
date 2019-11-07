@@ -296,15 +296,17 @@ module ::QplayistPrerecord
       nil
     end
 
+    def separator_components
+      @separator_components_private ||= ::Tk::Tile::Separator.new @separator
+    end
+
     def separator_components_init
-      @separator_components = ::Tk::Tile::Separator.new @separator do
-        orient :horizontal
-      end
+      separator_components.orient :horizontal
       nil
     end
 
     def separator_components_pack
-      @separator_components.pack fill: :x, side: :bottom
+      separator_components.pack fill: :x, side: :bottom
       nil
     end
 
