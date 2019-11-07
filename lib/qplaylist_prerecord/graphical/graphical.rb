@@ -179,7 +179,7 @@ module ::QplayistPrerecord
     end
 
     def button_menu_about
-      @button_menu_about_private ||= ::Tk::Tile::Button.new @menu
+      @button_menu_about_private ||= ::Tk::Tile::Button.new @menu_window
     end
 
     def button_menu_about_init
@@ -194,7 +194,7 @@ module ::QplayistPrerecord
     end
 
     def button_menu_copy
-      @button_menu_copy_private ||= ::Tk::Tile::Button.new @menu
+      @button_menu_copy_private ||= ::Tk::Tile::Button.new @menu_window
     end
 
     def button_menu_copy_init
@@ -206,7 +206,7 @@ module ::QplayistPrerecord
     end
 
     def button_menu_edit
-      @button_menu_edit_private ||= ::Tk::Tile::Button.new @menu
+      @button_menu_edit_private ||= ::Tk::Tile::Button.new @menu_window
     end
 
     def button_menu_edit_init
@@ -218,7 +218,7 @@ module ::QplayistPrerecord
     end
 
     def button_menu_install
-      @button_menu_install_private ||= ::Tk::Tile::Button.new @menu
+      @button_menu_install_private ||= ::Tk::Tile::Button.new @menu_window
     end
 
     def button_menu_install_init
@@ -230,7 +230,7 @@ module ::QplayistPrerecord
     end
 
     def button_menu_new
-      @button_menu_new_private ||= ::Tk::Tile::Button.new @menu
+      @button_menu_new_private ||= ::Tk::Tile::Button.new @menu_window
     end
 
     def button_menu_new_init
