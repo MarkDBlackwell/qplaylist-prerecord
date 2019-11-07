@@ -33,11 +33,11 @@ module ::QplayistPrerecord
     private
 
     def cartridge_number_length
-      @@cartridge_number_length_value ||= '0123'.length
+      @@cartridge_number_length_private ||= '0123'.length
     end
 
     def cartridge_number_regexp
-      @@cartridge_number_regexp_value ||= ::Regexp.new '\A\d++\z', ::Regexp::MULTILINE
+      @@cartridge_number_regexp_private ||= ::Regexp.new '\A\d++\z', ::Regexp::MULTILINE
     end
 
     def check(             tokens)

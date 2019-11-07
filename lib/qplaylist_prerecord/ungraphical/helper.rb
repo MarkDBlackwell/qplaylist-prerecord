@@ -29,11 +29,11 @@ module ::QplayistPrerecord
     end
 
     def project_root
-      @project_root_value ||= ::File.realpath ::File.join(*%w[..]*3), dirname_script_this
+      @project_root_private ||= ::File.realpath ::File.join(*%w[..]*3), dirname_script_this
     end
 
     def whitespace_compress_regexp
-      @whitespace_compress_regexp_value ||= ::Regexp.new '\s++'
+      @whitespace_compress_regexp_private ||= ::Regexp.new '\s++'
     end
   end
 end
