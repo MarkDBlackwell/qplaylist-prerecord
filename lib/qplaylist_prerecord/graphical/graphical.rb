@@ -55,14 +55,14 @@ module ::QplayistPrerecord
     def all_components_init
       body_components_init
 # Keep alphabetical:
-      menu_init
+      menu_window_init
 # (End keep alphabetical.)
       nil
     end
 
     def all_components_pack
 # Order is visual order:
-      menu_pack
+      menu_window_pack
       body_components_pack
       nil
     end

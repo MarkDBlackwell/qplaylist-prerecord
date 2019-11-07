@@ -45,7 +45,7 @@ module ::QplayistPrerecord
       @menu_window_private ||= ::Tk::Tile::Frame.new top_window
     end
 
-    def menu_init
+    def menu_window_init
       @menu_window = ::Tk::Tile::Frame.new top_window
       menu_components_init
       separator_components_init
@@ -53,7 +53,7 @@ module ::QplayistPrerecord
       nil
     end
 
-    def menu_pack
+    def menu_window_pack
       menu_components_pack
       separator_components_pack
       @menu_window.pack fill: :both, side: :top
