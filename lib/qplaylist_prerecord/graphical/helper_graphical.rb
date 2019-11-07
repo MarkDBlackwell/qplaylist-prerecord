@@ -20,7 +20,7 @@ module ::QplayistPrerecord
     private
 
     def body_init
-      @body = ::Tk::Tile::Frame.new @top
+      @body = ::Tk::Tile::Frame.new top_window
       nil
     end
 
@@ -40,7 +40,7 @@ module ::QplayistPrerecord
     end
 
     def menu_init
-      @menu = ::Tk::Tile::Frame.new @top
+      @menu = ::Tk::Tile::Frame.new top_window
       menu_components_init
       separator_components_init
       separator_init
@@ -103,7 +103,7 @@ module ::QplayistPrerecord
     end
 
     def separator_init
-      @separator = ::Tk::Tile::Frame.new @top
+      @separator = ::Tk::Tile::Frame.new top_window
       separator_components_init
       nil
     end
@@ -119,13 +119,17 @@ module ::QplayistPrerecord
       nil
     end
 
+    def top_window
+      @top_window ||= ::Tk::Tile::Frame.new root
+    end
+
     def window_init
-      @top = ::Tk::Tile::Frame.new root
+      top_window
       nil
     end
 
     def window_pack
-      @top.pack fill: :x, side: :top
+      top_window.pack fill: :x, side: :top
       nil
     end
 
