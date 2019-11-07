@@ -23,6 +23,11 @@ module ::QplayistPrerecord
       @body_window_private
     end
 
+    def body_window_destroy
+      body_window.destroy
+      nil
+    end
+
     def body_window_init
       @body_window_private = ::Tk::Tile::Frame.new top_window
       nil

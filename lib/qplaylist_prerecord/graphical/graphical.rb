@@ -142,7 +142,7 @@ module ::QplayistPrerecord
 
     def button_body_airdate_init(airdate)
       proc_button = proc do
-        body_window.destroy
+        body_window_destroy
         @button_body_airdates.clear
         @body_state = :songs
         @title_airdate = airdate.date
@@ -161,7 +161,7 @@ module ::QplayistPrerecord
 
     def button_body_airshow_init(airshow)
       proc_button = proc do
-        body_window.destroy
+        body_window_destroy
         @button_body_airshows.clear
         @body_state = :airdates
         @title_airshow = airshow.name
