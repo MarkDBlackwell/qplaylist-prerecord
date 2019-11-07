@@ -64,7 +64,7 @@ module ::QplayistPrerecord
     end
 
     def title_set(title_new)
-      @root.title = title_new
+      root.title = title_new
       nil
     end
 
@@ -95,6 +95,13 @@ module ::QplayistPrerecord
       nil
     end
 
+    def root
+      $root_private ||= begin
+        tell_tk_which_encoding_to_use
+        ::TkRoot.new
+      end
+    end
+
     def separator_init
       @separator = ::Tk::Tile::Frame.new @top
       separator_components_init
@@ -107,9 +114,13 @@ module ::QplayistPrerecord
       nil
     end
 
+    def tell_tk_which_encoding_to_use
+      ::Tk::Encoding.encoding = ''.encoding
+      nil
+    end
+
     def window_init
-      @root = ::TkRoot.new
-      @top = ::Tk::Tile::Frame.new @root
+      @top = ::Tk::Tile::Frame.new root
       nil
     end
 
