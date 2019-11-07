@@ -25,6 +25,7 @@ See also:
   http://stackoverflow.com/questions/12364981/how-to-delete-tkinter-widgets-from-a-window
 =end
 
+require 'about_information'
 require 'airdate'
 require 'airdates'
 require 'airshow'
@@ -43,34 +44,13 @@ module ::QplayistPrerecord
     extend self
 
     def main
-      @about_information_show = false
+      AboutInformation.show = false
       @body_state = :airshows
       window_process
       nil
     end
 
     private
-
-    def about_information_init
-      if @about_information_show
-        @about_information = ::Tk::Tile::Label.new @body do
-          text <<END.chomp
-QPlaylist Prerecord #{::QplayistPrerecord::VERSION}
-Copyright (C) 2018 Mark D. Blackwell.
-No license. All rights reserved.
-Contact: markdblackwell01@gmail.com
-END
-        end
-      end
-      nil
-    end
-
-    def about_information_pack
-      if @about_information_show
-        @about_information.pack pack_standard
-      end
-      nil
-    end
 
     def all_components_init
       body_components_init
@@ -130,7 +110,7 @@ END
     def body_components_init
       body_init
 # Keep alphabetical:
-      about_information_init
+      AboutInformation.init
       body_active_init
       prompt_choice_init
 # (End keep alphabetical.)
@@ -142,7 +122,7 @@ END
 # Order is visual order:
       prompt_choice_pack
       body_active_pack
-      about_information_pack
+      AboutInformation.pack
 # (End visual order.)
       nil
     end
@@ -202,7 +182,7 @@ END
 #  See:
 # http://tkdocs.com/tutorial/windows.html
       proc_about = proc do
-        @about_information_show = true
+        AboutInformation.show = true
       end
       @button_menu_about = ::Tk::Tile::Button.new @menu do
         text 'About'
