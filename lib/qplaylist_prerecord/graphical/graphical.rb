@@ -108,7 +108,7 @@ module ::QplayistPrerecord
     end
 
     def body_components_init
-      body_init
+      body_window_init
 # Keep alphabetical:
       AboutInformation.init
       body_active_init
@@ -118,7 +118,7 @@ module ::QplayistPrerecord
     end
 
     def body_components_pack
-      body_pack
+      body_window_pack
 # Order is visual order:
       prompt_choice_pack
       body_active_pack
@@ -142,7 +142,7 @@ module ::QplayistPrerecord
 
     def button_body_airdate_init(airdate)
       proc_button = proc do
-        @body.destroy
+        body_window.destroy
         @button_body_airdates.clear
         @body_state = :songs
         @title_airdate = airdate.date
@@ -151,7 +151,7 @@ module ::QplayistPrerecord
         body_components_pack
       end
       @button_body_airdates ||= []
-      button_body_airdate = ::Tk::Tile::Button.new @body do
+      button_body_airdate = ::Tk::Tile::Button.new body_window do
         text airdate.date
         command proc_button
       end
@@ -161,7 +161,7 @@ module ::QplayistPrerecord
 
     def button_body_airshow_init(airshow)
       proc_button = proc do
-        @body.destroy
+        body_window.destroy
         @button_body_airshows.clear
         @body_state = :airdates
         @title_airshow = airshow.name
@@ -170,7 +170,7 @@ module ::QplayistPrerecord
         body_components_pack
       end
       @button_body_airshows ||= []
-      button_body_airshow = ::Tk::Tile::Button.new @body do
+      button_body_airshow = ::Tk::Tile::Button.new body_window do
         text airshow.name
         command proc_button
       end
@@ -245,7 +245,7 @@ module ::QplayistPrerecord
       time = ::Kernel.sprintf "%d:%02d", *song.start_time
       title = "\"#{song.title}\""
       s = [time, title, song.artist].join ' – '
-      label_song = ::Tk::Tile::Label.new @body do
+      label_song = ::Tk::Tile::Label.new body_window do
         text s
       end
       @label_songs.push label_song
@@ -291,7 +291,7 @@ module ::QplayistPrerecord
     def prompt_choice_init
       case @body_state
       when :airdates, :airshows
-        @prompt_choice = ::Tk::Tile::Label.new @body do
+        @prompt_choice = ::Tk::Tile::Label.new body_window do
           text 'Choose!'
         end
       end

@@ -35,7 +35,7 @@ module ::QplayistPrerecord
       private
 
       def about_information
-        @about_information_private ||= ::Tk::Tile::Label.new @body
+        @about_information_private ||= ::Tk::Tile::Label.new body_window
       end
 
       def about_information_text_raw

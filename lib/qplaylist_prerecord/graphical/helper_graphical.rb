@@ -19,13 +19,17 @@ module ::QplayistPrerecord
 
     private
 
-    def body_init
-      @body = ::Tk::Tile::Frame.new top_window
+    def body_window
+      @body_window_private
+    end
+
+    def body_window_init
+      @body_window_private = ::Tk::Tile::Frame.new top_window
       nil
     end
 
-    def body_pack
-      @body.pack fill: :both, side: :top
+    def body_window_pack
+      body_window.pack fill: :both, side: :top
       nil
     end
 
