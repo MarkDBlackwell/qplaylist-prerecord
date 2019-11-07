@@ -146,7 +146,7 @@ module ::QplayistPrerecord
         @button_body_airdates.clear
         @body_state = :songs
         @title_airdate = airdate.date
-        title_set title_airdate
+        title_set title_airdate_complex
         body_components_init
         body_components_pack
       end
@@ -165,7 +165,7 @@ module ::QplayistPrerecord
         @button_body_airshows.clear
         @body_state = :airdates
         @title_airshow = airshow.name
-        title_set title_airshow
+        title_set title_airshow_complex
         body_components_init
         body_components_pack
       end
@@ -320,11 +320,11 @@ module ::QplayistPrerecord
       nil
     end
 
-    def title_airdate
-      "#{@title_airdate} - #{title_airshow}"
+    def title_airdate_complex
+      "#{@title_airdate} - #{title_airshow_complex}"
     end
 
-    def title_airshow
+    def title_airshow_complex
       "#{@title_airshow} - #{program_name}"
     end
   end
