@@ -29,6 +29,7 @@ module ::QplayistPrerecord
     end
 
     def body_window_init
+# Recreates on every call:
       @body_window_private = ::Tk::Tile::Frame.new top_window
       nil
     end
