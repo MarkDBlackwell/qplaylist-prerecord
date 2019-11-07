@@ -178,16 +178,18 @@ module ::QplayistPrerecord
       nil
     end
 
+    def button_menu_about
+      @button_menu_about_private ||= ::Tk::Tile::Button.new @menu
+    end
+
     def button_menu_about_init
 #  See:
 # http://tkdocs.com/tutorial/windows.html
       proc_about = proc do
         AboutInformation.show = true
       end
-      @button_menu_about = ::Tk::Tile::Button.new @menu do
-        text 'About'
-        command proc_about
-      end
+      button_menu_about.text 'About'
+      button_menu_about.command proc_about
       nil
     end
 
@@ -269,7 +271,7 @@ module ::QplayistPrerecord
           button_menu_copy,
           button_menu_edit,
           button_menu_install,
-          @button_menu_about,
+          button_menu_about,
           ].each do |e|
         e.pack pack_standard_menu
       end
