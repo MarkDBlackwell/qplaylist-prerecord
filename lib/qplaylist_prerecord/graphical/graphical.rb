@@ -215,13 +215,15 @@ module ::QplayistPrerecord
       nil
     end
 
+    def button_menu_install
+      @button_menu_install_private ||= ::Tk::Tile::Button.new @menu
+    end
+
     def button_menu_install_init
       proc_install = proc do
       end
-      @button_menu_install = ::Tk::Tile::Button.new @menu do
-        text 'Install'
-        command proc_install
-      end
+      button_menu_install.text 'Install'
+      button_menu_install.command proc_install
       nil
     end
 
@@ -266,7 +268,7 @@ module ::QplayistPrerecord
           button_menu_new,
           button_menu_copy,
           button_menu_edit,
-          @button_menu_install,
+          button_menu_install,
           @button_menu_about,
           ].each do |e|
         e.pack pack_standard_menu
