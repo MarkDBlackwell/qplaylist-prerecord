@@ -29,12 +29,14 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_menu_exit_init(container, s)
-      @button_menu_exit = ::Tk::Tile::Button.new container do
-        text s
-        command do
-          proc ::Kernel.exit
-        end
+    def button_menu_exit
+      @button_menu_exit_private ||= ::Tk::Tile::Button.new @menu
+    end
+
+    def button_menu_exit_init(s)
+      button_menu_exit.text s
+      button_menu_exit.command do
+        proc ::Kernel.exit
       end
       nil
     end
