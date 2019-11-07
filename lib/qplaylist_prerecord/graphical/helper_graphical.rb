@@ -30,7 +30,7 @@ module ::QplayistPrerecord
 
     def body_window_init
 # Recreates on every call:
-      @body_window_private = ::Tk::Tile::Frame.new top_window
+      @body_window_private = ::Tk::Tile::Frame.new f_content
       nil
     end
 
@@ -52,7 +52,7 @@ module ::QplayistPrerecord
     end
 
     def menu_window
-      @menu_window_private ||= ::Tk::Tile::Frame.new top_window
+      @menu_window_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def menu_window_init
@@ -105,6 +105,13 @@ module ::QplayistPrerecord
       nil
     end
 
+    def f_content
+      $f_content_private ||= begin
+        f = ::Tk::Tile::Frame.new root
+        f.grid sticky: :wnes
+      end
+    end
+
     def root
       $root_private ||= begin
         tell_tk_which_encoding_to_use
@@ -113,7 +120,7 @@ module ::QplayistPrerecord
     end
 
     def separator
-      @separator_private ||= ::Tk::Tile::Frame.new top_window
+      @separator_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def separator_init
@@ -132,17 +139,28 @@ module ::QplayistPrerecord
       nil
     end
 
-    def top_window
-      @top_window_private ||= ::Tk::Tile::Frame.new root
+    def weights_column_and_row_default_set_up(*args)
+      args.reverse_each do |e|
+        ::TkGrid.columnconfigure e, 0, weight: 1
+        ::TkGrid.   rowconfigure e, 0, weight: 1
+      end
+      nil
+    end
+
+    def weights_column_and_row_set_up
+      weights_column_and_row_default_set_up f_content, root
+      ::TkGrid.rowconfigure f_content, 1, weight: 1
+      nil
     end
 
     def window_init
-      top_window
+      f_content.padding '3 3 3 3'
+      weights_column_and_row_set_up
       nil
     end
 
     def window_pack
-      top_window.pack fill: :x, side: :top
+      f_content.pack fill: :x, side: :top
       nil
     end
 
