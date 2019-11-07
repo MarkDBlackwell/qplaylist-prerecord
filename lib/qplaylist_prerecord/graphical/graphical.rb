@@ -203,13 +203,15 @@ module ::QplayistPrerecord
       nil
     end
 
+    def button_menu_edit
+      @button_menu_edit_private ||= ::Tk::Tile::Button.new @menu
+    end
+
     def button_menu_edit_init
       proc_edit = proc do
       end
-      @button_menu_edit = ::Tk::Tile::Button.new @menu do
-        text 'Edit'
-        command proc_edit
-      end
+      button_menu_edit.text 'Edit'
+      button_menu_edit.command proc_edit
       nil
     end
 
@@ -263,7 +265,7 @@ module ::QplayistPrerecord
           button_menu_exit,
           button_menu_new,
           button_menu_copy,
-          @button_menu_edit,
+          button_menu_edit,
           @button_menu_install,
           @button_menu_about,
           ].each do |e|
