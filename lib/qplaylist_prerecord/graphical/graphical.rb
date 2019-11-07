@@ -307,7 +307,7 @@ module ::QplayistPrerecord
     end
 
     def separator_components
-      @separator_components_private ||= ::Tk::Tile::Separator.new @separator
+      @separator_components_private ||= ::Tk::Tile::Separator.new separator
     end
 
     def separator_components_init
