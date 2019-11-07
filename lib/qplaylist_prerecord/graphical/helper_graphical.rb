@@ -120,7 +120,7 @@ module ::QplayistPrerecord
     end
 
     def top_window
-      @top_window ||= ::Tk::Tile::Frame.new root
+      @top_window_private ||= ::Tk::Tile::Frame.new root
     end
 
     def window_init
