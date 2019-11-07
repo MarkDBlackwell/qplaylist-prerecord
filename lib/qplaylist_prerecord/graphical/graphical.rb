@@ -191,13 +191,15 @@ module ::QplayistPrerecord
       nil
     end
 
+    def button_menu_copy
+      @button_menu_copy_private ||= ::Tk::Tile::Button.new @menu
+    end
+
     def button_menu_copy_init
       proc_copy = proc do
       end
-      @button_menu_copy = ::Tk::Tile::Button.new @menu do
-        text 'Copy'
-        command proc_copy
-      end
+      button_menu_copy.text 'Copy'
+      button_menu_copy.command proc_copy
       nil
     end
 
@@ -260,7 +262,7 @@ module ::QplayistPrerecord
       [ # Order is visual order.
           button_menu_exit,
           button_menu_new,
-          @button_menu_copy,
+          button_menu_copy,
           @button_menu_edit,
           @button_menu_install,
           @button_menu_about,
