@@ -92,11 +92,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_menu_exit_pack
-      @button_menu_exit.pack pack_standard
-      nil
-    end
-
     def root
       $root_private ||= begin
         tell_tk_which_encoding_to_use
