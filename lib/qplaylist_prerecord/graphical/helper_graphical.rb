@@ -102,15 +102,18 @@ module ::QplayistPrerecord
       end
     end
 
+    def separator
+      @separator_private ||= ::Tk::Tile::Frame.new top_window
+    end
+
     def separator_init
-      @separator = ::Tk::Tile::Frame.new top_window
       separator_components_init
       nil
     end
 
     def separator_pack
       separator_components_pack
-      @separator.pack fill: :both, side: :top
+      separator.pack fill: :both, side: :top
       nil
     end
 
