@@ -221,13 +221,15 @@ module ::QplayistPrerecord
       nil
     end
 
+    def button_menu_new
+      @button_menu_new_private ||= ::Tk::Tile::Button.new @menu
+    end
+
     def button_menu_new_init
       proc_new = proc do
       end
-      @button_menu_new = ::Tk::Tile::Button.new @menu do
-        text 'New'
-        command proc_new
-      end
+      button_menu_new.text 'New'
+      button_menu_new.command proc_new
       nil
     end
 
@@ -257,7 +259,7 @@ module ::QplayistPrerecord
     def menu_components_pack
       [ # Order is visual order.
           button_menu_exit,
-          @button_menu_new,
+          button_menu_new,
           @button_menu_copy,
           @button_menu_edit,
           @button_menu_install,
