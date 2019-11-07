@@ -20,23 +20,26 @@ module ::QplayistPrerecord
 
       def init
         if show
-          @about_information_text = ::Tk::Tile::Label.new @body
-          @about_information_text.text text_about
+          about_information.text about_information_text_raw
         end
         nil
       end
 
       def pack
         if show
-          @about_information_text.pack pack_standard
+          about_information.pack pack_standard
         end
         nil
       end
 
       private
 
-      def text_about
-        @text_about_private ||= <<END.chomp
+      def about_information
+        @about_information_private ||= ::Tk::Tile::Label.new @body
+      end
+
+      def about_information_text_raw
+        @about_information_text_raw_private ||= <<END.chomp
 QPlaylist Prerecord #{::QplayistPrerecord::VERSION}
 Copyright (C) 2018 Mark D. Blackwell.
 No license. All rights reserved.
