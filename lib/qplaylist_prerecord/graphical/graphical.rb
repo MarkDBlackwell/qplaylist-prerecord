@@ -54,7 +54,6 @@ module ::QplayistPrerecord
     def all_components_init
       body_components_init
 # Keep alphabetical:
-      b_menu_edit_init
       b_menu_exit_init 'Exit'
 # (End keep alphabetical.)
       nil
@@ -64,14 +63,6 @@ module ::QplayistPrerecord
 # Order is visual order:
       f_menu_window_pack
       body_components_pack
-      nil
-    end
-
-    def b_menu_edit_init
-      lambda_edit = ::Kernel.lambda do
-      end
-      b_menu_edit.text 'Edit'
-      b_menu_edit.command lambda_edit
       nil
     end
 

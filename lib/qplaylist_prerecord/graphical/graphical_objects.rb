@@ -28,7 +28,13 @@ module ::QplayistPrerecord
       end
 
       def b_menu_edit
-        @b_menu_edit_private ||= ::Tk::Tile::Button.new f_menu_window
+        @b_menu_edit_private ||= begin
+          lambda_edit = ::Kernel.lambda do
+          end
+          b = ::Tk::Tile::Button.new f_menu_window
+          b.text 'Edit'
+          b.command lambda_edit
+        end
       end
 
       def b_menu_exit
