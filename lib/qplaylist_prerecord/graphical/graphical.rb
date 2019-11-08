@@ -49,7 +49,7 @@ module ::QplayistPrerecord
 # Group:
       weights_column_and_row_set_up # Keep first.
       title_set program_name
-      all_components_init
+      body_components_init
 # Group end.
       all_pack
       window_run
@@ -57,11 +57,6 @@ module ::QplayistPrerecord
     end
 
     private
-
-    def all_components_init
-      body_components_init
-      nil
-    end
 
     def all_components_pack
 # Order is visual order:
