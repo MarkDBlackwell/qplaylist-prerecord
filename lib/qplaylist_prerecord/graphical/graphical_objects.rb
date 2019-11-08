@@ -32,7 +32,10 @@ module ::QplayistPrerecord
     end
 
     def s_components
-      @s_components_private ||= ::Tk::Tile::Separator.new f_separator
+      @s_components_private ||= begin
+        s = ::Tk::Tile::Separator.new f_separator
+        s.orient :horizontal
+      end
     end
   end
 end

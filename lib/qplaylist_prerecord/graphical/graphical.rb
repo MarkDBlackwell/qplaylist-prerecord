@@ -252,11 +252,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def s_components_init
-      s_components.orient :horizontal
-      nil
-    end
-
     def s_components_pack
       s_components.pack fill: :x, side: :bottom
       nil

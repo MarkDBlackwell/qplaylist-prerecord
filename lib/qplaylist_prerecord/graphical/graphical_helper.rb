@@ -47,8 +47,6 @@ module ::QplayistPrerecord
 
     def f_menu_window_init
       menu_components_init
-      s_components_init
-      f_separator_init
       nil
     end
 
@@ -100,11 +98,6 @@ module ::QplayistPrerecord
         f = ::Tk::Tile::Frame.new root
         f.grid sticky: :wnes
       end
-    end
-
-    def f_separator_init
-      s_components_init
-      nil
     end
 
     def f_separator_pack
