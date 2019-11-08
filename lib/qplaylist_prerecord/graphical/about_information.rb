@@ -20,22 +20,22 @@ module ::QplayistPrerecord
 
       def init
         if show
-          about_information.text about_information_text_raw
+          l_about_information.text about_information_text_raw
         end
         nil
       end
 
       def pack
         if show
-          about_information.pack pack_standard
+          l_about_information.pack pack_standard
         end
         nil
       end
 
       private
 
-      def about_information
-        @about_information_private ||= ::Tk::Tile::Label.new body_window
+      def l_about_information
+        @l_about_information_private ||= ::Tk::Tile::Label.new body_window
       end
 
       def about_information_text_raw
