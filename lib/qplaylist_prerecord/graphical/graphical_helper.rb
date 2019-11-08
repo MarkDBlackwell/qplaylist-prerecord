@@ -46,7 +46,7 @@ module ::QplayistPrerecord
     def b_menu_exit_init(s)
       b_menu_exit.text s
       b_menu_exit.command do
-        proc ::Kernel.exit
+        ::Kernel.exit
       end
       nil
     end

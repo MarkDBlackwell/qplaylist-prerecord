@@ -141,7 +141,7 @@ module ::QplayistPrerecord
     end
 
     def button_body_airdate_init(airdate)
-      proc_button = proc do
+      proc_button = ::Kernel.lambda do
         f_body_window_destroy
         @body_airdates.clear
         @body_state = :songs
@@ -159,7 +159,7 @@ module ::QplayistPrerecord
     end
 
     def button_body_airshow_init(airshow)
-      proc_button = proc do
+      proc_button = ::Kernel.lambda do
         f_body_window_destroy
         @body_airshows.clear
         @body_state = :airdates
@@ -183,7 +183,7 @@ module ::QplayistPrerecord
     def b_menu_about_init
 #  See:
 # http://tkdocs.com/tutorial/windows.html
-      proc_about = proc do
+      proc_about = ::Kernel.lambda do
         AboutInformation.show = true
       end
       b_menu_about.text 'About'
@@ -196,7 +196,7 @@ module ::QplayistPrerecord
     end
 
     def b_menu_copy_init
-      proc_copy = proc do
+      proc_copy = ::Kernel.lambda do
       end
       b_menu_copy.text 'Copy'
       b_menu_copy.command proc_copy
@@ -208,7 +208,7 @@ module ::QplayistPrerecord
     end
 
     def b_menu_edit_init
-      proc_edit = proc do
+      proc_edit = ::Kernel.lambda do
       end
       b_menu_edit.text 'Edit'
       b_menu_edit.command proc_edit
@@ -220,7 +220,7 @@ module ::QplayistPrerecord
     end
 
     def b_menu_install_init
-      proc_install = proc do
+      proc_install = ::Kernel.lambda do
       end
       b_menu_install.text 'Install'
       b_menu_install.command proc_install
@@ -232,7 +232,7 @@ module ::QplayistPrerecord
     end
 
     def b_menu_new_init
-      proc_new = proc do
+      proc_new = ::Kernel.lambda do
       end
       b_menu_new.text 'New'
       b_menu_new.command proc_new
