@@ -243,10 +243,9 @@ module ::QplayistPrerecord
       time = ::Kernel.sprintf "%d:%02d", *song.start_time
       title = "\"#{song.title}\""
       s = [time, title, song.artist].join ' – '
-      label_song = ::Tk::Tile::Label.new body_window do
-        text s
-      end
-      @label_songs.push label_song
+      l_song = ::Tk::Tile::Label.new body_window
+      l_song.text s
+      @label_songs.push l_song
       nil
     end
 
@@ -289,9 +288,8 @@ module ::QplayistPrerecord
     def prompt_choice_init
       case @body_state
       when :airdates, :airshows
-        @prompt_choice = ::Tk::Tile::Label.new body_window do
-          text 'Choose!'
-        end
+        @l_prompt_choice = ::Tk::Tile::Label.new body_window
+        @l_prompt_choice.text 'Choose!'
       end
       nil
     end
@@ -299,22 +297,22 @@ module ::QplayistPrerecord
     def prompt_choice_pack
       case @body_state
       when :airdates, :airshows
-        @prompt_choice.pack pack_standard
+        @l_prompt_choice.pack pack_standard
       end
       nil
     end
 
-    def separator_components
-      @separator_components_private ||= ::Tk::Tile::Separator.new separator
+    def s_components
+      @s_components_private ||= ::Tk::Tile::Separator.new separator
     end
 
-    def separator_components_init
-      separator_components.orient :horizontal
+    def s_components_init
+      s_components.orient :horizontal
       nil
     end
 
-    def separator_components_pack
-      separator_components.pack fill: :x, side: :bottom
+    def s_components_pack
+      s_components.pack fill: :x, side: :bottom
       nil
     end
 

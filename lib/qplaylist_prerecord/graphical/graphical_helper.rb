@@ -57,14 +57,14 @@ module ::QplayistPrerecord
 
     def menu_window_init
       menu_components_init
-      separator_components_init
+      s_components_init
       separator_init
       nil
     end
 
     def menu_window_pack
       menu_components_pack
-      separator_components_pack
+      s_components_pack
       menu_window.pack fill: :both, side: :top
       separator_pack
       nil
@@ -124,12 +124,12 @@ module ::QplayistPrerecord
     end
 
     def separator_init
-      separator_components_init
+      s_components_init
       nil
     end
 
     def separator_pack
-      separator_components_pack
+      s_components_pack
       separator.pack fill: :both, side: :top
       nil
     end
