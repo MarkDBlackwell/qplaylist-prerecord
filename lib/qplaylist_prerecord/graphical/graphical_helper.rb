@@ -39,13 +39,13 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_menu_exit
-      @button_menu_exit_private ||= ::Tk::Tile::Button.new menu_window
+    def b_menu_exit
+      @b_menu_exit_private ||= ::Tk::Tile::Button.new menu_window
     end
 
-    def button_menu_exit_init(s)
-      button_menu_exit.text s
-      button_menu_exit.command do
+    def b_menu_exit_init(s)
+      b_menu_exit.text s
+      b_menu_exit.command do
         proc ::Kernel.exit
       end
       nil

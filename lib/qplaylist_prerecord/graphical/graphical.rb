@@ -255,7 +255,7 @@ module ::QplayistPrerecord
       b_menu_about_init
       b_menu_copy_init
       b_menu_edit_init
-      button_menu_exit_init 'Exit'
+      b_menu_exit_init 'Exit'
       b_menu_install_init
       b_menu_new_init
 # (End keep alphabetical.)
@@ -264,7 +264,7 @@ module ::QplayistPrerecord
 
     def menu_components_pack
       [ # Order is visual order.
-          button_menu_exit,
+          b_menu_exit,
           b_menu_new,
           b_menu_copy,
           b_menu_edit,
