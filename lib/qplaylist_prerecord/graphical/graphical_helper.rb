@@ -19,23 +19,23 @@ module ::QplayistPrerecord
 
     private
 
-    def body_window
-      @body_window_private
+    def f_body_window
+      @f_body_window_private
     end
 
-    def body_window_destroy
-      body_window.destroy
+    def f_body_window_destroy
+      f_body_window.destroy
       nil
     end
 
-    def body_window_init
+    def f_body_window_init
 # Recreates on every call:
-      @body_window_private = ::Tk::Tile::Frame.new f_content
+      @f_body_window_private = ::Tk::Tile::Frame.new f_content
       nil
     end
 
-    def body_window_pack
-      body_window.pack fill: :both, side: :top
+    def f_body_window_pack
+      f_body_window.pack fill: :both, side: :top
       nil
     end
 

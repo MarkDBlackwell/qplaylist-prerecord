@@ -108,7 +108,7 @@ module ::QplayistPrerecord
     end
 
     def body_components_init
-      body_window_init
+      f_body_window_init
 # Keep alphabetical:
       AboutInformation.init
       body_active_init
@@ -118,7 +118,7 @@ module ::QplayistPrerecord
     end
 
     def body_components_pack
-      body_window_pack
+      f_body_window_pack
 # Order is visual order:
       prompt_choice_pack
       body_active_pack
@@ -142,7 +142,7 @@ module ::QplayistPrerecord
 
     def button_body_airdate_init(airdate)
       proc_button = proc do
-        body_window_destroy
+        f_body_window_destroy
         @body_airdates.clear
         @body_state = :songs
         @title_airdate = airdate.date
@@ -151,7 +151,7 @@ module ::QplayistPrerecord
         body_components_pack
       end
       @body_airdates ||= []
-      b = ::Tk::Tile::Button.new body_window
+      b = ::Tk::Tile::Button.new f_body_window
       b.text airdate.date
       b.command proc_button
       @body_airdates.push b
@@ -160,7 +160,7 @@ module ::QplayistPrerecord
 
     def button_body_airshow_init(airshow)
       proc_button = proc do
-        body_window_destroy
+        f_body_window_destroy
         @body_airshows.clear
         @body_state = :airdates
         @title_airshow = airshow.name
@@ -169,7 +169,7 @@ module ::QplayistPrerecord
         body_components_pack
       end
       @body_airshows ||= []
-      b = ::Tk::Tile::Button.new body_window
+      b = ::Tk::Tile::Button.new f_body_window
       b.text airshow.name
       b.command proc_button
       @body_airshows.push b
@@ -243,7 +243,7 @@ module ::QplayistPrerecord
       time = ::Kernel.sprintf "%d:%02d", *song.start_time
       title = "\"#{song.title}\""
       s = [time, title, song.artist].join ' – '
-      l_song = ::Tk::Tile::Label.new body_window
+      l_song = ::Tk::Tile::Label.new f_body_window
       l_song.text s
       @label_songs.push l_song
       nil
@@ -288,7 +288,7 @@ module ::QplayistPrerecord
     def prompt_choice_init
       case @body_state
       when :airdates, :airshows
-        @l_prompt_choice = ::Tk::Tile::Label.new body_window
+        @l_prompt_choice = ::Tk::Tile::Label.new f_body_window
         @l_prompt_choice.text 'Choose!'
       end
       nil
