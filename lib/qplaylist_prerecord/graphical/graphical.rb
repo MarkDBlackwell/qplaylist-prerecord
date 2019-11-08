@@ -53,9 +53,6 @@ module ::QplayistPrerecord
 
     def all_components_init
       body_components_init
-# Keep alphabetical:
-      b_menu_exit_init 'Exit'
-# (End keep alphabetical.)
       nil
     end
 

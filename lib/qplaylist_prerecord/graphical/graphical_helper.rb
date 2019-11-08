@@ -17,14 +17,6 @@ module ::QplayistPrerecord
 
     private
 
-    def b_menu_exit_init(s)
-      b_menu_exit.text s
-      b_menu_exit.command do
-        ::Kernel.exit
-      end
-      nil
-    end
-
     def f_body_window
       @f_body_window_private
     end
