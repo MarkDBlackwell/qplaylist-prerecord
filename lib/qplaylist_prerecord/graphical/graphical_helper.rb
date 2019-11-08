@@ -45,11 +45,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def f_menu_window_init
-      menu_components_init
-      nil
-    end
-
     def f_menu_window_pack
       menu_components_pack
       s_components_pack

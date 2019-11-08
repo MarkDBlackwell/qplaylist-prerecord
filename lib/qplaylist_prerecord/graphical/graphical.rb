@@ -25,7 +25,6 @@ See also:
   http://stackoverflow.com/questions/12364981/how-to-delete-tkinter-widgets-from-a-window
 =end
 
-require 'about_information'
 require 'airdate'
 require 'airdates'
 require 'airshow'
@@ -55,7 +54,8 @@ module ::QplayistPrerecord
     def all_components_init
       body_components_init
 # Keep alphabetical:
-      f_menu_window_init
+      b_menu_edit_init
+      b_menu_exit_init 'Exit'
 # (End keep alphabetical.)
       nil
     end
@@ -64,17 +64,6 @@ module ::QplayistPrerecord
 # Order is visual order:
       f_menu_window_pack
       body_components_pack
-      nil
-    end
-
-    def b_menu_about_init
-#  See:
-# http://tkdocs.com/tutorial/windows.html
-      lambda_about = ::Kernel.lambda do
-        AboutInformation.show = true
-      end
-      b_menu_about.text 'About'
-      b_menu_about.command lambda_about
       nil
     end
 
@@ -202,15 +191,6 @@ module ::QplayistPrerecord
       l_song = ::Tk::Tile::Label.new f_body_window
       l_song.text s
       @label_songs.push l_song
-      nil
-    end
-
-    def menu_components_init
-# Keep alphabetical:
-      b_menu_about_init
-      b_menu_edit_init
-      b_menu_exit_init 'Exit'
-# (End keep alphabetical.)
       nil
     end
 
