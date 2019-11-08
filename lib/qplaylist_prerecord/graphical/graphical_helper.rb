@@ -40,7 +40,7 @@ module ::QplayistPrerecord
     end
 
     def b_menu_exit
-      @b_menu_exit_private ||= ::Tk::Tile::Button.new menu_window
+      @b_menu_exit_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
     def b_menu_exit_init(s)
@@ -51,21 +51,21 @@ module ::QplayistPrerecord
       nil
     end
 
-    def menu_window
-      @menu_window_private ||= ::Tk::Tile::Frame.new f_content
+    def f_menu_window
+      @f_menu_window_private ||= ::Tk::Tile::Frame.new f_content
     end
 
-    def menu_window_init
+    def f_menu_window_init
       menu_components_init
       s_components_init
       separator_init
       nil
     end
 
-    def menu_window_pack
+    def f_menu_window_pack
       menu_components_pack
       s_components_pack
-      menu_window.pack fill: :both, side: :top
+      f_menu_window.pack fill: :both, side: :top
       separator_pack
       nil
     end

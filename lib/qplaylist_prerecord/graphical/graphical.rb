@@ -55,14 +55,14 @@ module ::QplayistPrerecord
     def all_components_init
       body_components_init
 # Keep alphabetical:
-      menu_window_init
+      f_menu_window_init
 # (End keep alphabetical.)
       nil
     end
 
     def all_components_pack
 # Order is visual order:
-      menu_window_pack
+      f_menu_window_pack
       body_components_pack
       nil
     end
@@ -177,7 +177,7 @@ module ::QplayistPrerecord
     end
 
     def b_menu_about
-      @b_menu_about_private ||= ::Tk::Tile::Button.new menu_window
+      @b_menu_about_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
     def b_menu_about_init
@@ -192,7 +192,7 @@ module ::QplayistPrerecord
     end
 
     def b_menu_copy
-      @b_menu_copy_private ||= ::Tk::Tile::Button.new menu_window
+      @b_menu_copy_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
     def b_menu_copy_init
@@ -204,7 +204,7 @@ module ::QplayistPrerecord
     end
 
     def b_menu_edit
-      @b_menu_edit_private ||= ::Tk::Tile::Button.new menu_window
+      @b_menu_edit_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
     def b_menu_edit_init
@@ -216,7 +216,7 @@ module ::QplayistPrerecord
     end
 
     def b_menu_install
-      @b_menu_install_private ||= ::Tk::Tile::Button.new menu_window
+      @b_menu_install_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
     def b_menu_install_init
@@ -228,7 +228,7 @@ module ::QplayistPrerecord
     end
 
     def b_menu_new
-      @b_menu_new_private ||= ::Tk::Tile::Button.new menu_window
+      @b_menu_new_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
     def b_menu_new_init
