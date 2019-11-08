@@ -58,7 +58,7 @@ module ::QplayistPrerecord
     def f_menu_window_init
       menu_components_init
       s_components_init
-      separator_init
+      f_separator_init
       nil
     end
 
@@ -66,7 +66,7 @@ module ::QplayistPrerecord
       menu_components_pack
       s_components_pack
       f_menu_window.pack fill: :both, side: :top
-      separator_pack
+      f_separator_pack
       nil
     end
 
@@ -119,18 +119,18 @@ module ::QplayistPrerecord
       end
     end
 
-    def separator
-      @separator_private ||= ::Tk::Tile::Frame.new f_content
+    def f_separator
+      @f_separator_private ||= ::Tk::Tile::Frame.new f_content
     end
 
-    def separator_init
+    def f_separator_init
       s_components_init
       nil
     end
 
-    def separator_pack
+    def f_separator_pack
       s_components_pack
-      separator.pack fill: :both, side: :top
+      f_separator.pack fill: :both, side: :top
       nil
     end
 
