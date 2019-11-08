@@ -58,21 +58,7 @@ module ::QplayistPrerecord
       nil
     end
 
-    def window_process
-      all_init
-      all_pack
-      window_run
-      nil
-    end
-
 # LOCAL:
-
-    def all_init
-      window_init # Keep first.
-      title_set program_name
-      all_components_init
-      nil
-    end
 
     def all_pack
       window_pack
@@ -83,6 +69,7 @@ module ::QplayistPrerecord
     def f_content
       $f_content_private ||= begin
         f = ::Tk::Tile::Frame.new root
+        f.padding '3 3 3 3'
         f.grid sticky: :wnes
       end
     end
@@ -110,12 +97,6 @@ module ::QplayistPrerecord
         ::TkGrid.columnconfigure e, 0, weight: 1
         ::TkGrid.   rowconfigure e, 0, weight: 1
       end
-      nil
-    end
-
-    def window_init
-      f_content.padding '3 3 3 3'
-      weights_column_and_row_set_up
       nil
     end
 

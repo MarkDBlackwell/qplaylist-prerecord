@@ -45,7 +45,14 @@ module ::QplayistPrerecord
     def main
       AboutInformation.show = false
       @body_state = :airshows
-      window_process
+# window process:
+# Group:
+      weights_column_and_row_set_up # Keep first.
+      title_set program_name
+      all_components_init
+# Group end.
+      all_pack
+      window_run
       nil
     end
 
