@@ -15,24 +15,12 @@ module ::QplayistPrerecord
       @b_menu_about_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
-    def b_menu_copy
-      @b_menu_copy_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
     def b_menu_edit
       @b_menu_edit_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
     def b_menu_exit
       @b_menu_exit_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
-    def b_menu_install
-      @b_menu_install_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
-    def b_menu_new
-      @b_menu_new_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
     def f_menu_window

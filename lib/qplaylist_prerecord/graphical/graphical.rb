@@ -78,35 +78,11 @@ module ::QplayistPrerecord
       nil
     end
 
-    def b_menu_copy_init
-      lambda_copy = ::Kernel.lambda do
-      end
-      b_menu_copy.text 'Copy'
-      b_menu_copy.command lambda_copy
-      nil
-    end
-
     def b_menu_edit_init
       lambda_edit = ::Kernel.lambda do
       end
       b_menu_edit.text 'Edit'
       b_menu_edit.command lambda_edit
-      nil
-    end
-
-    def b_menu_install_init
-      lambda_install = ::Kernel.lambda do
-      end
-      b_menu_install.text 'Install'
-      b_menu_install.command lambda_install
-      nil
-    end
-
-    def b_menu_new_init
-      lambda_new = ::Kernel.lambda do
-      end
-      b_menu_new.text 'New'
-      b_menu_new.command lambda_new
       nil
     end
 
@@ -232,11 +208,8 @@ module ::QplayistPrerecord
     def menu_components_init
 # Keep alphabetical:
       b_menu_about_init
-      b_menu_copy_init
       b_menu_edit_init
       b_menu_exit_init 'Exit'
-      b_menu_install_init
-      b_menu_new_init
 # (End keep alphabetical.)
       nil
     end
@@ -244,10 +217,7 @@ module ::QplayistPrerecord
     def menu_components_pack
       [ # Order is visual order.
           b_menu_exit,
-          b_menu_new,
-          b_menu_copy,
           b_menu_edit,
-          b_menu_install,
           b_menu_about,
           ].each do |e|
         e.pack pack_standard_menu
