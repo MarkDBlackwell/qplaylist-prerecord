@@ -8,20 +8,14 @@ Copyright (C) 2018 Mark D. Blackwell.
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 =end
 
-require 'helper'
 require 'tk'
 require 'tkextlib/tile'
 
 module ::QplayistPrerecord
   module GraphicalHelper
-    include Helper
     extend self
 
     private
-
-    def b_menu_exit
-      @b_menu_exit_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
 
     def b_menu_exit_init(s)
       b_menu_exit.text s
@@ -49,10 +43,6 @@ module ::QplayistPrerecord
     def f_body_window_pack
       f_body_window.pack fill: :both, side: :top
       nil
-    end
-
-    def f_menu_window
-      @f_menu_window_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def f_menu_window_init
@@ -112,10 +102,6 @@ module ::QplayistPrerecord
       end
     end
 
-    def f_separator
-      @f_separator_private ||= ::Tk::Tile::Frame.new f_content
-    end
-
     def f_separator_init
       s_components_init
       nil
@@ -144,12 +130,6 @@ module ::QplayistPrerecord
         ::TkGrid.columnconfigure e, 0, weight: 1
         ::TkGrid.   rowconfigure e, 0, weight: 1
       end
-      nil
-    end
-
-    def weights_column_and_row_set_up
-      weights_column_and_row_default_set_up f_content, root
-      ::TkGrid.rowconfigure f_content, 1, weight: 1
       nil
     end
 

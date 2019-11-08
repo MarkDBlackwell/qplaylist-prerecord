@@ -31,7 +31,7 @@ require 'airdates'
 require 'airshow'
 require 'airshows'
 require 'graphical_helper'
-require 'helper'
+require 'graphical_objects'
 require 'pp'
 require 'song'
 require 'songs'
@@ -40,7 +40,7 @@ require 'version'
 module ::QplayistPrerecord
   module Graphical
     include GraphicalHelper
-    include Helper
+    include GraphicalObjects
     extend self
 
     def main
@@ -67,10 +67,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def b_menu_about
-      @b_menu_about_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
     def b_menu_about_init
 #  See:
 # http://tkdocs.com/tutorial/windows.html
@@ -82,20 +78,12 @@ module ::QplayistPrerecord
       nil
     end
 
-    def b_menu_copy
-      @b_menu_copy_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
     def b_menu_copy_init
       lambda_copy = ::Kernel.lambda do
       end
       b_menu_copy.text 'Copy'
       b_menu_copy.command lambda_copy
       nil
-    end
-
-    def b_menu_edit
-      @b_menu_edit_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
     def b_menu_edit_init
@@ -106,20 +94,12 @@ module ::QplayistPrerecord
       nil
     end
 
-    def b_menu_install
-      @b_menu_install_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
     def b_menu_install_init
       lambda_install = ::Kernel.lambda do
       end
       b_menu_install.text 'Install'
       b_menu_install.command lambda_install
       nil
-    end
-
-    def b_menu_new
-      @b_menu_new_private ||= ::Tk::Tile::Button.new f_menu_window
     end
 
     def b_menu_new_init
@@ -302,10 +282,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def s_components
-      @s_components_private ||= ::Tk::Tile::Separator.new f_separator
-    end
-
     def s_components_init
       s_components.orient :horizontal
       nil
@@ -322,6 +298,12 @@ module ::QplayistPrerecord
 
     def title_airshow_complex
       "#{@title_airshow} - #{program_name}"
+    end
+
+    def weights_column_and_row_set_up
+      weights_column_and_row_default_set_up f_content, root
+      ::TkGrid.rowconfigure f_content, 1, weight: 1
+      nil
     end
   end
 end
