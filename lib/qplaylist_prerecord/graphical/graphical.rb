@@ -30,8 +30,8 @@ require 'airdate'
 require 'airdates'
 require 'airshow'
 require 'airshows'
+require 'graphical_helper'
 require 'helper'
-require 'helper_graphical'
 require 'pp'
 require 'song'
 require 'songs'
@@ -39,8 +39,8 @@ require 'version'
 
 module ::QplayistPrerecord
   module Graphical
+    include GraphicalHelper
     include Helper
-    include HelperGraphical
     extend self
 
     def main

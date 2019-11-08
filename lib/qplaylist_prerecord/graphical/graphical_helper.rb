@@ -13,7 +13,7 @@ require 'tk'
 require 'tkextlib/tile'
 
 module ::QplayistPrerecord
-  module HelperGraphical
+  module GraphicalHelper
     include Helper
     extend self
 

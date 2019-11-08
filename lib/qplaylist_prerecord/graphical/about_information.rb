@@ -8,12 +8,12 @@ Copyright (C) 2018 Mark D. Blackwell.
    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 =end
 
-require 'helper_graphical'
+require 'graphical_helper'
 
 module ::QplayistPrerecord
   module Graphical
     module AboutInformation
-      include HelperGraphical
+      include GraphicalHelper
       extend self
 
       attr_accessor :show
