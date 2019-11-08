@@ -191,51 +191,51 @@ module ::QplayistPrerecord
       nil
     end
 
-    def button_menu_copy
-      @button_menu_copy_private ||= ::Tk::Tile::Button.new menu_window
+    def b_menu_copy
+      @b_menu_copy_private ||= ::Tk::Tile::Button.new menu_window
     end
 
-    def button_menu_copy_init
+    def b_menu_copy_init
       proc_copy = proc do
       end
-      button_menu_copy.text 'Copy'
-      button_menu_copy.command proc_copy
+      b_menu_copy.text 'Copy'
+      b_menu_copy.command proc_copy
       nil
     end
 
-    def button_menu_edit
-      @button_menu_edit_private ||= ::Tk::Tile::Button.new menu_window
+    def b_menu_edit
+      @b_menu_edit_private ||= ::Tk::Tile::Button.new menu_window
     end
 
-    def button_menu_edit_init
+    def b_menu_edit_init
       proc_edit = proc do
       end
-      button_menu_edit.text 'Edit'
-      button_menu_edit.command proc_edit
+      b_menu_edit.text 'Edit'
+      b_menu_edit.command proc_edit
       nil
     end
 
-    def button_menu_install
-      @button_menu_install_private ||= ::Tk::Tile::Button.new menu_window
+    def b_menu_install
+      @b_menu_install_private ||= ::Tk::Tile::Button.new menu_window
     end
 
-    def button_menu_install_init
+    def b_menu_install_init
       proc_install = proc do
       end
-      button_menu_install.text 'Install'
-      button_menu_install.command proc_install
+      b_menu_install.text 'Install'
+      b_menu_install.command proc_install
       nil
     end
 
-    def button_menu_new
-      @button_menu_new_private ||= ::Tk::Tile::Button.new menu_window
+    def b_menu_new
+      @b_menu_new_private ||= ::Tk::Tile::Button.new menu_window
     end
 
-    def button_menu_new_init
+    def b_menu_new_init
       proc_new = proc do
       end
-      button_menu_new.text 'New'
-      button_menu_new.command proc_new
+      b_menu_new.text 'New'
+      b_menu_new.command proc_new
       nil
     end
 
@@ -253,11 +253,11 @@ module ::QplayistPrerecord
     def menu_components_init
 # Keep alphabetical:
       b_menu_about_init
-      button_menu_copy_init
-      button_menu_edit_init
+      b_menu_copy_init
+      b_menu_edit_init
       button_menu_exit_init 'Exit'
-      button_menu_install_init
-      button_menu_new_init
+      b_menu_install_init
+      b_menu_new_init
 # (End keep alphabetical.)
       nil
     end
@@ -265,10 +265,10 @@ module ::QplayistPrerecord
     def menu_components_pack
       [ # Order is visual order.
           button_menu_exit,
-          button_menu_new,
-          button_menu_copy,
-          button_menu_edit,
-          button_menu_install,
+          b_menu_new,
+          b_menu_copy,
+          b_menu_edit,
+          b_menu_install,
           b_menu_about,
           ].each do |e|
         e.pack pack_standard_menu
