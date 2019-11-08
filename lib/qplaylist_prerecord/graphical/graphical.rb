@@ -92,7 +92,7 @@ module ::QplayistPrerecord
     end
 
     def body_airdates_pack
-      @button_body_airdates.each{|e| e.pack fill: :x}
+      @body_airdates.each{|e| e.pack fill: :x}
       nil
     end
 
@@ -103,7 +103,7 @@ module ::QplayistPrerecord
     end
 
     def body_airshows_pack
-      @button_body_airshows.each{|e| e.pack fill: :x}
+      @body_airshows.each{|e| e.pack fill: :x}
       nil
     end
 
@@ -143,53 +143,51 @@ module ::QplayistPrerecord
     def button_body_airdate_init(airdate)
       proc_button = proc do
         body_window_destroy
-        @button_body_airdates.clear
+        @body_airdates.clear
         @body_state = :songs
         @title_airdate = airdate.date
         title_set title_airdate_complex
         body_components_init
         body_components_pack
       end
-      @button_body_airdates ||= []
-      button_body_airdate = ::Tk::Tile::Button.new body_window do
-        text airdate.date
-        command proc_button
-      end
-      @button_body_airdates.push button_body_airdate
+      @body_airdates ||= []
+      b = ::Tk::Tile::Button.new body_window
+      b.text airdate.date
+      b.command proc_button
+      @body_airdates.push b
       nil
     end
 
     def button_body_airshow_init(airshow)
       proc_button = proc do
         body_window_destroy
-        @button_body_airshows.clear
+        @body_airshows.clear
         @body_state = :airdates
         @title_airshow = airshow.name
         title_set title_airshow_complex
         body_components_init
         body_components_pack
       end
-      @button_body_airshows ||= []
-      button_body_airshow = ::Tk::Tile::Button.new body_window do
-        text airshow.name
-        command proc_button
-      end
-      @button_body_airshows.push button_body_airshow
+      @body_airshows ||= []
+      b = ::Tk::Tile::Button.new body_window
+      b.text airshow.name
+      b.command proc_button
+      @body_airshows.push b
       nil
     end
 
-    def button_menu_about
-      @button_menu_about_private ||= ::Tk::Tile::Button.new menu_window
+    def b_menu_about
+      @b_menu_about_private ||= ::Tk::Tile::Button.new menu_window
     end
 
-    def button_menu_about_init
+    def b_menu_about_init
 #  See:
 # http://tkdocs.com/tutorial/windows.html
       proc_about = proc do
         AboutInformation.show = true
       end
-      button_menu_about.text 'About'
-      button_menu_about.command proc_about
+      b_menu_about.text 'About'
+      b_menu_about.command proc_about
       nil
     end
 
@@ -254,7 +252,7 @@ module ::QplayistPrerecord
 
     def menu_components_init
 # Keep alphabetical:
-      button_menu_about_init
+      b_menu_about_init
       button_menu_copy_init
       button_menu_edit_init
       button_menu_exit_init 'Exit'
@@ -271,7 +269,7 @@ module ::QplayistPrerecord
           button_menu_copy,
           button_menu_edit,
           button_menu_install,
-          button_menu_about,
+          b_menu_about,
           ].each do |e|
         e.pack pack_standard_menu
       end
