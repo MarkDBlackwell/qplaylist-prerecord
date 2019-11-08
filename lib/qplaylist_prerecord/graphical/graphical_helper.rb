@@ -19,6 +19,18 @@ module ::QplayistPrerecord
 
     private
 
+    def b_menu_exit
+      @b_menu_exit_private ||= ::Tk::Tile::Button.new f_menu_window
+    end
+
+    def b_menu_exit_init(s)
+      b_menu_exit.text s
+      b_menu_exit.command do
+        ::Kernel.exit
+      end
+      nil
+    end
+
     def f_body_window
       @f_body_window_private
     end
@@ -36,18 +48,6 @@ module ::QplayistPrerecord
 
     def f_body_window_pack
       f_body_window.pack fill: :both, side: :top
-      nil
-    end
-
-    def b_menu_exit
-      @b_menu_exit_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
-    def b_menu_exit_init(s)
-      b_menu_exit.text s
-      b_menu_exit.command do
-        ::Kernel.exit
-      end
       nil
     end
 
@@ -112,13 +112,6 @@ module ::QplayistPrerecord
       end
     end
 
-    def root
-      $root_private ||= begin
-        tell_tk_which_encoding_to_use
-        ::TkRoot.new
-      end
-    end
-
     def f_separator
       @f_separator_private ||= ::Tk::Tile::Frame.new f_content
     end
@@ -132,6 +125,13 @@ module ::QplayistPrerecord
       s_components_pack
       f_separator.pack fill: :both, side: :top
       nil
+    end
+
+    def root
+      $root_private ||= begin
+        tell_tk_which_encoding_to_use
+        ::TkRoot.new
+      end
     end
 
     def tell_tk_which_encoding_to_use

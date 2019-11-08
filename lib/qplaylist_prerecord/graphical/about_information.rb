@@ -34,10 +34,6 @@ module ::QplayistPrerecord
 
       private
 
-      def l_about_information
-        @l_about_information_private ||= ::Tk::Tile::Label.new f_body_window
-      end
-
       def about_information_text_raw
         @about_information_text_raw_private ||= <<END.chomp
 QPlaylist Prerecord #{::QplayistPrerecord::VERSION}
@@ -45,6 +41,10 @@ Copyright (C) 2018 Mark D. Blackwell.
 No license. All rights reserved.
 Contact: markdblackwell01@gmail.com
 END
+      end
+
+      def l_about_information
+        @l_about_information_private ||= ::Tk::Tile::Label.new f_body_window
       end
     end
   end

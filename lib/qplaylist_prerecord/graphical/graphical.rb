@@ -67,6 +67,69 @@ module ::QplayistPrerecord
       nil
     end
 
+    def b_menu_about
+      @b_menu_about_private ||= ::Tk::Tile::Button.new f_menu_window
+    end
+
+    def b_menu_about_init
+#  See:
+# http://tkdocs.com/tutorial/windows.html
+      lambda_about = ::Kernel.lambda do
+        AboutInformation.show = true
+      end
+      b_menu_about.text 'About'
+      b_menu_about.command lambda_about
+      nil
+    end
+
+    def b_menu_copy
+      @b_menu_copy_private ||= ::Tk::Tile::Button.new f_menu_window
+    end
+
+    def b_menu_copy_init
+      lambda_copy = ::Kernel.lambda do
+      end
+      b_menu_copy.text 'Copy'
+      b_menu_copy.command lambda_copy
+      nil
+    end
+
+    def b_menu_edit
+      @b_menu_edit_private ||= ::Tk::Tile::Button.new f_menu_window
+    end
+
+    def b_menu_edit_init
+      lambda_edit = ::Kernel.lambda do
+      end
+      b_menu_edit.text 'Edit'
+      b_menu_edit.command lambda_edit
+      nil
+    end
+
+    def b_menu_install
+      @b_menu_install_private ||= ::Tk::Tile::Button.new f_menu_window
+    end
+
+    def b_menu_install_init
+      lambda_install = ::Kernel.lambda do
+      end
+      b_menu_install.text 'Install'
+      b_menu_install.command lambda_install
+      nil
+    end
+
+    def b_menu_new
+      @b_menu_new_private ||= ::Tk::Tile::Button.new f_menu_window
+    end
+
+    def b_menu_new_init
+      lambda_new = ::Kernel.lambda do
+      end
+      b_menu_new.text 'New'
+      b_menu_new.command lambda_new
+      nil
+    end
+
     def body_active_init
       case @body_state
       when :airdates then body_airdates_init
@@ -173,69 +236,6 @@ module ::QplayistPrerecord
       b.text airshow.name
       b.command lambda_button
       @body_airshows.push b
-      nil
-    end
-
-    def b_menu_about
-      @b_menu_about_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
-    def b_menu_about_init
-#  See:
-# http://tkdocs.com/tutorial/windows.html
-      lambda_about = ::Kernel.lambda do
-        AboutInformation.show = true
-      end
-      b_menu_about.text 'About'
-      b_menu_about.command lambda_about
-      nil
-    end
-
-    def b_menu_copy
-      @b_menu_copy_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
-    def b_menu_copy_init
-      lambda_copy = ::Kernel.lambda do
-      end
-      b_menu_copy.text 'Copy'
-      b_menu_copy.command lambda_copy
-      nil
-    end
-
-    def b_menu_edit
-      @b_menu_edit_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
-    def b_menu_edit_init
-      lambda_edit = ::Kernel.lambda do
-      end
-      b_menu_edit.text 'Edit'
-      b_menu_edit.command lambda_edit
-      nil
-    end
-
-    def b_menu_install
-      @b_menu_install_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
-    def b_menu_install_init
-      lambda_install = ::Kernel.lambda do
-      end
-      b_menu_install.text 'Install'
-      b_menu_install.command lambda_install
-      nil
-    end
-
-    def b_menu_new
-      @b_menu_new_private ||= ::Tk::Tile::Button.new f_menu_window
-    end
-
-    def b_menu_new_init
-      lambda_new = ::Kernel.lambda do
-      end
-      b_menu_new.text 'New'
-      b_menu_new.command lambda_new
       nil
     end
 
