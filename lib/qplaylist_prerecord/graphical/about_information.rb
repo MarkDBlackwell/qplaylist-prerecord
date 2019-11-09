@@ -9,18 +9,20 @@ Copyright (C) 2018 Mark D. Blackwell.
 =end
 
 require 'graphical_helper'
+require 'graphical_objects'
 
 module ::QplayistPrerecord
   module AboutInformation
     include GraphicalHelper
+    include GraphicalObjects
     extend self
 
     attr_accessor :show
 
     def init
-      if show
+#     if show
         l_about_information.text about_information_text_raw
-      end
+#     end
       nil
     end
 
@@ -40,10 +42,6 @@ Copyright (C) 2018 Mark D. Blackwell.
 No license. All rights reserved.
 Contact: markdblackwell01@gmail.com
 END
-    end
-
-    def l_about_information
-      @l_about_information_private ||= ::Tk::Tile::Label.new f_body_window
     end
   end
 end

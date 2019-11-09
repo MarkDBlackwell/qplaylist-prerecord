@@ -43,8 +43,132 @@ module ::QplayistPrerecord
     include GraphicalObjects
     extend self
 
+    def b_button_about
+      @b_button_about_private ||= begin
+        b = ::Tk::Tile::TButton.new f_about
+        b.text 'Hello, world! about'
+      end
+    end
+
+    def b_button_for_date
+      @b_button_for_date_private ||= begin
+        b = ::Tk::Tile::TButton.new f_for_date
+        b.text 'Hello, world! for_date'
+      end
+    end
+
+    def b_button_shows
+      @b_button_shows_private ||= begin
+        b = ::Tk::Tile::TButton.new f_shows
+        b.text 'Hello, world! shows'
+      end
+    end
+
+    def b_button_dates
+      @b_button_dates_private ||= begin
+        b = ::Tk::Tile::TButton.new f_dates
+        b.text 'Hello, world! dates'
+      end
+    end
+
+    def b_button_parts
+      @b_button_parts_private ||= begin
+        b = ::Tk::Tile::TButton.new f_parts
+        b.text 'Hello, world! parts'
+      end
+    end
+
+    def b_button_label
+      @b_button_label_private ||= begin
+        b = ::Tk::Tile::TButton.new f_label
+        b.text 'Hello, world! label'
+      end
+    end
+
+    def b_button_songs
+      @b_button_songs_private ||= begin
+        b = ::Tk::Tile::TButton.new f_songs
+        b.text 'Hello, world! songs'
+      end
+    end
+
+    def grid_init
+      grid_init_about
+      grid_init_dates
+      grid_init_for_date
+      grid_init_label
+      grid_init_menu_window
+      grid_init_parts
+      grid_init_shows
+      grid_init_songs
+=begin
+      f_body_window.grid column: 0, row: 1
+
+      f_about   .grid column: 0, row: 1
+      f_for_date.grid column: 0, row: 2
+      f_shows   .grid column: 0, row: 3
+      f_dates   .grid column: 0, row: 4
+      f_parts   .grid column: 0, row: 5
+      f_label   .grid column: 0, row: 6
+      f_songs   .grid column: 0, row: 7
+=end
+      nil
+    end
+
+    def grid_init_about
+      f_about.grid column: 0, row: 1
+      l_about_information.grid column: 0, row: 0
+b_button_about.grid column: 0, row: 1
+      nil
+    end
+
+    def grid_init_dates
+      f_dates.grid column: 0, row: 4
+b_button_dates.grid
+      nil
+    end
+
+    def grid_init_for_date
+      f_for_date.grid column: 0, row: 2
+b_button_for_date.grid
+      nil
+    end
+
+    def grid_init_label
+      f_label.grid column: 0, row: 6
+b_button_label.grid
+      nil
+    end
+
+    def grid_init_menu_window
+      f_menu_window.grid column: 0, row: 0
+      b_menu_exit  .grid column: 0, row: 0
+      b_menu_edit  .grid column: 1, row: 0
+      b_menu_about .grid column: 2, row: 0
+      nil
+    end
+
+    def grid_init_parts
+      f_parts.grid column: 0, row: 5
+b_button_parts.grid
+      nil
+    end
+
+    def grid_init_shows
+      f_shows.grid column: 0, row: 3
+b_button_shows.grid
+      nil
+    end
+
+    def grid_init_songs
+      f_songs.grid column: 0, row: 7
+b_button_songs.grid
+      nil
+    end
+
     def main
-      AboutInformation.show = false
+      AboutInformation.show = true
+      AboutInformation.init
       @body_state = :airshows
 # window process:
 # Group:
@@ -53,19 +177,8 @@ module ::QplayistPrerecord
       body_components_init
 # Group end.
       all_pack
-      rows_set_up
+      grid_init
       ::Tk.mainloop
-      nil
-    end
-
-    def rows_set_up
-      f_about   .grid column: 0, row: 1
-      f_for_date.grid column: 0, row: 2
-      f_shows   .grid column: 0, row: 3
-      f_dates   .grid column: 0, row: 4
-      f_parts   .grid column: 0, row: 5
-      f_label   .grid column: 0, row: 6
-      f_songs   .grid column: 0, row: 7
       nil
     end
 

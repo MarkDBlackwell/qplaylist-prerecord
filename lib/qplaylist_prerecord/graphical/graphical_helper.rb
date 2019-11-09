@@ -28,7 +28,10 @@ module ::QplayistPrerecord
 
     def f_body_window_init
 # Recreates on every call:
-      @f_body_window_private = ::Tk::Tile::Frame.new f_content
+      @f_body_window_private = begin
+        f = ::Tk::Tile::Frame.new f_content
+        f.grid column: 0, row: 1
+      end
       nil
     end
 

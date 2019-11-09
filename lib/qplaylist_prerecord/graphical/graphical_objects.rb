@@ -43,7 +43,6 @@ module ::QplayistPrerecord
         b.command do
           ::Kernel.exit
         end
-        b.grid column: 0, row: 0
       end
     end
 
@@ -74,7 +73,6 @@ module ::QplayistPrerecord
     def f_menu_window
       @f_menu_window_private ||= begin
         f = ::Tk::Tile::Frame.new f_content
-        f.grid column: 0, row: 0
       end
     end
 
@@ -99,6 +97,12 @@ module ::QplayistPrerecord
     def f_songs
       @f_songs_private ||= begin
         f = ::Tk::Tile::Frame.new f_content
+      end
+    end
+
+    def l_about_information
+      @l_about_information_private ||= begin
+        l = ::Tk::Tile::Label.new f_about
       end
     end
 
