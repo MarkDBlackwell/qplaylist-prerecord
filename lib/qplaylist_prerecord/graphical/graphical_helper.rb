@@ -33,14 +33,14 @@ module ::QplayistPrerecord
     end
 
     def f_body_window_pack
-      f_body_window.pack fill: :both, side: :top
+#     f_body_window.pack fill: :both, side: :top
       nil
     end
 
     def f_menu_window_pack
       menu_components_pack
       s_components_pack
-      f_menu_window.pack fill: :both, side: :top
+#     f_menu_window.pack fill: :both, side: :top
       f_separator_pack
       nil
     end
@@ -76,7 +76,7 @@ module ::QplayistPrerecord
 
     def f_separator_pack
       s_components_pack
-      f_separator.pack fill: :both, side: :top
+#     f_separator.pack fill: :both, side: :top
       nil
     end
 
@@ -101,12 +101,7 @@ module ::QplayistPrerecord
     end
 
     def window_pack
-      f_content.pack fill: :x, side: :top
-      nil
-    end
-
-    def window_run
-      ::Tk.mainloop
+#     f_content.pack fill: :x, side: :top
       nil
     end
   end

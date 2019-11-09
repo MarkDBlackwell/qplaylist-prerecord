@@ -44,15 +44,63 @@ module ::QplayistPrerecord
           b.command do
             ::Kernel.exit
           end
+          b.grid column: 0, row: 0
+        end
+      end
+
+      def f_about
+        @f_about_private ||= begin
+          f = ::Tk::Tile::Frame.new f_content
+        end
+      end
+
+      def f_dates
+        @f_dates_private ||= begin
+          f = ::Tk::Tile::Frame.new f_content
+        end
+      end
+
+      def f_for_date
+        @f_for_date_private ||= begin
+          f = ::Tk::Tile::Frame.new f_content
+        end
+      end
+
+      def f_label
+        @f_label_private ||= begin
+          f = ::Tk::Tile::Frame.new f_content
         end
       end
 
       def f_menu_window
-        @f_menu_window_private ||= ::Tk::Tile::Frame.new f_content
+        @f_menu_window_private ||= begin
+          f = ::Tk::Tile::Frame.new f_content
+          f.grid column: 0, row: 0
+        end
+      end
+
+      def f_parts
+        @f_parts_private ||= begin
+          f = ::Tk::Tile::Frame.new f_content
+        end
       end
 
       def f_separator
-        @f_separator_private ||= ::Tk::Tile::Frame.new f_content
+        @f_separator_private ||= begin
+          f = ::Tk::Tile::Frame.new f_content
+        end
+      end
+
+      def f_shows
+        @f_shows_private ||= begin
+          f = ::Tk::Tile::Frame.new f_content
+        end
+      end
+
+      def f_songs
+        @f_songs_private ||= begin
+          f = ::Tk::Tile::Frame.new f_content
+        end
       end
 
       def s_components

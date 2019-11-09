@@ -52,7 +52,19 @@ module ::QplayistPrerecord
       body_components_init
 # Group end.
       all_pack
-      window_run
+      rows_set_up
+      ::Tk.mainloop
+      nil
+    end
+
+    def rows_set_up
+      f_about   .grid column: 0, row: 1
+      f_for_date.grid column: 0, row: 2
+      f_shows   .grid column: 0, row: 3
+      f_dates   .grid column: 0, row: 4
+      f_parts   .grid column: 0, row: 5
+      f_label   .grid column: 0, row: 6
+      f_songs   .grid column: 0, row: 7
       nil
     end
 
@@ -90,7 +102,7 @@ module ::QplayistPrerecord
     end
 
     def body_airdates_pack
-      @body_airdates.each{|e| e.pack fill: :x}
+#     @body_airdates.each{|e| e.pack fill: :x}
       nil
     end
 
@@ -101,7 +113,7 @@ module ::QplayistPrerecord
     end
 
     def body_airshows_pack
-      @body_airshows.each{|e| e.pack fill: :x}
+#     @body_airshows.each{|e| e.pack fill: :x}
       nil
     end
 
@@ -120,7 +132,7 @@ module ::QplayistPrerecord
 # Order is visual order:
       prompt_choice_pack
       body_active_pack
-      AboutInformation.pack
+#     AboutInformation.pack
 # (End visual order.)
       nil
     end
@@ -134,7 +146,7 @@ module ::QplayistPrerecord
     end
 
     def body_songs_pack
-      @label_songs.each{|e| e.pack fill: :x}
+#     @label_songs.each{|e| e.pack fill: :x}
       nil
     end
 
@@ -186,11 +198,11 @@ module ::QplayistPrerecord
 
     def menu_components_pack
       [ # Order is visual order.
-          b_menu_exit,
+#         b_menu_exit,
           b_menu_edit,
           b_menu_about,
           ].each do |e|
-        e.pack pack_standard_menu
+#       e.pack pack_standard_menu
       end
       nil
     end
@@ -217,13 +229,13 @@ module ::QplayistPrerecord
     def prompt_choice_pack
       case @body_state
       when :airdates, :airshows
-        @l_prompt_choice.pack pack_standard
+#       @l_prompt_choice.pack pack_standard
       end
       nil
     end
 
     def s_components_pack
-      s_components.pack fill: :x, side: :bottom
+#     s_components.pack fill: :x, side: :bottom
       nil
     end
 
@@ -236,8 +248,17 @@ module ::QplayistPrerecord
     end
 
     def weights_column_and_row_set_up
-      weights_column_and_row_default_set_up f_content, root
-      ::TkGrid.rowconfigure f_content, 1, weight: 1
+      weights_column_and_row_default_set_up root
+      ::TkGrid.columnconfigure f_content, 0, weight: 1
+
+      ::TkGrid.   rowconfigure f_content, 0, weight: 1
+      ::TkGrid.   rowconfigure f_content, 1, weight: 1
+      ::TkGrid.   rowconfigure f_content, 2, weight: 1
+      ::TkGrid.   rowconfigure f_content, 3, weight: 1
+      ::TkGrid.   rowconfigure f_content, 4, weight: 1
+      ::TkGrid.   rowconfigure f_content, 5, weight: 1
+      ::TkGrid.   rowconfigure f_content, 6, weight: 1
+      ::TkGrid.   rowconfigure f_content, 7, weight: 1
       nil
     end
   end

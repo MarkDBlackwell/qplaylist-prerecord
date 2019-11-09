@@ -27,7 +27,7 @@ module ::QplayistPrerecord
 
       def pack
         if show
-          l_about_information.pack pack_standard
+#         l_about_information.pack pack_standard
         end
         nil
       end
