@@ -11,41 +11,39 @@ Copyright (C) 2018 Mark D. Blackwell.
 require 'graphical_helper'
 
 module ::QplayistPrerecord
-  module Graphical
-    module AboutInformation
-      include GraphicalHelper
-      extend self
+  module AboutInformation
+    include GraphicalHelper
+    extend self
 
-      attr_accessor :show
+    attr_accessor :show
 
-      def init
-        if show
-          l_about_information.text about_information_text_raw
-        end
-        nil
+    def init
+      if show
+        l_about_information.text about_information_text_raw
       end
+      nil
+    end
 
-      def pack
-        if show
-#         l_about_information.pack pack_standard
-        end
-        nil
+    def pack
+      if show
+#       l_about_information.pack pack_standard
       end
+      nil
+    end
 
-      private
+    private
 
-      def about_information_text_raw
-        @about_information_text_raw_private ||= <<END.chomp
+    def about_information_text_raw
+      @about_information_text_raw_private ||= <<END.chomp
 QPlaylist Prerecord #{::QplayistPrerecord::VERSION}
 Copyright (C) 2018 Mark D. Blackwell.
 No license. All rights reserved.
 Contact: markdblackwell01@gmail.com
 END
-      end
+    end
 
-      def l_about_information
-        @l_about_information_private ||= ::Tk::Tile::Label.new f_body_window
-      end
+    def l_about_information
+      @l_about_information_private ||= ::Tk::Tile::Label.new f_body_window
     end
   end
 end

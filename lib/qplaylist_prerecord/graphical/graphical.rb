@@ -25,6 +25,7 @@ See also:
   http://stackoverflow.com/questions/12364981/how-to-delete-tkinter-widgets-from-a-window
 =end
 
+require 'about_information'
 require 'airdate'
 require 'airdates'
 require 'airshow'
