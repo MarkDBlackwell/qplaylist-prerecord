@@ -181,20 +181,44 @@ b_button_songs.grid
       nil
     end
 
-    private
-
-    def all_components_pack
-# Order is visual order:
-      f_menu_window_pack
-      body_components_pack
+    def body_components_init
+      f_body_window_init
+# Keep alphabetical:
+      body_active_init
+      prompt_choice_init
+# (End keep alphabetical.)
       nil
     end
 
-    def body_active_init
+    def all_pack
+      all_components_pack
+      nil
+    end
+
+    def all_components_pack
+# Order is visual order:
+#     body_components_pack
+      nil
+    end
+
+    def body_components_pack
+      f_body_window_pack
+# Order is visual order:
+      prompt_choice_pack
+      body_active_pack
+# (End visual order.)
+      nil
+    end
+
+    def f_body_window_pack
+#     f_body_window.pack fill: :both, side: :top
+      nil
+    end
+
+    def prompt_choice_pack
       case @body_state
-      when :airdates then body_airdates_init
-      when :airshows then body_airshows_init
-      when :songs    then body_songs_init
+      when :airdates, :airshows
+#       @l_prompt_choice.pack pack_standard
       end
       nil
     end
@@ -204,6 +228,17 @@ b_button_songs.grid
       when :airdates then body_airdates_pack
       when :airshows then body_airshows_pack
       when :songs    then body_songs_pack
+      end
+      nil
+    end
+
+    private
+
+    def body_active_init
+      case @body_state
+      when :airdates then body_airdates_init
+      when :airshows then body_airshows_init
+      when :songs    then body_songs_init
       end
       nil
     end
@@ -230,24 +265,6 @@ b_button_songs.grid
       nil
     end
 
-    def body_components_init
-      f_body_window_init
-# Keep alphabetical:
-      body_active_init
-      prompt_choice_init
-# (End keep alphabetical.)
-      nil
-    end
-
-    def body_components_pack
-      f_body_window_pack
-# Order is visual order:
-      prompt_choice_pack
-      body_active_pack
-# (End visual order.)
-      nil
-    end
-
     def body_songs_init
       @label_songs = []
       segment_count = 4
@@ -269,7 +286,7 @@ b_button_songs.grid
         @title_airdate = airdate.date
         title_set title_airdate_complex
         body_components_init
-        body_components_pack
+#       body_components_pack
       end
       @body_airdates ||= []
       b = ::Tk::Tile::Button.new f_body_window
@@ -287,7 +304,7 @@ b_button_songs.grid
         @title_airshow = airshow.name
         title_set title_airshow_complex
         body_components_init
-        body_components_pack
+#       body_components_pack
       end
       @body_airshows ||= []
       b = ::Tk::Tile::Button.new f_body_window
@@ -323,19 +340,6 @@ b_button_songs.grid
         @l_prompt_choice = ::Tk::Tile::Label.new f_body_window
         @l_prompt_choice.text 'Choose!'
       end
-      nil
-    end
-
-    def prompt_choice_pack
-      case @body_state
-      when :airdates, :airshows
-#       @l_prompt_choice.pack pack_standard
-      end
-      nil
-    end
-
-    def s_menu_pack
-#     s_menu.pack fill: :x, side: :bottom
       nil
     end
 

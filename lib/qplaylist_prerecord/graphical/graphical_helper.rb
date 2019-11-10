@@ -35,18 +35,6 @@ module ::QplayistPrerecord
       nil
     end
 
-    def f_body_window_pack
-#     f_body_window.pack fill: :both, side: :top
-      nil
-    end
-
-    def f_menu_window_pack
-      s_menu_pack
-#     f_menu_window.pack fill: :both, side: :top
-      f_menu_separator_pack
-      nil
-    end
-
     def pack_standard
       @pack_standard_private ||= {padx: 1, pady: 1}
     end
@@ -62,24 +50,12 @@ module ::QplayistPrerecord
 
 # LOCAL:
 
-    def all_pack
-      window_pack
-      all_components_pack
-      nil
-    end
-
     def f_content
       $f_content_private ||= begin
         f = ::Tk::Tile::Frame.new root
         f.padding '3 3 3 3'
         f.grid sticky: :wnes
       end
-    end
-
-    def f_menu_separator_pack
-      s_menu_pack
-#     f_menu_separator.pack fill: :both, side: :top
-      nil
     end
 
     def root
@@ -99,11 +75,6 @@ module ::QplayistPrerecord
         ::TkGrid.columnconfigure e, 0, weight: 1
         ::TkGrid.   rowconfigure e, 0, weight: 1
       end
-      nil
-    end
-
-    def window_pack
-#     f_content.pack fill: :x, side: :top
       nil
     end
   end
