@@ -18,7 +18,7 @@ module ::QplayistPrerecord
 #  See:
 # http://tkdocs.com/tutorial/windows.html
         lambda_about = ::Kernel.lambda do
-          AboutInformation.show = true
+          v_about_information.value = AboutInformation.text_raw
         end
         b = ::Tk::Tile::Button.new f_menu_window
         b.text 'About'
@@ -70,6 +70,12 @@ module ::QplayistPrerecord
       end
     end
 
+    def f_menu_separator
+      @f_menu_separator_private ||= begin
+        f = ::Tk::Tile::Frame.new f_content
+      end
+    end
+
     def f_menu_window
       @f_menu_window_private ||= begin
         f = ::Tk::Tile::Frame.new f_content
@@ -78,12 +84,6 @@ module ::QplayistPrerecord
 
     def f_parts
       @f_parts_private ||= begin
-        f = ::Tk::Tile::Frame.new f_content
-      end
-    end
-
-    def f_separator
-      @f_separator_private ||= begin
         f = ::Tk::Tile::Frame.new f_content
       end
     end
@@ -103,14 +103,19 @@ module ::QplayistPrerecord
     def l_about_information
       @l_about_information_private ||= begin
         l = ::Tk::Tile::Label.new f_about
+        l.textvariable v_about_information
       end
     end
 
-    def s_components
-      @s_components_private ||= begin
-        s = ::Tk::Tile::Separator.new f_separator
+    def s_menu
+      @s_menu_private ||= begin
+        s = ::Tk::Tile::Separator.new f_menu_separator
         s.orient :horizontal
       end
+    end
+
+    def v_about_information
+      @v_about_information_private ||= ::TkVariable.new
     end
   end
 end

@@ -43,10 +43,10 @@ module ::QplayistPrerecord
     include GraphicalObjects
     extend self
 
-    def b_button_about
-      @b_button_about_private ||= begin
-        b = ::Tk::Tile::TButton.new f_about
-        b.text 'Hello, world! about'
+    def b_button_dates
+      @b_button_dates_private ||= begin
+        b = ::Tk::Tile::TButton.new f_dates
+        b.text 'Hello, world! dates'
       end
     end
 
@@ -57,17 +57,10 @@ module ::QplayistPrerecord
       end
     end
 
-    def b_button_shows
-      @b_button_shows_private ||= begin
-        b = ::Tk::Tile::TButton.new f_shows
-        b.text 'Hello, world! shows'
-      end
-    end
-
-    def b_button_dates
-      @b_button_dates_private ||= begin
-        b = ::Tk::Tile::TButton.new f_dates
-        b.text 'Hello, world! dates'
+    def b_button_label
+      @b_button_label_private ||= begin
+        b = ::Tk::Tile::TButton.new f_label
+        b.text 'Hello, world! label'
       end
     end
 
@@ -78,10 +71,10 @@ module ::QplayistPrerecord
       end
     end
 
-    def b_button_label
-      @b_button_label_private ||= begin
-        b = ::Tk::Tile::TButton.new f_label
-        b.text 'Hello, world! label'
+    def b_button_shows
+      @b_button_shows_private ||= begin
+        b = ::Tk::Tile::TButton.new f_shows
+        b.text 'Hello, world! shows'
       end
     end
 
@@ -97,13 +90,13 @@ module ::QplayistPrerecord
       grid_init_dates
       grid_init_for_date
       grid_init_label
+      grid_init_menu_separator
       grid_init_menu_window
       grid_init_parts
       grid_init_shows
       grid_init_songs
 =begin
       f_body_window.grid column: 0, row: 1
-
       f_about   .grid column: 0, row: 1
       f_for_date.grid column: 0, row: 2
       f_shows   .grid column: 0, row: 3
@@ -116,27 +109,34 @@ module ::QplayistPrerecord
     end
 
     def grid_init_about
-      f_about.grid column: 0, row: 1
+      f_about.grid column: 0, row: 2
       l_about_information.grid column: 0, row: 0
-b_button_about.grid column: 0, row: 1
+#print 'v_about_information.value='; p v_about_information.value
       nil
     end
 
     def grid_init_dates
-      f_dates.grid column: 0, row: 4
+      f_dates.grid column: 0, row: 5
 b_button_dates.grid
       nil
     end
 
     def grid_init_for_date
-      f_for_date.grid column: 0, row: 2
+      f_for_date.grid column: 0, row: 3
 b_button_for_date.grid
       nil
     end
 
     def grid_init_label
-      f_label.grid column: 0, row: 6
+      f_label.grid column: 0, row: 7
 b_button_label.grid
+      nil
+    end
+
+    def grid_init_menu_separator
+      f_menu_separator.grid column: 0, row: 1, sticky: :we
+# For s_menu, ".grid sticky: :we" doesn't work, here:
+      s_menu.pack fill: :x, side: :bottom
       nil
     end
 
@@ -149,26 +149,25 @@ b_button_label.grid
     end
 
     def grid_init_parts
-      f_parts.grid column: 0, row: 5
+      f_parts.grid column: 0, row: 6
 b_button_parts.grid
       nil
     end
 
     def grid_init_shows
-      f_shows.grid column: 0, row: 3
+      f_shows.grid column: 0, row: 4
 b_button_shows.grid
       nil
     end
 
     def grid_init_songs
-      f_songs.grid column: 0, row: 7
+      f_songs.grid column: 0, row: 8
 b_button_songs.grid
       nil
     end
 
     def main
-      AboutInformation.show = true
-      AboutInformation.init
+      v_about_information.value = AboutInformation.text_raw
       @body_state = :airshows
 # window process:
 # Group:
@@ -234,7 +233,6 @@ b_button_songs.grid
     def body_components_init
       f_body_window_init
 # Keep alphabetical:
-      AboutInformation.init
       body_active_init
       prompt_choice_init
 # (End keep alphabetical.)
@@ -246,7 +244,6 @@ b_button_songs.grid
 # Order is visual order:
       prompt_choice_pack
       body_active_pack
-#     AboutInformation.pack
 # (End visual order.)
       nil
     end
@@ -310,17 +307,6 @@ b_button_songs.grid
       nil
     end
 
-    def menu_components_pack
-      [ # Order is visual order.
-#         b_menu_exit,
-          b_menu_edit,
-          b_menu_about,
-          ].each do |e|
-#       e.pack pack_standard_menu
-      end
-      nil
-    end
-
     def pieces_young_at_heart
       date_airshow = '2018-07-07'
       name_airshow = 'young-at-heart-sat'
@@ -348,8 +334,8 @@ b_button_songs.grid
       nil
     end
 
-    def s_components_pack
-#     s_components.pack fill: :x, side: :bottom
+    def s_menu_pack
+#     s_menu.pack fill: :x, side: :bottom
       nil
     end
 

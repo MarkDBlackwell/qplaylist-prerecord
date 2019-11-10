@@ -41,10 +41,9 @@ module ::QplayistPrerecord
     end
 
     def f_menu_window_pack
-      menu_components_pack
-      s_components_pack
+      s_menu_pack
 #     f_menu_window.pack fill: :both, side: :top
-      f_separator_pack
+      f_menu_separator_pack
       nil
     end
 
@@ -77,9 +76,9 @@ module ::QplayistPrerecord
       end
     end
 
-    def f_separator_pack
-      s_components_pack
-#     f_separator.pack fill: :both, side: :top
+    def f_menu_separator_pack
+      s_menu_pack
+#     f_menu_separator.pack fill: :both, side: :top
       nil
     end
 
