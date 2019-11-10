@@ -46,42 +46,42 @@ module ::QplayistPrerecord
     def b_button_dates
       @b_button_dates_private ||= begin
         b = ::Tk::Tile::TButton.new f_dates
-        b.text 'Hello, world! dates'
+        b.text 'Hello, world! : Dates'
       end
     end
 
     def b_button_for_date
       @b_button_for_date_private ||= begin
         b = ::Tk::Tile::TButton.new f_for_date
-        b.text 'Hello, world! for_date'
+        b.text 'Hello, world! : For date'
       end
     end
 
     def b_button_label
       @b_button_label_private ||= begin
         b = ::Tk::Tile::TButton.new f_label
-        b.text 'Hello, world! label'
+        b.text 'Hello, world! : Label'
       end
     end
 
     def b_button_parts
       @b_button_parts_private ||= begin
         b = ::Tk::Tile::TButton.new f_parts
-        b.text 'Hello, world! parts'
+        b.text 'Hello, world! : Parts'
       end
     end
 
     def b_button_shows
       @b_button_shows_private ||= begin
         b = ::Tk::Tile::TButton.new f_shows
-        b.text 'Hello, world! shows'
+        b.text 'Hello, world! : Shows'
       end
     end
 
     def b_button_songs
       @b_button_songs_private ||= begin
         b = ::Tk::Tile::TButton.new f_songs
-        b.text 'Hello, world! songs'
+        b.text 'Hello, world! : Songs'
       end
     end
 
