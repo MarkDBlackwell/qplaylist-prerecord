@@ -17,24 +17,6 @@ module ::QplayistPrerecord
 
     private
 
-    def f_body_window
-      @f_body_window_private
-    end
-
-    def f_body_window_destroy
-      f_body_window.destroy
-      nil
-    end
-
-    def f_body_window_init
-# Recreates on every call:
-      @f_body_window_private = begin
-        f = ::Tk::Tile::Frame.new f_content
-        f.grid column: 0, row: 1
-      end
-      nil
-    end
-
     def pack_standard
       @pack_standard_private ||= {padx: 1, pady: 1}
     end

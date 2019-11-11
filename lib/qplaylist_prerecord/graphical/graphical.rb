@@ -176,6 +176,8 @@ b_button_songs.grid
     def main
       v_about_information.value = AboutInformation.text_raw
       @body_state = :airshows
+      @body_airdates = []
+      @body_airshows = []
 # window process:
 # Group:
       weights_column_and_row_set_up # Keep first.
@@ -198,6 +200,24 @@ b_button_songs.grid
       nil
     end
 
+    def f_body_window
+      @f_body_window_private
+    end
+
+    def f_body_window_destroy
+      f_body_window.destroy
+      nil
+    end
+
+    def f_body_window_init
+# Recreates on every call:
+      @f_body_window_private = begin
+        f = ::Tk::Tile::Frame.new f_content
+        f.grid column: 0, row: 1
+      end
+      nil
+    end
+
     def all_pack
       all_components_pack
       nil
@@ -210,21 +230,10 @@ b_button_songs.grid
     end
 
     def body_components_pack
-      f_body_window_pack
-      body_active_pack
-      nil
-    end
-
-    def f_body_window_pack
-#     f_body_window.pack fill: :both, side: :top
-      nil
-    end
-
-    def body_active_pack
       case @body_state
-      when :airdates then body_airdates_pack
-      when :airshows then body_airshows_pack
-      when :songs    then body_songs_pack
+      when :airdates then airdates_show
+      when :airshows then airshows_show
+      when :songs    then songs_show
       end
       nil
     end
@@ -233,36 +242,36 @@ b_button_songs.grid
 
     def body_active_init
       case @body_state
-      when :airdates then body_airdates_init
-      when :airshows then body_airshows_init
-      when :songs    then body_songs_init
+      when :airdates then airdates_fill
+      when :airshows then airshows_fill
+      when :songs    then songs_fill
       end
       nil
     end
 
-    def body_airdates_init
+    def airdates_fill
       @airdates = Airdates.all
       @airdates.each{|e| button_body_airdate_init e}
       nil
     end
 
-    def body_airdates_pack
+    def airdates_show
 #     @body_airdates.each{|e| e.pack fill: :x}
       nil
     end
 
-    def body_airshows_init
+    def airshows_fill
       @airshows = Airshows.all
       @airshows.each{|e| button_body_airshow_init e}
       nil
     end
 
-    def body_airshows_pack
+    def airshows_show
 #     @body_airshows.each{|e| e.pack fill: :x}
       nil
     end
 
-    def body_songs_init
+    def songs_fill
       @label_songs = []
       segment_count = 4
       @songs = Songs.all pieces_young_at_heart, segment_count
@@ -270,7 +279,7 @@ b_button_songs.grid
       nil
     end
 
-    def body_songs_pack
+    def songs_show
 #     @label_songs.each{|e| e.pack fill: :x}
       nil
     end
@@ -285,7 +294,6 @@ b_button_songs.grid
         body_components_init
 #       body_components_pack
       end
-      @body_airdates ||= []
       b = ::Tk::Tile::Button.new f_body_window
       b.text airdate.date
       b.command lambda_button
@@ -303,7 +311,6 @@ b_button_songs.grid
         body_components_init
 #       body_components_pack
       end
-      @body_airshows ||= []
       b = ::Tk::Tile::Button.new f_body_window
       b.text airshow.name
       b.command lambda_button
