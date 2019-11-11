@@ -18,7 +18,7 @@ module ::QplayistPrerecord
 #  See:
 # http://tkdocs.com/tutorial/windows.html
         lambda_about = ::Kernel.lambda do
-          v_about_information.value = AboutInformation.text_raw
+          v_about_information.value = v_about_information.value.empty? ? AboutInformation.text_raw : ''
         end
         b = ::Tk::Tile::Button.new f_menu_window
         b.text 'About'
