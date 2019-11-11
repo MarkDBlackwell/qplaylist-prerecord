@@ -43,14 +43,44 @@ module ::QplayistPrerecord
     include GraphicalObjects
     extend self
 
-    def all_components_pack
-# Order is visual order:
-#     body_components_pack
+    def main
+      v_about_information.value = AboutInformation.text_raw
+      @body_state = :airshows
+      @body_airdates = []
+      @body_airshows = []
+# window process:
+# Group:
+      weights_column_and_row_set_up # Keep first.
+      title_set program_name
+      components_init
+# Group end.
+#     components_show
+      grid_init
+      ::Tk.mainloop
       nil
     end
 
-    def all_pack
-      all_components_pack
+    private
+
+    def airdates_fill
+      @airdates = Airdates.all
+      @airdates.each{|e| button_body_airdate_init e}
+      nil
+    end
+
+    def airdates_show
+#     @body_airdates.each{|e| e.pack fill: :x}
+      nil
+    end
+
+    def airshows_fill
+      @airshows = Airshows.all
+      @airshows.each{|e| button_body_airshow_init e}
+      nil
+    end
+
+    def airshows_show
+#     @body_airshows.each{|e| e.pack fill: :x}
       nil
     end
 
@@ -96,25 +126,6 @@ module ::QplayistPrerecord
       end
     end
 
-    def body_components_init
-      f_body_window_init
-      body_active_init
-      case @body_state
-      when :airdates, :airshows
-        v_prompt_choice.value = 'Choose!'
-      end
-      nil
-    end
-
-    def body_components_pack
-      case @body_state
-      when :airdates then airdates_show
-      when :airshows then airshows_show
-      when :songs    then songs_show
-      end
-      nil
-    end
-
     def button_body_airdate_init(airdate)
       lambda_button = ::Kernel.lambda do
         f_body_window_destroy
@@ -122,8 +133,8 @@ module ::QplayistPrerecord
         @body_state = :songs
         @title_airdate = airdate.date
         title_set title_airdate_complex
-        body_components_init
-#       body_components_pack
+        components_init
+#       components_show
       end
       b = ::Tk::Tile::Button.new f_body_window
       b.text airdate.date
@@ -139,13 +150,40 @@ module ::QplayistPrerecord
         @body_state = :airdates
         @title_airshow = airshow.name
         title_set title_airshow_complex
-        body_components_init
-#       body_components_pack
+        components_init
+#       components_show
       end
       b = ::Tk::Tile::Button.new f_body_window
       b.text airshow.name
       b.command lambda_button
       @body_airshows.push b
+      nil
+    end
+
+    def components_init
+# Recreates on every call:
+      @f_body_window_private = begin
+        f = ::Tk::Tile::Frame.new f_content
+        f.grid column: 0, row: 1
+      end
+      case @body_state
+      when :airdates then airdates_fill
+      when :airshows then airshows_fill
+      when :songs    then songs_fill
+      end
+      case @body_state
+      when :airdates, :airshows
+        v_prompt_choice.value = 'Choose!'
+      end
+      nil
+    end
+
+    def components_show
+      case @body_state
+      when :airdates then airdates_show
+      when :airshows then airshows_show
+      when :songs    then songs_show
+      end
       nil
     end
 
@@ -155,15 +193,6 @@ module ::QplayistPrerecord
 
     def f_body_window_destroy
       f_body_window.destroy
-      nil
-    end
-
-    def f_body_window_init
-# Recreates on every call:
-      @f_body_window_private = begin
-        f = ::Tk::Tile::Frame.new f_content
-        f.grid column: 0, row: 1
-      end
       nil
     end
 
@@ -178,16 +207,6 @@ module ::QplayistPrerecord
       grid_init_parts 7
       grid_init_label 8
       grid_init_songs 9
-=begin
-      f_body_window.grid column: 0, row: 1
-      f_about   .grid column: 0, row: 1
-      f_for_date.grid column: 0, row: 2
-      f_shows   .grid column: 0, row: 3
-      f_dates   .grid column: 0, row: 4
-      f_parts   .grid column: 0, row: 5
-      f_label   .grid column: 0, row: 6
-      f_songs   .grid column: 0, row: 7
-=end
       nil
     end
 
@@ -255,56 +274,6 @@ b_button_songs.grid
       nil
     end
 
-    def main
-      v_about_information.value = AboutInformation.text_raw
-      @body_state = :airshows
-      @body_airdates = []
-      @body_airshows = []
-# window process:
-# Group:
-      weights_column_and_row_set_up # Keep first.
-      title_set program_name
-      body_components_init
-# Group end.
-      all_pack
-      grid_init
-      ::Tk.mainloop
-      nil
-    end
-
-    private
-
-    def airdates_fill
-      @airdates = Airdates.all
-      @airdates.each{|e| button_body_airdate_init e}
-      nil
-    end
-
-    def airdates_show
-#     @body_airdates.each{|e| e.pack fill: :x}
-      nil
-    end
-
-    def airshows_fill
-      @airshows = Airshows.all
-      @airshows.each{|e| button_body_airshow_init e}
-      nil
-    end
-
-    def airshows_show
-#     @body_airshows.each{|e| e.pack fill: :x}
-      nil
-    end
-
-    def body_active_init
-      case @body_state
-      when :airdates then airdates_fill
-      when :airshows then airshows_fill
-      when :songs    then songs_fill
-      end
-      nil
-    end
-
     def label_song_init(song)
       time = ::Kernel.sprintf "%d:%02d", *song.start_time
       title = "\"#{song.title}\""
@@ -348,16 +317,10 @@ b_button_songs.grid
 
     def weights_column_and_row_set_up
       weights_column_and_row_default_set_up root
-      ::TkGrid.columnconfigure f_content, 0, weight: 1
-
-      ::TkGrid.   rowconfigure f_content, 0, weight: 1
-      ::TkGrid.   rowconfigure f_content, 1, weight: 1
-      ::TkGrid.   rowconfigure f_content, 2, weight: 1
-      ::TkGrid.   rowconfigure f_content, 3, weight: 1
-      ::TkGrid.   rowconfigure f_content, 4, weight: 1
-      ::TkGrid.   rowconfigure f_content, 5, weight: 1
-      ::TkGrid.   rowconfigure f_content, 6, weight: 1
-      ::TkGrid.   rowconfigure f_content, 7, weight: 1
+      first_column = 0
+      ::TkGrid.columnconfigure f_content, first_column, weight: 1
+      number_of_rows = 10
+      number_of_rows.times.map {|i| ::TkGrid.rowconfigure f_content, i, weight: 1}
       nil
     end
   end
