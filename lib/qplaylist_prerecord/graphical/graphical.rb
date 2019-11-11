@@ -44,7 +44,6 @@ module ::QplayistPrerecord
     extend self
 
     def main
-      v_about_information.value = AboutInformation.text_raw
       @body_state = :airshows
       @body_airdates = []
       @body_airshows = []
@@ -126,9 +125,13 @@ module ::QplayistPrerecord
       end
     end
 
+    def body_destroy
+      nil
+    end
+
     def button_body_airdate_init(airdate)
       lambda_button = ::Kernel.lambda do
-        f_body_window_destroy
+        body_destroy
         @body_airdates.clear
         @body_state = :songs
         @title_airdate = airdate.date
@@ -136,7 +139,7 @@ module ::QplayistPrerecord
         components_init
 #       components_show
       end
-      b = ::Tk::Tile::Button.new f_body_window
+      b = ::Tk::Tile::Button.new f_songs
       b.text airdate.date
       b.command lambda_button
       @body_airdates.push b
@@ -145,7 +148,7 @@ module ::QplayistPrerecord
 
     def button_body_airshow_init(airshow)
       lambda_button = ::Kernel.lambda do
-        f_body_window_destroy
+        body_destroy
         @body_airshows.clear
         @body_state = :airdates
         @title_airshow = airshow.name
@@ -153,7 +156,7 @@ module ::QplayistPrerecord
         components_init
 #       components_show
       end
-      b = ::Tk::Tile::Button.new f_body_window
+      b = ::Tk::Tile::Button.new f_songs
       b.text airshow.name
       b.command lambda_button
       @body_airshows.push b
@@ -161,11 +164,6 @@ module ::QplayistPrerecord
     end
 
     def components_init
-# Recreates on every call:
-      @f_body_window_private = begin
-        f = ::Tk::Tile::Frame.new f_content
-        f.grid column: 0, row: 1
-      end
       case @body_state
       when :airdates then airdates_fill
       when :airshows then airshows_fill
@@ -184,15 +182,6 @@ module ::QplayistPrerecord
       when :airshows then airshows_show
       when :songs    then songs_show
       end
-      nil
-    end
-
-    def f_body_window
-      @f_body_window_private
-    end
-
-    def f_body_window_destroy
-      f_body_window.destroy
       nil
     end
 
@@ -278,7 +267,7 @@ b_button_songs.grid
       time = ::Kernel.sprintf "%d:%02d", *song.start_time
       title = "\"#{song.title}\""
       s = [time, title, song.artist].join ' – '
-      l_song = ::Tk::Tile::Label.new f_body_window
+      l_song = ::Tk::Tile::Label.new f_songs
       l_song.text s
       @label_songs.push l_song
       nil
@@ -317,8 +306,8 @@ b_button_songs.grid
 
     def weights_column_and_row_set_up
       weights_column_and_row_default_set_up root
-      first_column = 0
-      ::TkGrid.columnconfigure f_content, first_column, weight: 1
+      first = 0
+      ::TkGrid.columnconfigure f_content, first, weight: 1
       number_of_rows = 10
       number_of_rows.times.map {|i| ::TkGrid.rowconfigure f_content, i, weight: 1}
       nil

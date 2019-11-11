@@ -108,11 +108,11 @@ module ::QplayistPrerecord
     end
 
     def v_about_information
-      @v_about_information_private ||= ::TkVariable.new
+      @v_about_information_private ||= ::TkVariable.new ''
     end
 
     def v_prompt_choice
-      @v_prompt_choice_private ||= ::TkVariable.new
+      @v_prompt_choice_private ||= ::TkVariable.new ''
     end
   end
 end
