@@ -47,63 +47,56 @@ module ::QplayistPrerecord
     end
 
     def f_about
-      @f_about_private ||= begin
-        f = ::Tk::Tile::Frame.new f_content
-      end
+      @f_about_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def f_dates
-      @f_dates_private ||= begin
-        f = ::Tk::Tile::Frame.new f_content
-      end
+      @f_dates_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def f_for_date
-      @f_for_date_private ||= begin
-        f = ::Tk::Tile::Frame.new f_content
-      end
+      @f_for_date_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def f_label
-      @f_label_private ||= begin
-        f = ::Tk::Tile::Frame.new f_content
-      end
+      @f_label_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def f_menu_separator
-      @f_menu_separator_private ||= begin
-        f = ::Tk::Tile::Frame.new f_content
-      end
+      @f_menu_separator_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def f_menu_window
-      @f_menu_window_private ||= begin
-        f = ::Tk::Tile::Frame.new f_content
-      end
+      @f_menu_window_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def f_parts
-      @f_parts_private ||= begin
-        f = ::Tk::Tile::Frame.new f_content
-      end
+      @f_parts_private ||= ::Tk::Tile::Frame.new f_content
+    end
+
+    def f_prompt_choice
+      @f_prompt_choice_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def f_shows
-      @f_shows_private ||= begin
-        f = ::Tk::Tile::Frame.new f_content
-      end
+      @f_shows_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def f_songs
-      @f_songs_private ||= begin
-        f = ::Tk::Tile::Frame.new f_content
-      end
+      @f_songs_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def l_about_information
       @l_about_information_private ||= begin
         l = ::Tk::Tile::Label.new f_about
         l.textvariable v_about_information
+      end
+    end
+
+    def l_prompt_choice
+      @l_prompt_choice_private ||= begin
+        l = ::Tk::Tile::Label.new f_prompt_choice
+        l.textvariable v_prompt_choice
       end
     end
 
@@ -116,6 +109,10 @@ module ::QplayistPrerecord
 
     def v_about_information
       @v_about_information_private ||= ::TkVariable.new
+    end
+
+    def v_prompt_choice
+      @v_prompt_choice_private ||= ::TkVariable.new
     end
   end
 end

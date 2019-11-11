@@ -93,6 +93,7 @@ module ::QplayistPrerecord
       grid_init_menu_separator
       grid_init_menu_window
       grid_init_parts
+      grid_init_prompt_choice
       grid_init_shows
       grid_init_songs
 =begin
@@ -116,7 +117,7 @@ module ::QplayistPrerecord
     end
 
     def grid_init_dates
-      f_dates.grid column: 0, row: 5
+      f_dates.grid column: 0, row: 6
 b_button_dates.grid
       nil
     end
@@ -128,15 +129,15 @@ b_button_for_date.grid
     end
 
     def grid_init_label
-      f_label.grid column: 0, row: 7
+      f_label.grid column: 0, row: 8
 b_button_label.grid
       nil
     end
 
     def grid_init_menu_separator
       f_menu_separator.grid column: 0, row: 1, sticky: :we
-# For s_menu, ".grid sticky: :we" doesn't work, here:
-      s_menu.pack fill: :x, side: :bottom
+# ".grid sticky: :we" doesn't fill:
+      s_menu.pack fill: :x
       nil
     end
 
@@ -149,19 +150,25 @@ b_button_label.grid
     end
 
     def grid_init_parts
-      f_parts.grid column: 0, row: 6
+      f_parts.grid column: 0, row: 7
 b_button_parts.grid
       nil
     end
 
+    def grid_init_prompt_choice
+      f_prompt_choice.grid column: 0, row: 4
+      l_prompt_choice.grid
+      nil
+    end
+
     def grid_init_shows
-      f_shows.grid column: 0, row: 4
+      f_shows.grid column: 0, row: 5
 b_button_shows.grid
       nil
     end
 
     def grid_init_songs
-      f_songs.grid column: 0, row: 8
+      f_songs.grid column: 0, row: 9
 b_button_songs.grid
       nil
     end
@@ -183,10 +190,11 @@ b_button_songs.grid
 
     def body_components_init
       f_body_window_init
-# Keep alphabetical:
       body_active_init
-      prompt_choice_init
-# (End keep alphabetical.)
+      case @body_state
+      when :airdates, :airshows
+        v_prompt_choice.value = 'Choose!'
+      end
       nil
     end
 
@@ -203,23 +211,12 @@ b_button_songs.grid
 
     def body_components_pack
       f_body_window_pack
-# Order is visual order:
-      prompt_choice_pack
       body_active_pack
-# (End visual order.)
       nil
     end
 
     def f_body_window_pack
 #     f_body_window.pack fill: :both, side: :top
-      nil
-    end
-
-    def prompt_choice_pack
-      case @body_state
-      when :airdates, :airshows
-#       @l_prompt_choice.pack pack_standard
-      end
       nil
     end
 
@@ -332,15 +329,6 @@ b_button_songs.grid
 
     def program_name
       'QPlaylistPrerecord'
-    end
-
-    def prompt_choice_init
-      case @body_state
-      when :airdates, :airshows
-        @l_prompt_choice = ::Tk::Tile::Label.new f_body_window
-        @l_prompt_choice.text 'Choose!'
-      end
-      nil
     end
 
     def title_airdate_complex
