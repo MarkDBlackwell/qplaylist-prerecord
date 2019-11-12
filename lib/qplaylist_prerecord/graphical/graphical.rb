@@ -50,7 +50,7 @@ module ::QplayistPrerecord
       title_set program_name
 # Group end.
       %i[airshows airdates songs].each do |e|
-        @body_state = e
+        @state = e
         components_init
       end
       grid_init
@@ -62,7 +62,7 @@ module ::QplayistPrerecord
 
     def button_airdate_init(airdate)
       lambda_button = ::Kernel.lambda do
-#       @body_state = :songs
+#       @state = :songs
         @title_airdate = airdate.date
         title_set title_airdate_complex
         components_init
@@ -74,7 +74,7 @@ module ::QplayistPrerecord
 
     def button_airshow_init(airshow)
       lambda_button = ::Kernel.lambda do
-#       @body_state = :airdates
+#       @state = :airdates
         @title_airshow = airshow.name
         title_set title_airshow_complex
         components_init
@@ -85,7 +85,7 @@ module ::QplayistPrerecord
     end
 
     def components_init
-      case @body_state
+      case @state
       when :airdates
         @airdates = Airdates.all.map{|e| button_airdate_init e}
       when :airshows
@@ -95,7 +95,7 @@ module ::QplayistPrerecord
         songs = Songs.all pieces_young_at_heart, segment_count
         @songs = songs.map{|e| label_song_init e}
       end
-      case @body_state
+      case @state
       when :airdates, :airshows
         v_prompt_choice.value = 'Choose!'
       end
