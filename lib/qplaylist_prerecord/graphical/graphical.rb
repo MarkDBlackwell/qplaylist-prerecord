@@ -143,13 +143,11 @@ module ::QplayistPrerecord
     def grid_init_about(row)
       f_about.grid column: 0, row: row
       l_about_information.grid column: 0, row: 0
-#print 'v_about_information.value='; p v_about_information.value
       nil
     end
 
     def grid_init_dates(row)
       f_dates.grid column: 0, row: row
-b_button_dates.grid
       @body_airdates.each{|e| e.grid}
       nil
     end
@@ -195,14 +193,12 @@ b_button_parts.grid
 
     def grid_init_shows(row)
       f_shows.grid column: 0, row: row
-b_button_shows.grid
       @body_airshows.each{|e| e.grid}
       nil
     end
 
     def grid_init_songs(row)
       f_songs.grid column: 0, row: row
-b_button_songs.grid
       @label_songs.each{|e| e.grid}
       nil
     end
