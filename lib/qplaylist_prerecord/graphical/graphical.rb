@@ -45,48 +45,37 @@ module ::QplayistPrerecord
 
     def main
       f_content.padding '3 3 3 3'
-      @body_state = :airshows
       @body_airdates = []
       @body_airshows = []
 # window process:
 # Group:
       weights_column_and_row_set_up # Keep first.
       title_set program_name
-      components_init
 # Group end.
-#     components_show
+      %i[airshows airdates songs].each do |e|
+        @body_state = e
+        components_init
+      end
+
       grid_init
+
+#     components_show
       ::Tk.mainloop
       nil
     end
 
     private
 
-    def airdates_show
-#     @body_airdates.each{|e| e.pack fill: :x}
-      nil
-    end
-
-    def airshows_show
-#     @body_airshows.each{|e| e.pack fill: :x}
-      nil
-    end
-
-    def body_destroy
-      nil
-    end
-
     def button_body_airdate_init(airdate)
       lambda_button = ::Kernel.lambda do
-        body_destroy
-        @body_airdates.clear
-        @body_state = :songs
+#       @body_airdates.clear
+#       @body_state = :songs
         @title_airdate = airdate.date
         title_set title_airdate_complex
         components_init
 #       components_show
       end
-      b = ::Tk::Tile::Button.new f_songs
+      b = ::Tk::Tile::Button.new f_dates
       b.text airdate.date
       b.command lambda_button
       @body_airdates.push b
@@ -95,15 +84,14 @@ module ::QplayistPrerecord
 
     def button_body_airshow_init(airshow)
       lambda_button = ::Kernel.lambda do
-        body_destroy
-        @body_airshows.clear
-        @body_state = :airdates
+#       @body_airshows.clear
+#       @body_state = :airdates
         @title_airshow = airshow.name
         title_set title_airshow_complex
         components_init
 #       components_show
       end
-      b = ::Tk::Tile::Button.new f_songs
+      b = ::Tk::Tile::Button.new f_shows
       b.text airshow.name
       b.command lambda_button
       @body_airshows.push b
@@ -132,11 +120,9 @@ module ::QplayistPrerecord
     end
 
     def components_show
-      case @body_state
-      when :airdates then airdates_show
-      when :airshows then airshows_show
-      when :songs    then songs_show
-      end
+#     @body_airdates.each{|e| e.pack fill: :x}
+#     @body_airshows.each{|e| e.pack fill: :x}
+#     @label_songs.each{|e| e.pack fill: :x}
       nil
     end
 
@@ -164,6 +150,7 @@ module ::QplayistPrerecord
     def grid_init_dates(row)
       f_dates.grid column: 0, row: row
 b_button_dates.grid
+      @body_airdates.each{|e| e.grid}
       nil
     end
 
@@ -209,12 +196,14 @@ b_button_parts.grid
     def grid_init_shows(row)
       f_shows.grid column: 0, row: row
 b_button_shows.grid
+      @body_airshows.each{|e| e.grid}
       nil
     end
 
     def grid_init_songs(row)
       f_songs.grid column: 0, row: row
 b_button_songs.grid
+      @label_songs.each{|e| e.grid}
       nil
     end
 
@@ -236,11 +225,6 @@ b_button_songs.grid
 
     def program_name
       'QPlaylistPrerecord'
-    end
-
-    def songs_show
-#     @label_songs.each{|e| e.pack fill: :x}
-      nil
     end
 
     def title_airdate_complex
