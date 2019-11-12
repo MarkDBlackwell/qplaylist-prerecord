@@ -35,7 +35,6 @@ module ::QplayistPrerecord
     def f_content
       $f_content_private ||= begin
         f = ::Tk::Tile::Frame.new root
-        f.padding '3 3 3 3'
         f.grid sticky: :wnes
       end
     end

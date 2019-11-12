@@ -44,6 +44,7 @@ module ::QplayistPrerecord
     extend self
 
     def main
+      f_content.padding '3 3 3 3'
       @body_state = :airshows
       @body_airdates = []
       @body_airshows = []
@@ -61,20 +62,8 @@ module ::QplayistPrerecord
 
     private
 
-    def airdates_fill
-      @airdates = Airdates.all
-      @airdates.each{|e| button_body_airdate_init e}
-      nil
-    end
-
     def airdates_show
 #     @body_airdates.each{|e| e.pack fill: :x}
-      nil
-    end
-
-    def airshows_fill
-      @airshows = Airshows.all
-      @airshows.each{|e| button_body_airshow_init e}
       nil
     end
 
@@ -123,9 +112,17 @@ module ::QplayistPrerecord
 
     def components_init
       case @body_state
-      when :airdates then airdates_fill
-      when :airshows then airshows_fill
-      when :songs    then songs_fill
+      when :airdates
+        @airdates = Airdates.all
+        @airdates.each{|e| button_body_airdate_init e}
+      when :airshows
+        @airshows = Airshows.all
+        @airshows.each{|e| button_body_airshow_init e}
+      when :songs
+        @label_songs = []
+        segment_count = 4
+        @songs = Songs.all pieces_young_at_heart, segment_count
+        @songs.each{|e| label_song_init e}
       end
       case @body_state
       when :airdates, :airshows
@@ -239,14 +236,6 @@ b_button_songs.grid
 
     def program_name
       'QPlaylistPrerecord'
-    end
-
-    def songs_fill
-      @label_songs = []
-      segment_count = 4
-      @songs = Songs.all pieces_young_at_heart, segment_count
-      @songs.each{|e| label_song_init e}
-      nil
     end
 
     def songs_show
