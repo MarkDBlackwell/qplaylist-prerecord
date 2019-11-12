@@ -60,24 +60,24 @@ module ::QplayistPrerecord
 
     private
 
-    def button_airdate_init(airdate)
+    def button_airdate(airdate)
       lambda_button = ::Kernel.lambda do
 #       @state = :songs
         @title_airdate = airdate.date
         title_set title_airdate_complex
-        components_init
+#       components_init
       end
       b = ::Tk::Tile::Button.new f_dates
       b.text airdate.date
       b.command lambda_button
     end
 
-    def button_airshow_init(airshow)
+    def button_airshow(airshow)
       lambda_button = ::Kernel.lambda do
 #       @state = :airdates
         @title_airshow = airshow.name
         title_set title_airshow_complex
-        components_init
+#       components_init
       end
       b = ::Tk::Tile::Button.new f_shows
       b.text airshow.name
@@ -87,9 +87,9 @@ module ::QplayistPrerecord
     def components_init
       case @state
       when :airdates
-        @airdates = Airdates.all.map{|e| button_airdate_init e}
+        @airdates = Airdates.all.map{|e| button_airdate e}
       when :airshows
-        @airshows = Airshows.all.map{|e| button_airshow_init e}
+        @airshows = Airshows.all.map{|e| button_airshow e}
       when :songs
         segment_count = 4
         songs = Songs.all pieces_young_at_heart, segment_count
