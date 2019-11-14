@@ -20,9 +20,9 @@ module ::QplayistPrerecord
       grid_init_menu_window 0
       grid_init_menu_separator 1
       grid_init_about 2
-      grid_init_for_date 3
-      grid_init_prompt_choice 4
-      grid_init_shows 5
+      grid_init_prompt_choice 3
+      grid_init_shows 4
+      grid_init_for_date 5
       grid_init_dates 6
       grid_init_parts 7
       grid_init_label 8
@@ -43,8 +43,11 @@ module ::QplayistPrerecord
     end
 
     def grid_init_for_date(row)
-      f_for_date.grid column: 0, row: row
-b_button_for_date.grid
+      f_for_date        .grid column: 0, row: row
+      l_for_date        .grid column: 0, row: 0
+# Elsewhere, dynamically place date combobox in column 1.
+      l_for_date_weekday.grid column: 2, row: 0
+      b_for_date        .grid column: 3, row: 0
       nil
     end
 

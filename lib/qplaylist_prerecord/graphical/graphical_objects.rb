@@ -13,13 +13,6 @@ require 'about_information'
 module ::QplayistPrerecord
   module GraphicalObjects
 
-    def b_button_for_date
-      @b_button_for_date_private ||= begin
-        b = ::Tk::Tile::TButton.new f_for_date
-        b.text 'Hello, world! : For date'
-      end
-    end
-
     def b_button_label
       @b_button_label_private ||= begin
         b = ::Tk::Tile::TButton.new f_label
@@ -64,6 +57,16 @@ module ::QplayistPrerecord
         b.command do
           ::Kernel.exit
         end
+      end
+    end
+
+    def b_for_date
+      @b_for_date_private ||= begin
+        lambda_for_date = ::Kernel.lambda do
+        end
+        b = ::Tk::Tile::Button.new f_for_date
+        b.text 'Reset'
+        b.command lambda_for_date
       end
     end
 
@@ -114,6 +117,20 @@ module ::QplayistPrerecord
       end
     end
 
+    def l_for_date
+      @l_for_date_private ||= begin
+        l = ::Tk::Tile::Label.new f_for_date
+        l.text 'For Date'
+      end
+    end
+
+    def l_for_date_weekday
+      @l_for_date_weekday_private ||= begin
+        l = ::Tk::Tile::Label.new f_for_date
+        l.textvariable v_for_date_weekday
+      end
+    end
+
     def l_prompt_choice
       @l_prompt_choice_private ||= begin
         l = ::Tk::Tile::Label.new f_prompt_choice
@@ -129,11 +146,19 @@ module ::QplayistPrerecord
     end
 
     def v_about_information
-      @v_about_information_private ||= ::TkVariable.new ''
+      @v_about_information_private ||= ::TkVariable.new
+    end
+
+    def v_for_date
+      @v_for_date_private ||= ::TkVariable.new
+    end
+
+    def v_for_date_weekday
+      @v_for_date_weekday_private ||= ::TkVariable.new
     end
 
     def v_prompt_choice
-      @v_prompt_choice_private ||= ::TkVariable.new ''
+      @v_prompt_choice_private ||= ::TkVariable.new
     end
   end
 end

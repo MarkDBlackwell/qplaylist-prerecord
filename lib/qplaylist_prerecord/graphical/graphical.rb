@@ -31,6 +31,7 @@ require 'airshow'
 require 'airshows'
 require 'graphical_helper'
 require 'grid'
+require 'helper'
 require 'pp'
 require 'song'
 require 'songs'
@@ -40,6 +41,7 @@ module ::QplayistPrerecord
   module Graphical
     include GraphicalHelper
     include Grid
+    include Helper
     extend self
 
     def main
@@ -90,6 +92,16 @@ module ::QplayistPrerecord
         @airdates = Airdates.all.map{|e| button_airdate e}
       when :airshows
         @airshows = Airshows.all.map{|e| button_airshow e}
+        weekday = 'tue'
+        dates = dates_from_today weekday
+        v_for_date.value = dates.first
+        v_for_date_weekday.value = weekday.capitalize
+        co_for_date = begin
+# State & values can't be assigned later:
+          co = ::Ttk::Combobox.new f_for_date, state: :readonly, values: dates
+          co.textvariable v_for_date
+          co.grid column: 1, row: 0
+        end
       when :songs
         segment_count = 4
         songs = Songs.all pieces_young_at_heart, segment_count

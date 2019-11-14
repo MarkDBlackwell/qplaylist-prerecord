@@ -14,6 +14,10 @@ module ::QplayistPrerecord
 
     private
 
+    def dates_from_today(weekday)
+      [weekday + '_a', weekday + '_b', weekday + '_c']
+    end
+
     def directory_etc_example
       ::File.join project_root, 'etc', 'example'
     end
