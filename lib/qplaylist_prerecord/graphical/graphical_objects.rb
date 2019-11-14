@@ -63,6 +63,7 @@ module ::QplayistPrerecord
     def b_for_date
       @b_for_date_private ||= begin
         lambda_for_date = ::Kernel.lambda do
+          for_date_chooser_init
         end
         b = ::Tk::Tile::Button.new f_for_date
         b.text 'Reset'
