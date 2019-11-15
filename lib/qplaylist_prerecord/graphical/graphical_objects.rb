@@ -99,8 +99,12 @@ module ::QplayistPrerecord
       @f_parts_private ||= ::Tk::Tile::Frame.new f_content
     end
 
-    def f_prompt_choice
-      @f_prompt_choice_private ||= ::Tk::Tile::Frame.new f_content
+    def f_prompt_choice_date
+      @f_prompt_choice_date_private ||= ::Tk::Tile::Frame.new f_content
+    end
+
+    def f_prompt_choice_show
+      @f_prompt_choice_show_private ||= ::Tk::Tile::Frame.new f_content
     end
 
     def f_shows
@@ -121,7 +125,7 @@ module ::QplayistPrerecord
     def l_for_date
       @l_for_date_private ||= begin
         l = ::Tk::Tile::Label.new f_for_date
-        l.text 'Preparing which airdate?'
+        l.text 'Preparing for which airdate?'
       end
     end
 
@@ -132,10 +136,17 @@ module ::QplayistPrerecord
       end
     end
 
-    def l_prompt_choice
-      @l_prompt_choice_private ||= begin
-        l = ::Tk::Tile::Label.new f_prompt_choice
-        l.textvariable v_prompt_choice
+    def l_prompt_choice_date
+      @l_prompt_choice_date_private ||= begin
+        l = ::Tk::Tile::Label.new f_prompt_choice_date
+        l.text 'Optionally based on a past date?'
+      end
+    end
+
+    def l_prompt_choice_show
+      @l_prompt_choice_show_private ||= begin
+        l = ::Tk::Tile::Label.new f_prompt_choice_show
+        l.text 'Which is your show?'
       end
     end
 
@@ -156,10 +167,6 @@ module ::QplayistPrerecord
 
     def v_for_date_weekday
       @v_for_date_weekday_private ||= ::TkVariable.new
-    end
-
-    def v_prompt_choice
-      @v_prompt_choice_private ||= ::TkVariable.new
     end
   end
 end

@@ -20,13 +20,14 @@ module ::QplayistPrerecord
       grid_init_menu_window 0
       grid_init_menu_separator 1
       grid_init_about 2
-      grid_init_prompt_choice 3
+      grid_init_prompt_choice_show 3
       grid_init_shows 4
       grid_init_for_date 5
-      grid_init_dates 6
-      grid_init_parts 7
-      grid_init_label 8
-      grid_init_songs 9
+      grid_init_prompt_choice_date 6
+      grid_init_dates 7
+      grid_init_parts 8
+      grid_init_label 9
+      grid_init_songs 10
       nil
     end
 
@@ -78,9 +79,15 @@ b_button_parts.grid
       nil
     end
 
-    def grid_init_prompt_choice(row)
-      f_prompt_choice.grid column: 0, row: row
-      l_prompt_choice.grid
+    def grid_init_prompt_choice_date(row)
+      f_prompt_choice_date.grid column: 0, row: row
+      l_prompt_choice_date.grid
+      nil
+    end
+
+    def grid_init_prompt_choice_show(row)
+      f_prompt_choice_show.grid column: 0, row: row
+      l_prompt_choice_show.grid
       nil
     end
 

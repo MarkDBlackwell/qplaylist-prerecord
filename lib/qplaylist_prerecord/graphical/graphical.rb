@@ -98,10 +98,6 @@ module ::QplayistPrerecord
         songs = Songs.all pieces_young_at_heart, segment_count
         @songs = songs.map{|e| label_song_init e}
       end
-      case @state
-      when :airdates, :airshows
-        v_prompt_choice.value = 'Which is your show?'
-      end
       nil
     end
 
