@@ -100,7 +100,7 @@ module ::QplayistPrerecord
       end
       case @state
       when :airdates, :airshows
-        v_prompt_choice.value = 'Which show do you want to work on?'
+        v_prompt_choice.value = 'Which is your show?'
       end
       nil
     end

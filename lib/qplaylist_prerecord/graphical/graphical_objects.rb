@@ -121,7 +121,7 @@ module ::QplayistPrerecord
     def l_for_date
       @l_for_date_private ||= begin
         l = ::Tk::Tile::Label.new f_for_date
-        l.text 'For Date'
+        l.text 'Preparing which airdate?'
       end
     end
 
