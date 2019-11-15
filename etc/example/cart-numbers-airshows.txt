@@ -1,6 +1,5 @@
 # Airshow Name    Cartridge Numbers
 # ------------    -----------------
+  easy-listening  0123 0124
   hits            0345
-  hits-repeat     0346
   jazz            0234 0235 0236
-  jazz-2-segments 0123 0124
