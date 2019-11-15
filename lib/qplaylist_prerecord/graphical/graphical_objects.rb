@@ -130,10 +130,7 @@ module ::QplayistPrerecord
     end
 
     def l_for_date_weekday
-      @l_for_date_weekday_private ||= begin
-        l = ::Tk::Tile::Label.new f_for_date
-        l.textvariable v_for_date_weekday
-      end
+      @l_for_date_weekday_private ||= ::Tk::Tile::Label.new f_for_date
     end
 
     def l_prompt_choice_date
@@ -163,10 +160,6 @@ module ::QplayistPrerecord
 
     def v_for_date
       @v_for_date_private ||= ::TkVariable.new
-    end
-
-    def v_for_date_weekday
-      @v_for_date_weekday_private ||= ::TkVariable.new
     end
   end
 end

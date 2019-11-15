@@ -105,7 +105,7 @@ module ::QplayistPrerecord
       weekday = 'tue'
       dates = dates_from_today weekday
       v_for_date.value = dates.first
-      v_for_date_weekday.value = weekday.capitalize
+      l_for_date_weekday.text = weekday.capitalize
       co_for_date = begin
 # State & values can't be assigned later:
         co = ::Ttk::Combobox.new f_for_date, state: :readonly, values: dates
