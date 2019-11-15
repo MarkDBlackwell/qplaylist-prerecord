@@ -136,7 +136,7 @@ module ::QplayistPrerecord
     def l_prompt_choice_date
       @l_prompt_choice_date_private ||= begin
         l = ::Tk::Tile::Label.new f_prompt_choice_date
-        l.text 'Optionally based on a past date?'
+        l.text 'Optionally based on a past date? Available are:'
       end
     end
 
